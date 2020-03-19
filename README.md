@@ -1,4 +1,4 @@
-# Gatsby Starter
+# Starter
 
 - [ ] Add some more stuff here
 
