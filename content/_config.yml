@@ -1,0 +1,75 @@
+# Site settings
+title: Gatsby Starter CMS
+email: dev@ocupop.com
+url: "http://cms.ocupop.com"
+permalink: pretty
+
+# Social sharing
+description:
+socialshare:
+  featured_image: img/socialshare.png
+  twitter:
+    username:
+    image:
+
+# Google Analytics
+analytics:
+  default:
+
+# Collections
+collections:
+  elements:
+    output: false
+
+defaults:
+  - scope:
+      type: "posts"
+    values:
+      layout: post
+      _options:
+        featured_image:
+          uploads_dir: "img/uploads/posts/"
+
+# Build settings
+safe: false
+sass:
+  # style: compressed
+  sass_dir: _scss
+
+# plugins:
+
+# Cloudcannon Configuration
+_array_structures:
+  meta:
+    - label: Meta Data
+      icon: share
+      value:
+        description:
+        image:
+  faqs:
+    - label: FAQ
+      icon: question_answer
+      value:
+        question:
+        answer_html:
+  links:
+    - label: Links
+      icon: link
+      value:
+        url:
+        label:
+        screenshot_image:
+        icon:
+  assets:
+    - label: Image
+      icon: insert_photo
+      value:
+        _type: image
+        title:
+        image:
+    - label: Video
+      icon: videocam
+      value:
+        _type: video
+        title:
+        embed_url:
