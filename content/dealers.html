@@ -37,12 +37,15 @@ title: CFR Dealers
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="col-md-6 col-lg-3 text-center">
-        <a href="http://www.valleychainsaw.ca" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
-          <img src="//cdn.shopify.com/s/files/1/0274/7733/files/2_compact.png?v=1493847710"
-            alt="Valley Chainsaw Logo" />
-        </a>
-      </div>
+      {% for object in site.data.canadian-dealers %}
+        {% assign dealer = site.dealers | where: "slug", object | first %}
+        <div class="col-md-6 col-lg-3 text-center">
+          <a href="{{ dealter.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
+            <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " />
+          </a>
+        </div>
+      {% endfor %}
+      
       <div class="col-md-6 col-lg-3 text-center">
         <a href="http://www.revolutionpowersports.ca/" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
           <img src="//cdn.shopify.com/s/files/1/0274/7733/files/6_compact.png?v=1493847727" class="img-fluid"
