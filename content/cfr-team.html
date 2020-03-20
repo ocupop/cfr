@@ -30,21 +30,31 @@ title: CFR Team
               </li>
             </ul>
           </nav>
-          {tier1Team &&
-          <Tier1Team />
-          }
-          {tier2Team &&
-          <Tier2Team />
-          }
-          {tier3Team &&
-          <Tier3Team />
-          }
-          {socialTeam &&
-          <SocialTeam />
-          }
-          {industryGoats &&
-          <IndustryGoats />
-          }
+          <div className="responsive-card-deck cards-md-2 cards-lg-4">
+            {% for team in site.data.tier-1-team %}
+              <a href="{{ team.link }}" className="card" target="_blank" rel="noopener">
+                <div Tag="div" className="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                </div>
+                <div className="card-body">
+                  <h2 className="h4">{{ team.name }}</h2>
+                  <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+          <div className="responsive-card-deck cards-md-2 cards-lg-4">
+            {% for team in site.data.tier-2-team %}
+            <a href="{{ team.link }}" className="card" target="_blank" rel="noopener">
+              <div Tag="div" className="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+              </div>
+              <div className="card-body">
+                <h2 className="h4">{{ team.name }}</h2>
+                <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+
         </div>
       </div>
     </div>
@@ -58,5 +68,5 @@ title: CFR Team
     </div>
   </div>
 </section>
-<BackgroundImage Tag="div" class="bg-image aspect-footer-hero" fluid={data.background_hero.childImageSharp.fluid}>
-</BackgroundImage>
+<div class="bg-image aspect-footer-hero" style="background-image: url(/img/cfr-footer-7.jpg)">
+</div>
