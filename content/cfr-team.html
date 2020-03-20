@@ -30,25 +30,26 @@ title: CFR Team
               </li>
             </ul>
           </nav>
-          <div className="responsive-card-deck cards-md-2 cards-lg-4">
-            {% for team in site.data.tier-1-team %}
-              <a href="{{ team.link }}" className="card" target="_blank" rel="noopener">
-                <div Tag="div" className="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+          <div class="responsive-card-deck cards-md-2 cards-lg-4">
+            {% for object in site.data.tier-1-team.team_members %}
+              {% assign team = site.team_members | where: "slug", object | first %}
+              <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
+                <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
                 </div>
-                <div className="card-body">
-                  <h2 className="h4">{{ team.name }}</h2>
+                <div class="card-body">
+                  <h2 class="h4">{{ team.name }}</h2>
                   <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
                 </div>
               </a>
             {% endfor %}
           </div>
-          <div className="responsive-card-deck cards-md-2 cards-lg-4">
+          <div class="responsive-card-deck cards-md-2 cards-lg-4">
             {% for team in site.data.tier-2-team %}
-            <a href="{{ team.link }}" className="card" target="_blank" rel="noopener">
-              <div Tag="div" className="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+            <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
+              <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
               </div>
-              <div className="card-body">
-                <h2 className="h4">{{ team.name }}</h2>
+              <div class="card-body">
+                <h2 class="h4">{{ team.name }}</h2>
                 <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
               </div>
             </a>
