@@ -37,7 +37,7 @@ title: CFR Dealers
       </div>
     </div>
     <div class="row align-items-center">
-      {% for object in site.data.canadian-dealers %}
+      {% for object in site.data.canadian-dealers.dealers %}
         {% assign dealer = site.dealers | where: "slug", object | first %}
         <div class="col-md-6 col-lg-3 text-center">
           <a href="{{ dealter.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
@@ -45,7 +45,7 @@ title: CFR Dealers
           </a>
         </div>
       {% endfor %}
-      
+    </div>  
       <div class="col-md-6 col-lg-3 text-center">
         <a href="http://www.revolutionpowersports.ca/" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
           <img src="//cdn.shopify.com/s/files/1/0274/7733/files/6_compact.png?v=1493847727" class="img-fluid"
