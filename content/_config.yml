@@ -34,6 +34,13 @@ defaults:
       _options:
         featured_image:
           uploads_dir: "img/uploads/posts/"
+  - scope:
+      type: "dealers"
+    values:
+      _options:
+        image:
+          uploads_dir: "img/uploads/dealers/"        
+
 
 # Build settings
 safe: false
