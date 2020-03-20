@@ -25,3 +25,14 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

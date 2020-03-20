@@ -1,0 +1,23 @@
+.dealer-section {
+  @include media-breakpoint-down(md) {
+    img {
+      max-width: 50%;
+    }
+  }
+}
+
+.dealer-button {
+  border: 0;
+  background-color: transparent;
+  opacity: 0.5;
+  @include transition(0.5s);
+  transform: scale(0.95);
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover,
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,42 @@
+.productDescription {
+  img {
+    max-width: 100%;
+  }
+}
+.productDetails {}
+
+.productContent {
+  h1 {
+    small {
+      font-size: 50%;
+    }
+  }
+}
+
+.main-image-viewport {
+  height: 500px;
+  background-size: contain !important;
+}
+
+.product-thumbnails {
+  flex-wrap: wrap;
+  @include media-breakpoint-up(lg) {
+    flex-wrap: nowrap;
+  }
+  .bg-image {
+    width: 14%;
+    @include media-breakpoint-up(lg) {
+      width: 14%;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.product-social {
+  i {
+    font-size: 22px;
+    color: $gray-800;
+  }
+}

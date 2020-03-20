@@ -1,0 +1,12 @@
+.collectionNav {
+  .nav-item {
+    margin-bottom: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      font-weight: 800;
+      font-family: $headings-font-family;
+    }
+  }
+}

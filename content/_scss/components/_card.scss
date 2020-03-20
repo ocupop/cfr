@@ -1,0 +1,46 @@
+.card {
+  border: 0;
+  @include transition(background-color, 0.5s);
+  background-color: $white;
+  margin-bottom: 20px;
+  .card-image-wrapper {
+    height: auto;
+    background: $white;
+  }
+  &:hover {
+    background-color: $black;
+    text-decoration: none;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $white;
+    }
+    .btn {
+      &.btn-primary {
+        border-color: $red;
+        background-color: $red;
+        color: $white;
+      }
+    }
+    .card-body {
+    }
+  }
+  .card-body {
+    @include transition(padding, 0.5s);
+  }
+  .card-body,
+  .card-footer {
+    p {
+      color: $gray-800;
+    }
+  }
+  .card-footer {
+    background-color: transparent;
+    border: 0;
+  }
+}

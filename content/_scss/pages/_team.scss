@@ -1,0 +1,11 @@
+#teamNav {
+  .nav-link {
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
+    &.active {
+      background: $black;
+      color: $white;
+    }
+  }
+}

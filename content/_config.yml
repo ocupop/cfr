@@ -1,7 +1,7 @@
 # Site settings
-title: Gatsby Starter CMS
+title: Cheetah Factory Racing
 email: dev@ocupop.com
-url: "http://cms.ocupop.com"
+url: ""
 permalink: pretty
 
 # Social sharing
@@ -20,6 +20,11 @@ analytics:
 collections:
   elements:
     output: false
+  team_members:
+    output: false
+  dealers:
+    output: false  
+
 
 defaults:
   - scope:

@@ -15,6 +15,16 @@
 
 .content {
   padding: 20px;
+  @include media-breakpoint-down(md) {
+    padding: 10px 20px;
+  }
+}
+
+// TODO check if we still need bg image wrapper
+.bg-image-wrapper {
+  width: 100%;
+  height: auto;
+  padding: 20px;
 }
 
 // Background Utilities
@@ -63,6 +73,12 @@
   &.aspect-hero {
     padding-top: 43%;
   }
+  &.aspect-footer-hero {
+    padding-top: 35%;
+  }
+  &.aspect-thumbnail {
+    padding-top: 10%;
+  }
   &.aspect-auto {
     height: auto;
     padding-top: 28vw;
@@ -106,48 +122,8 @@
     background-repeat: no-repeat;
   }
 }
-.bg-illustration-overlay {
-  display: block;
-  height: auto;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-image: url('/assets/img/bg-illustrations.png');
-  @include media-breakpoint-down(sm) {
-    padding-top: 35%;
-    background-size: 100%;
-    background-position: top center;
-    background-image: url('/assets/img/bg-illustrations-mobile.png');
-  }
-}
 
-.bg-lettuce {
-  background-image: url('/img/bg-illustrations/4p-background-lettuce-cropped.png');
-  background-repeat: no-repeat;
-  background-position: left top;
-  background-size: contain;
-}
 
-.bg-cabbage-large {
-  background-image: url('/img/bg-illustrations/4p-background-cabbage-cropped.png');
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: contain;
-}
-
-.bg-cabbage-half {
-  background-image: url('/img/bg-illustrations/4p-background-cabbage-half.png');
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: contain;
-}
-
-.cabbage-half {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 38%;
-}
 
 // Sticky behavior
 .sticky {
@@ -201,22 +177,7 @@
   }
 }
 
-// .cards {
-//   display: flex;
-//   flex-flow: wrap;
-//   .card {
-//     width: calc(25% - 2rem);
-//     margin: 1rem;
-//     flex: inherit;
-//     color: $dark;
-//     &:hover {
-//       text-decoration: none;
-//     }
-//     .card-img-top {
-//       padding-top: 50%;
-//     }
-//   }
-// }
+
 
 .responsive-card-deck {
   @include make-responsive-cards();
@@ -606,5 +567,40 @@ cart-summary {
     @include animation(spin, 1.2s);
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+  }
+}
+
+.sidebar-layout-content {
+  @include media-breakpoint-up(lg) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+.sidebar {
+  position: relative;
+  z-index: 500;
+  color: $white;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $white;
+  }
+  &::after {
+    content: "";
+    display: block;
+    width: 500%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    background-color: $black;
+    z-index: -1;
+    @include media-breakpoint-up(lg) {
+      left: 0;
+    }
   }
 }

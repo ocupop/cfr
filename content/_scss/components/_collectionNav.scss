@@ -1,0 +1,41 @@
+.collectionNav {
+  h2 {
+    font-size: 18px;
+    @include media-breakpoint-down(md) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  h3 {
+    font-size: 16px;
+    @include media-breakpoint-down(md) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .nav {
+    @include media-breakpoint-down(md) {
+      @include transition(opacity, 0.5s);
+      opacity: 0;
+      height: 0;
+      visibility: hidden;
+      margin-bottom: 0;
+      &.active {
+        opacity: 1;
+        height: auto;
+        visibility: visible;
+        margin-bottom: 50px;
+      }
+    }
+    .nav-item {
+      text-transform: uppercase;
+    }
+    .nav-link {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    margin-bottom: 50px;
+  }
+}

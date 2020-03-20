@@ -1,0 +1,12 @@
+.cart-item-row {
+  border-bottom: 1px solid $black;
+  margin-bottom: 30px;
+  h2 {
+    font-size: 16px;
+    line-height: 1.3;
+    a {
+      color: $black;
+      font-weight: 800;
+    }
+  }
+}

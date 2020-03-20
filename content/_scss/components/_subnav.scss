@@ -1,0 +1,9 @@
+.subnav {
+  color: $black;
+  border: 1px solid $black;
+  .nav-link {
+    color: $black;
+    text-transform: uppercase;
+  }
+  border-color: $black;
+}

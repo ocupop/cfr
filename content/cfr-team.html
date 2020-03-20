@@ -1,0 +1,62 @@
+---
+layout: page
+title: CFR Team
+---
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="content">
+          <h1 class="mb-5">Winter 2018-19 Athletes</h1>
+          <nav id="teamNav" class="subnav my-4">
+            <ul class="nav flex-column flex-md-row justify-content-between">
+              <li class="nav-item text-center">
+                <button class="nav-link btn">Tier 1 Team</button>
+              </li>
+              <li class="nav-item text-center">
+                <button class="nav-link btn">Tier 2 Team</button>
+              </li>
+              <li class="nav-item text-center">
+                <button class="nav-link btn">
+                  Tier 3 Team
+                </button>
+              </li>
+              <li class="nav-item text-center">
+                <button class="nav-link btn">Social Team</button>
+              </li>
+              <li class="nav-item text-center">
+                <button class="nav-link btn">Industry Goats</button>
+              </li>
+            </ul>
+          </nav>
+          {tier1Team &&
+          <Tier1Team />
+          }
+          {tier2Team &&
+          <Tier2Team />
+          }
+          {tier3Team &&
+          <Tier3Team />
+          }
+          {socialTeam &&
+          <SocialTeam />
+          }
+          {industryGoats &&
+          <IndustryGoats />
+          }
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="content text-center">
+          <p><small>Please note: CFR Sponsorship Applications Will only be considered Between May 1st and September 1st.
+              Please Hit us up in the Spring!</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<BackgroundImage Tag="div" class="bg-image aspect-footer-hero" fluid={data.background_hero.childImageSharp.fluid}>
+</BackgroundImage>

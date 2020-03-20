@@ -2,18 +2,23 @@
 layout: page
 title: Home
 meta:
-_assets:
-  - image: /img/uploads/home/4p-homepage-foodaccess-01.jpg
-  - image: /img/uploads/home/4p-homepage-foodaccess-02.jpg
-  - image: /img/uploads/home/4p-homepage-foodaccess-03.jpg
 ---
 
-<section>
+<FeaturedCollection />
+<GetStoked />
+<CollectionsNav />
+<SnowmobileBrands />
+<section class="pt-0">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1>Hello: {{ site.title }}</h1>
+        <div class="content">
+          <h2>Most Popular Items</h2>
+          <popular-products></popular-products>
+        </div>
       </div>
     </div>
   </div>
 </section>
+<div class="bg-image aspect-footer-hero">
+</div>
