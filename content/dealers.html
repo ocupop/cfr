@@ -33,13 +33,13 @@ title: CFR Dealers
     <div class="row">
       <div class="col-12">
         <div class="content">
-          <h2 class="h3">Canada Dealers - <small class="text-capitalize">{{ object }}</small></h2>
+          <h2 class="h3">Canada Dealers - <small class="text-capitalize">{{ object.name }}</small></h2>
         </div>
       </div>
     </div>
     <div class="row align-items-center">
-      {% for item in object.dealers%}
-        {% assign dealer = site.dealers | where: "slug", object | first %}
+      {% for item in object.dealers %}
+        {% assign dealer = site.dealers | where: "slug", item | first %}
         <div class="col-md-6 col-lg-3 text-center">
           <a href="{{ dealter.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
             <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " />

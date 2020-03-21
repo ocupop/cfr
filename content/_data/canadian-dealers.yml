@@ -1,4 +1,4 @@
-british-columbia:
+- name: British Columbia
   dealers:
     - valley-chainsaw
     - revolution-powersports
@@ -13,12 +13,12 @@ british-columbia:
     - playmor-power-products
     - free-spirit-sports
     - vally-moto-sport
-alberta:
+- name: Alberta
   dealers:
     - cycle-works-motorsports
     - ojs-leisure-marine
     - cycle-west
     - specialty-motorsports
-distributors:
+- name: Distributors
   dealers:
     - mountain-sports-distribution
