@@ -1,7 +1,24 @@
 british-columbia:
   dealers:
     - valley-chainsaw
+    - revolution-powersports
+    - no-limits-motorsports
+    - greater-vancouver-powersports
+    - international-motorsports
+    - mountain-motorsports
+    - courtenay-motorsports
+    - banner-recreational-products
+    - cr-racing
+    - main-jet-motorsports
+    - playmor-power-products
+    - free-spirit-sports
+    - vally-moto-sport
 alberta:
   dealers:
+    - cycle-works-motorsports
+    - ojs-leisure-marine
+    - cycle-west
+    - specialty-motorsports
 distributors:
-  dealers:      
+  dealers:
+    - mountain-sports-distribution
