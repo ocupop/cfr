@@ -1,18 +1,31 @@
 idaho:
   dealers:
+    - woodside-motorsports
+    - rexburg-motorsports
 montana:
   dealers:
+    - cooke-city-exxon
 utah:
   dealers:
 wyoming:
   dealers:
+    - jackson-hole-cycle-saw
+    - leisure-sports-jackson-hole
 colorado:
   dealers:
+    - gunnison-motorsports
+    - radio-boardshop
+    - felker-motorsports
 alaska:
   dealers:
+    - oft-racing
+    - boarderline-legacy
+    - delta-powersports
 california:
   dealers:
+    - backcountry-addicts
 new-hampshire:
   dealers:
 distributors:
-  dealers:              
+  dealers:
+    - wps-inc
