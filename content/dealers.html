@@ -6,22 +6,20 @@ title: CFR Dealers
 <section class="pb-0">
   <div class="container">
     <div class="row">
-      <div class="col-6">
+      <div class="col-12">
         <div class="content">
-          <button class="dealer-button">
-            <h1 class="h4">Canada Dealers &amp; Distribution</h1>
-            <img src="//cdn.shopify.com/s/files/1/0274/7733/files/canada_large.png?v=1493846797" class="img-fluid"
-              alt="" />
-          </button>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="content">
-          <button class="dealer-button active">
-            <h1 class="h4">US Dealers &amp; Distribution</h1>
-            <img src="//cdn.shopify.com/s/files/1/0274/7733/files/usa_large.png?v=1493846805" class="img-fluid"
-              alt="" />
-          </button>
+          <nav>
+            <div class="nav nav-tabs border-0 align-items-center justify-content-between" id="nav-dealers">
+              <a href="#canadian-dealers" class="dealer-button" data-toggle="tab" role="tab" aria-controls="canadian-dealers">
+                <h1 class="h4">Canada Dealers &amp; Distribution</h1>
+                <img src="/img/canada-large.png" class="img-fluid" alt="Canada map graphic" />
+              </a>
+              <a href="#us-dealers" class="dealer-button active" data-toggle="tab" role="tab" aria-controls="us-dealers">
+                <h1 class="h4">US Dealers &amp; Distribution</h1>
+                <img src="/img/usa_large.png" class="img-fluid" alt="US map graphic" />
+              </a>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
@@ -29,48 +27,52 @@ title: CFR Dealers
 </section>
 <section class="dealer-section">
   <div class="container">
-    {% for object in site.data.canadian-dealers %}
-    <div class="row">
-      <div class="col-12">
-        <div class="content">
-          <h2 class="h3">Canada Dealers - <small class="text-capitalize">{{ object.name }}</small></h2>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="canadian-dealers">
+        {% for object in site.data.canadian-dealers %}
+        <div class="row">
+          <div class="col-12">
+            <div class="content">
+              <h2 class="h3">Canada Dealers - <small class="text-capitalize">{{ object.name }}</small></h2>
+            </div>
+          </div>
         </div>
+        <div class="row align-items-center">
+          {% for item in object.dealers %}
+          {% assign dealer = site.dealers | where: "slug", item | first %}
+          <div class="col-md-6 col-lg-3 text-center">
+            <a href="{{ dealter.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
+              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " />
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="tab-pane fade" id="us-dealers">
+        {% for object in site.data.us-dealers %}
+        <div class="row">
+          <div class="col-12">
+            <div class="content">
+              <h2 class="h3">US Dealers - <small class="text-capitalize">{{ object.name }}</small></h2>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          {% for item in object.dealers %}
+          {% assign dealer = site.dealers | where: "slug", item | first %}
+          <div class="col-md-6 col-lg-3 text-center">
+            <a href="{{ dealer.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
+              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " />
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
       </div>
     </div>
-    <div class="row align-items-center">
-      {% for item in object.dealers %}
-        {% assign dealer = site.dealers | where: "slug", item | first %}
-        <div class="col-md-6 col-lg-3 text-center">
-          <a href="{{ dealter.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
-            <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " />
-          </a>
-        </div>
-      {% endfor %}
-    </div>  
-    {% endfor %}
-   
-    <div class="row">
-      <div class="col-12">
-        <div class="content">
-          <h2 class="h3">Canada Distributors</h2>
-        </div>
-      </div>
-    </div>
-    
   </div>
-</section>
-
-<section class="dealer-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="content">
-          <h2 class="h3">US Dealers - <small class="text-capitalize">Idaho</small></h2>
-        </div>
-      </div>
-    </div>
- 
-  </div>
+  
 </section>
 
 <div class="bg-image aspect-footer-hero" style="background-image: url(/img/cfr-footer-9.jpg)"></div>

@@ -10,6 +10,7 @@
   border: 0;
   background-color: transparent;
   opacity: 0.5;
+  text-align: center;
   @include transition(0.5s);
   transform: scale(0.95);
   &:hover {
