@@ -10,51 +10,85 @@ title: CFR Team
         <div class="content">
           <h1 class="mb-5">Winter 2018-19 Athletes</h1>
           <nav id="teamNav" class="subnav my-4">
-            <ul class="nav flex-column flex-md-row justify-content-between">
+            <ul class="nav nav-tabs flex-column flex-md-row justify-content-between" id="teamTabs">
               <li class="nav-item text-center">
-                <button class="nav-link btn">Tier 1 Team</button>
+                <a href="#tier1" id="tier-1-tab" data-toggle="tab" class="nav-link btn">Tier 1 Team</a>
               </li>
               <li class="nav-item text-center">
-                <button class="nav-link btn">Tier 2 Team</button>
+                <a href="#tier2" id="tier-2-tab" data-toggle="tab" class="nav-link btn">Tier 2 Team</a>
               </li>
               <li class="nav-item text-center">
-                <button class="nav-link btn">
-                  Tier 3 Team
-                </button>
+                <a href="#tier3" id="tier-3-tab" data-toggle="tab" class="nav-link btn">Tier 3 Team</a>
               </li>
               <li class="nav-item text-center">
-                <button class="nav-link btn">Social Team</button>
+                <a href="#social-team" id="social-tab" data-toggle="tab" class="nav-link btn">Social Team</a>
               </li>
               <li class="nav-item text-center">
-                <button class="nav-link btn">Industry Goats</button>
+                <a href="#industry-goats" id="industry-goats" data-toggle="tab" class="nav-link btn">Industry Goats</a>
               </li>
             </ul>
           </nav>
-          <div class="responsive-card-deck cards-md-2 cards-lg-4">
-            {% for object in site.data.tier-1-team.team_members %}
-              {% assign team = site.team_members | where: "slug", object | first %}
-              <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
-                <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
-                </div>
-                <div class="card-body">
-                  <h2 class="h4">{{ team.name }}</h2>
-                  <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
-                </div>
-              </a>
-            {% endfor %}
-          </div>
-          <div class="responsive-card-deck cards-md-2 cards-lg-4">
-            {% for team in site.data.tier-2-team %}
-            <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
-              <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="tier1" role="tabpanel" aria-labelledby="tier-1-tab">
+              <div class="responsive-card-deck cards-md-2 cards-lg-4">
+                {% for object in site.data.tier-1-team.team_members %}
+                {% assign team = site.team_members | where: "slug", object | first %}
+                <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
+                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h4">{{ team.name }}</h2>
+                    <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+                  </div>
+                </a>
+                {% endfor %}
               </div>
-              <div class="card-body">
-                <h2 class="h4">{{ team.name }}</h2>
-                <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+            </div>
+            <div class="tab-pane fade" id="tier2" role="tabpanel" aria-labelledby="tier-2-tab">
+              <div class="responsive-card-deck cards-md-2 cards-lg-4">
+                {% for team in site.data.tier-2-team.team_members %}
+                <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
+                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h4">{{ team.name }}</h2>
+                    <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+                  </div>
+                </a>
+                {% endfor %}
               </div>
-            </a>
-            {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="social-team" aria-labelledby="social-tab">
+              <div class="responsive-card-deck cards-md-2 cards-lg-4">
+                {% for team in site.data.social-team.team_members %}
+                <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
+                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h4">{{ team.name }}</h2>
+                    <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="industry-goats" aria-labelledby="industry-goats">
+              <div class="responsive-card-deck cards-md-2 cards-lg-4">
+                {% for team in site.data.industry-goats.team_members %}
+                <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
+                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h4">{{ team.name }}</h2>
+                    <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
           </div>
+          
+          
 
         </div>
       </div>
