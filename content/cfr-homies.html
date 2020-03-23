@@ -32,14 +32,17 @@ title: CFR Homies
 
         <div class="content">
           <div class="responsive-card-deck cards-lg-4 cards-md-2">
-            <a href="http://noboard.ca/" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url('/img/noboard.jpg')">
-              </div>
-              <div class="card-body px-0">
-                <h2 class="h4">Noboard</h2>
-              </div>
-            </a>
-            <a href="http://logchalet.com/" target="_blank" rel="noopener" class="card">
+            {% for object in site.data.homies.homies %}
+              {% assign item = site.homies | where: "slug", object | first%}
+              <a href="{{ item.link }}" target="_blank" rel="noopener" class="card">
+                <div class="bg-image aspect-1x1" style="background-image: url({{ item.image }})">
+                </div>
+                <div class="card-body px-0">
+                  <h2 class="h4">{{ item.name }}</h2>
+                </div>
+              </a>
+            {% endfor %}
+            <!-- <a href="http://logchalet.com/" target="_blank" rel="noopener" class="card">
               <div class="bg-image aspect-1x1" style="background-image: url('/img/log-chalet.jpg')">
               </div>
               <div class="card-body px-0">
@@ -91,7 +94,7 @@ title: CFR Homies
               <div class="card-body px-0">
                 <h2 class="h4">Sumire Design</h2>
               </div>
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
