@@ -4,10 +4,9 @@ title: Home
 meta:
 ---
 
-<FeaturedCollection />
-<GetStoked />
-<CollectionsNav />
-<SnowmobileBrands />
+{% include home/featuredCollections.html %}
+{% include home/getStoked.html %}
+{% include home/snowmobileBrands.html %}
 <section class="pt-0">
   <div class="container">
     <div class="row">
@@ -20,5 +19,5 @@ meta:
     </div>
   </div>
 </section>
-<div class="bg-image aspect-footer-hero">
+<div class="bg-image aspect-footer-hero" style="background-image: url(/img/cfr-footer-1.jpg)">
 </div>
