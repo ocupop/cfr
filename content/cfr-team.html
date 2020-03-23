@@ -34,7 +34,7 @@ title: CFR Team
                 {% for object in site.data.tier-1-team.team_members %}
                 {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
-                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  <div class="bg-image aspect-1x1" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
@@ -46,9 +46,26 @@ title: CFR Team
             </div>
             <div class="tab-pane fade" id="tier2" role="tabpanel" aria-labelledby="tier-2-tab">
               <div class="responsive-card-deck cards-md-2 cards-lg-4">
-                {% for team in site.data.tier-2-team.team_members %}
+                {% for object in site.data.tier-2-team.team_members %}
+                {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
-                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  <div class="bg-image aspect-1x1" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h4">{{ team.name }}</h2>
+                    <p>{% for category in team.categories %}{{ category }}{%endfor %}</p>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tier3" role="tabpanel" aria-labelledby="tier-2-tab">
+              <div class="responsive-card-deck cards-md-2 cards-lg-4">
+                {% for object in site.data.tier-3-team.team_members %}
+                {% assign team = site.team_members | where: "slug", object | first %}
+                <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
+                  <div class="bg-image aspect-1x1"
+                    style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
@@ -60,9 +77,10 @@ title: CFR Team
             </div>
             <div class="tab-pane fade" id="social-team" aria-labelledby="social-tab">
               <div class="responsive-card-deck cards-md-2 cards-lg-4">
-                {% for team in site.data.social-team.team_members %}
+                {% for object in site.data.social-team.team_members %}
+                {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
-                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  <div class="bg-image aspect-1x1" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
@@ -74,9 +92,10 @@ title: CFR Team
             </div>
             <div class="tab-pane fade" id="industry-goats" aria-labelledby="industry-goats">
               <div class="responsive-card-deck cards-md-2 cards-lg-4">
-                {% for team in site.data.industry-goats.team_members %}
+                {% for object in site.data.industry-goats.team_members %}
+                {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{{ team.link }}" class="card" target="_blank" rel="noopener">
-                  <div Tag="div" class="bg-image aspect-1x1" style="background-image: url({{ team.image }})">
+                  <div class="bg-image aspect-1x1" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
