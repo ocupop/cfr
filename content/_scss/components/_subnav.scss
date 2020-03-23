@@ -4,6 +4,11 @@
   .nav-link {
     color: $black;
     text-transform: uppercase;
+    font-weight: 100;
+    &:hover,
+    &.active {
+      border-color: $black;
+    }
   }
   border-color: $black;
 }
