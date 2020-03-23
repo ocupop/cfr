@@ -33,7 +33,7 @@ title: CFR Homies
         <div class="content">
           <div class="responsive-card-deck cards-lg-4 cards-md-2">
             {% for object in site.data.homies.homies %}
-              {% assign item = site.homies | where: "slug", object | first%}
+              {% assign item = site.homies | where: "slug", object | first %}
               <a href="{{ item.link }}" target="_blank" rel="noopener" class="card">
                 <div class="bg-image aspect-1x1" style="background-image: url({{ item.image }})">
                 </div>
@@ -42,59 +42,6 @@ title: CFR Homies
                 </div>
               </a>
             {% endfor %}
-            <!-- <a href="http://logchalet.com/" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url('/img/log-chalet.jpg')">
-              </div>
-              <div class="card-body px-0">
-                <h2 class="h4">Logchalet</h2>
-              </div>
-            </a>
-            <a href="https://www.whistlercreekproductions.com" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url(/img/whistler-creek.jpg)">
-              </div>
-              <div class="card-body px-0">
-                <h2 class="h4">Whistler Creek Productions</h2>
-              </div>
-            </a>
-            <a href="http://weknowsnow.com/" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url(/img/weknowsnow.jpg)"></div>
-              <div class="card-body px-0">
-                <h2 class="h4">We Know Snow</h2>
-              </div>
-            </a>
-            <a href="https://www.brokenboundary.com" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url(/img/broken-boundary.jpg)"></div>
-              <div class="card-body px-0">
-                <h2 class="h4">Broken Boundary Adventures</h2>
-              </div>
-            </a>
-            <a href="http://powdertothepeople.org/" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url(/img/powder-people.jpg)"></div>
-              <div class="card-body px-0">
-                <h2 class="h4">Powder To The People</h2>
-              </div>
-            </a>
-            <a href="http://fyidesigndept.com/" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url('/img/fyi.jpg')">
-              </div>
-              <div class="card-body px-0">
-                <h2 class="h4">Fyi Design Dept</h2>
-              </div>
-            </a>
-            <a href="https://www.foonskis.com/" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url(/img/foon.jpg)">
-              </div>
-              <div class="card-body px-0">
-                <h2 class="h4">Foon Skis</h2>
-              </div>
-            </a>
-            <a href="https://www.sumiredesign.com/" target="_blank" rel="noopener" class="card">
-              <div class="bg-image aspect-1x1" style="background-image: url(/img/sumire.jpg)">
-              </div>
-              <div class="card-body px-0">
-                <h2 class="h4">Sumire Design</h2>
-              </div>
-            </a> -->
           </div>
         </div>
       </div>
