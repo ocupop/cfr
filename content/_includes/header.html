@@ -3,23 +3,26 @@
     <div class="container">
       <nav id="shopNav">
         <p class="mb-0 mx-auto">
-          {/* [Opportunity for notifications on sales or news] */}
+          [Opportunity for notifications on sales or news]
         </p>
         <ul class="nav text-white">
           <li class="nav-item">
-            <div class="nav-link">
+            <usa-canada></usa-canada>
+            <!-- <div class="nav-link">
               USA/CAN
-            </div>
+            </div> -->
           </li>
           <li class="nav-item">
-            <a href="/account" class="nav-link">
+            <my-account></my-account>
+            <!-- <a href="/account" class="nav-link">
             My Account
-            </a>
+            </a> -->
           </li>
           <li class="nav-item">
-            <a href="/cart" class="nav-link d-flex align-items-center" aria-label="Cart Link">
+            <cart-component></cart-component>
+            <!-- <a href="/cart" class="nav-link d-flex align-items-center" aria-label="Cart Link">
             <i class="ri-shopping-cart-line"></i>
-            <span class="ml-2 badge badge-pill badge-light">{quantity}</span>
+            <span class="ml-2 badge badge-pill badge-light">1</span> -->
             </a>
           </li>
         </ul>
@@ -29,9 +32,9 @@
   <div class="container">
     <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="/" aria-label="Homepage Link">
-      <img src="/img/header-logo.png" class="img-fluid" alt="CFR Logo" />
+        <img src="/img/header-logo.png" class="img-fluid" alt="CFR Logo" />
       </a>
-      <button aria-label="Mobile Nav Toggle" class="navbar-toggler">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -51,10 +54,11 @@
             </a>
           </li>
           <li class="nav-item d-block d-lg-none">
-            <a href="/cart" class="nav-link d-flex align-items-center" aria-label="Cart Link">
+            <cart-component></cart-component>
+            <!-- <a href="/cart" class="nav-link d-flex align-items-center" aria-label="Cart Link">
             <i class="ri-shopping-cart-line"></i>
             <span class="ml-2 badge badge-pill badge-light">{quantity}</span>
-            </a>
+            </a> -->
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/snowmobile">
@@ -71,21 +75,16 @@
             Get Stoked!
             </a>
           </li>
-          <li class="nav-item d-block d-lg-none">
-            <button class="nav-link">Company</button>
+          <li class="nav-item dropdown d-block d-lg-none">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Company</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/brochure"
-              }}>Bro-Sure</a>
-              <a class="dropdown-item" href="/handlebar-guide"
-              }}>Bar guide</a>
-              <a class="dropdown-item" href="/legal"></a>
-              
-              <a class="dropdown-item" href="/contact"></a>
-              
+              <a class="dropdown-item" href="/brochure">Bro-Sure</a>
+              <a class="dropdown-item" href="/handlebar-guide">Bar guide</a>
+              <a class="dropdown-item" href="/legal">Legal</a>
             </div>
           </li>
-          <li class="nav-item d-block d-lg-none">
-            <button class="nav-link">Community</button>
+          <li class="nav-item dropdown d-block d-lg-none">
+            <a class="nav-link dropdown-toggle" href="#" id="community-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/cfr-team">
               CFR Team
@@ -97,10 +96,6 @@
               About CFR
               </a>
             </div>
-          </li>
-          <li class="nav-item mt-3 d-block d-lg-none">
-            <label htmlFor="search" class="sr-only">Search</label>
-            <input type="text" id="search" placeholder="Search" />
           </li>
         </ul>
       </div>
