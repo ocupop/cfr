@@ -1,31 +1,34 @@
-idaho:
+- name: Idaho
   dealers:
     - woodside-motorsports
     - rexburg-motorsports
-montana:
+- name: Montana
   dealers:
     - cooke-city-exxon
-utah:
+    - freshies-built
+- name: Utah
   dealers:
-wyoming:
+    - zbroz-racing
+- name: Wyoming
   dealers:
     - jackson-hole-cycle-saw
     - leisure-sports-jackson-hole
-colorado:
+- name: Colorado
   dealers:
     - gunnison-motorsports
     - radio-boardshop
     - felker-motorsports
-alaska:
+- name: Alaska
   dealers:
     - oft-racing
     - boarderline-legacy
     - delta-powersports
-california:
+- name: California
+  dealers:
+    - toms-snowmobile
+- name: New Hampshire
   dealers:
     - backcountry-addicts
-new-hampshire:
-  dealers:
-distributors:
+- name: distributors
   dealers:
     - wps-inc

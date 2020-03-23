@@ -10,11 +10,11 @@ title: CFR Dealers
         <div class="content">
           <nav>
             <div class="nav nav-tabs border-0 align-items-center justify-content-between" id="nav-dealers">
-              <a href="#canadian-dealers" class="dealer-button" data-toggle="tab" role="tab" aria-controls="canadian-dealers">
+              <a href="#canadian-dealers" class="dealer-button active" data-toggle="tab" role="tab" aria-controls="canadian-dealers">
                 <h1 class="h4">Canada Dealers &amp; Distribution</h1>
                 <img src="/img/canada-large.png" class="img-fluid" alt="Canada map graphic" />
               </a>
-              <a href="#us-dealers" class="dealer-button active" data-toggle="tab" role="tab" aria-controls="us-dealers">
+              <a href="#us-dealers" class="dealer-button" data-toggle="tab" role="tab" aria-controls="us-dealers">
                 <h1 class="h4">US Dealers &amp; Distribution</h1>
                 <img src="/img/usa_large.png" class="img-fluid" alt="US map graphic" />
               </a>
@@ -42,7 +42,7 @@ title: CFR Dealers
           {% assign dealer = site.dealers | where: "slug", item | first %}
           <div class="col-md-6 col-lg-3 text-center">
             <a href="{{ dealter.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
-              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " />
+              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " class="img-fluid" />
             </a>
           </div>
           {% endfor %}
@@ -63,7 +63,7 @@ title: CFR Dealers
           {% assign dealer = site.dealers | where: "slug", item | first %}
           <div class="col-md-6 col-lg-3 text-center">
             <a href="{{ dealer.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
-              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " />
+              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " class="img-fluid"/>
             </a>
           </div>
           {% endfor %}
