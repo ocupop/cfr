@@ -128,6 +128,11 @@
       font-size: 23px;
     }
   }
+  .navbar-brand {
+    @include media-breakpoint-down(md) {
+      max-width: 100px;
+    }
+  }
 }
 
 .navbar-toggler {

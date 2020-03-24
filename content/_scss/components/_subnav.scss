@@ -5,9 +5,16 @@
     color: $black;
     text-transform: uppercase;
     font-weight: 100;
-    &:hover,
     &.active {
+      border: 1px solid $black;
+    }
+    &:hover {
+      background-color: $black;
+      color: $white;
       border-color: $black;
+    }
+    &:focus {
+      box-shadow: 0;
     }
   }
   border-color: $black;
