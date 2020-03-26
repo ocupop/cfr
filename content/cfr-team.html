@@ -35,7 +35,7 @@ footer_image: /img/cfr-footer-7.jpg
                 {% for object in site.data.tier-1-team.team_members %}
                 {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{% if team.link %}{{ team.link }}{% endif %}" class="card" target="_blank" rel="noopener">
-                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
+                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' | prepend: site.url }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
@@ -50,7 +50,7 @@ footer_image: /img/cfr-footer-7.jpg
                 {% for object in site.data.tier-2-team.team_members %}
                 {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{% if team.link %}{{ team.link }}{% endif %}" class="card" target="_blank" rel="noopener">
-                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
+                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' | prepend: site.url }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
@@ -65,7 +65,7 @@ footer_image: /img/cfr-footer-7.jpg
                 {% for object in site.data.tier-3-team.team_members %}
                 {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{% if team.link %}{{ team.link }}{% endif %}" class="card" target="_blank" rel="noopener">
-                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
+                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' | prepend: site.url }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
@@ -80,7 +80,7 @@ footer_image: /img/cfr-footer-7.jpg
                 {% for object in site.data.social-team.team_members %}
                 {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{% if team.link %}{{ team.link }}{% endif %}" class="card" target="_blank" rel="noopener">
-                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
+                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' | prepend: site.url }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>
@@ -95,7 +95,7 @@ footer_image: /img/cfr-footer-7.jpg
                 {% for object in site.data.industry-goats.team_members %}
                 {% assign team = site.team_members | where: "slug", object | first %}
                 <a href="{% if team.link %}{{ team.link }}{% endif %}" class="card" target="_blank" rel="noopener">
-                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' }})">
+                  <div class="bg-image aspect-1x1 bg-white {% unless team.image %}bg-contain{% endunless %}" style="background-image: url({{ team.image | default: '/img/header-logo.png' | prepend: site.url }})">
                   </div>
                   <div class="card-body">
                     <h2 class="h4">{{ team.name }}</h2>

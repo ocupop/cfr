@@ -1,11 +1,11 @@
 # Site settings
 title: Cheetah Factory Racing
 email: dev@ocupop.com
-url: ""
+url: "https://snowy-slipper.cloudvent.net/"
 permalink: pretty
 
 # Social sharing
-description:
+description: 'Snowmobile Racks, Accessories, Backcountry Snowboarding & Snowmobile Adventure Hub'
 socialshare:
   featured_image: img/socialshare.png
   twitter:

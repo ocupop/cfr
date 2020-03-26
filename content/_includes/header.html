@@ -19,7 +19,7 @@
             </a> -->
           </li>
           <li class="nav-item">
-            <cart-component></cart-component>
+            <header-cart></header-cart>
             <!-- <a href="/cart" class="nav-link d-flex align-items-center" aria-label="Cart Link">
             <i class="ri-shopping-cart-line"></i>
             <span class="ml-2 badge badge-pill badge-light">1</span> -->
@@ -32,7 +32,7 @@
   <div class="container">
     <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="/" aria-label="Homepage Link">
-        <img src="/img/header-logo.png" class="img-fluid" alt="CFR Logo" />
+        <img src="{{ '/img/header-logo.png' | prepend: site.url }}" class="img-fluid" alt="CFR Logo" />
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon">
@@ -44,7 +44,7 @@
       <div class="collapse navbar-collapse justify-content-md-end" id="primaryNav">
         <ul class="navbar-nav">
           <li class="nav-item d-block d-lg-none">
-            <cart-component></cart-component>
+            <!-- <cart-component></cart-component> -->
           </li>
           <li class="nav-item d-block d-lg-none">
             <a href="/" class="nav-link">

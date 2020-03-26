@@ -13,11 +13,11 @@ footer_image: /img/cfr-footer-9.jpg
             <div class="nav nav-tabs border-0 align-items-center justify-content-between" id="nav-dealers">
               <a href="#canadian-dealers" class="dealer-button active" data-toggle="tab" role="tab" aria-controls="canadian-dealers">
                 <h1 class="h4">Canada Dealers &amp; Distribution</h1>
-                <img src="/img/canada-large.png" class="img-fluid" alt="Canada map graphic" />
+                <img src="{{ '/img/canada-large.png' | prepend: site.url }}" class="img-fluid" alt="Canada map graphic" />
               </a>
               <a href="#us-dealers" class="dealer-button" data-toggle="tab" role="tab" aria-controls="us-dealers">
                 <h1 class="h4">US Dealers &amp; Distribution</h1>
-                <img src="/img/usa_large.png" class="img-fluid" alt="US map graphic" />
+                <img src="{{ '/img/usa_large.png' | prepend: site.url }}" class="img-fluid" alt="US map graphic" />
               </a>
             </div>
           </nav>
@@ -42,8 +42,8 @@ footer_image: /img/cfr-footer-9.jpg
           {% for item in object.dealers %}
           {% assign dealer = site.dealers | where: "slug", item | first %}
           <div class="col-md-6 col-lg-3 text-center">
-            <a href="{{ dealter.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
-              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " class="img-fluid" />
+            <a href="{{ dealer.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
+              <img src="{{ dealer.image | prepend: site.url }}" alt="{{ dealer.name }} image " class="img-fluid" />
             </a>
           </div>
           {% endfor %}
@@ -64,7 +64,7 @@ footer_image: /img/cfr-footer-9.jpg
           {% assign dealer = site.dealers | where: "slug", item | first %}
           <div class="col-md-6 col-lg-3 text-center">
             <a href="{{ dealer.link }}" class="d-block mb-5 mb-5" target="_blank" rel="noopener">
-              <img src="{{ dealer.image }}" alt="{{ dealer.name }} image " class="img-fluid"/>
+              <img src="{{ dealer.image | prepend: site.url }}" alt="{{ dealer.name }} image " class="img-fluid"/>
             </a>
           </div>
           {% endfor %}

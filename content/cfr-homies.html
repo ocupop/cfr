@@ -36,7 +36,7 @@ footer_image: /img/cfr-footer-8.jpg
             {% for object in site.data.homies.homies %}
               {% assign item = site.homies | where: "slug", object | first %}
               <a href="{{ item.link }}" target="_blank" rel="noopener" class="card">
-                <div class="bg-image aspect-1x1" style="background-image: url({{ item.image }})">
+                <div class="bg-image aspect-1x1" style="background-image: url({{ item.image | prepend: site.url }})">
                 </div>
                 <div class="card-body px-0">
                   <h2 class="h4">{{ item.name }}</h2>
