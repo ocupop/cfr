@@ -57,7 +57,8 @@ module.exports = {
     {
       resolve: `gatsby-source-instagram`,
       options: {
-        username: `cheetah_snow`,
+        type: `hashtag`,
+        hashtag: `cheetahfactoryracing`,
       },
     },
 
@@ -113,7 +114,25 @@ module.exports = {
         }
       }
     },
-
+    {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        shopName: process.env.GATSBY_SHOP_NAME,
+        // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+        accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+        verbose: true,
+        // includeCollections: ["shop", "content"],
+      },
+    },
+    {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        shopName: process.env.GATSBY_US_SHOP_NAME,
+        // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+        accessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
+        verbose: true,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

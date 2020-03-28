@@ -1,6 +1,6 @@
 const path = require(`path`)
 // const matter = require(`gray-matter`)
-// const _ = require(`lodash`)
+const _ = require(`lodash`)
 // const slugify = require('slugify')
 
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
@@ -42,6 +42,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           }
         }
       }
+      
     }
   `).then(
     ({
@@ -81,34 +82,78 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   )
 
   // Product Pages
-  // await graphql(`
-  //   query {
-  //     allProduct {
-  //       edges {
-  //         node {
-  //           id
-  //         }
-  //       }
-  //     }
-  //   }
-  // `).then(
-  //   ({
-  //     data: {
-  //       allProduct: { edges: products }
-  //     }
-  //   }) => {
-  //     // Build Web Pages
-  //     products.forEach(({ node: { id } }) => {
-  //       createPage({
-  //         component: path.resolve(`./src/templates/product.jsx`),
-  //         path: `products/${id}`,
-  //         context: {
-  //           id
-  //         }
-  //       })
-  //     })
-  //   }
-  // )
+  const canProducts = await graphql(`
+    query {
+      allShopifyProduct(filter: {onlineStoreUrl: {regex: "/(?:https\:\/\/cheetahfactoryracing\.com)/"}}) {
+        edges {
+          node {
+            id
+            handle
+            title
+            productType
+          }
+        }
+      }
+    }
+  `).then(
+    ({
+      data: {
+        allShopifyProduct: { edges: products }
+      }
+    }) => {
+      // Build Web Pages
+      products.forEach(({ node: { id, store, productType, handle } }) => {
+        createPage({
+          component: path.resolve(`./src/templates/product.jsx`),
+          path: `products/${handle}`,
+          context: {
+            id,
+            store,
+            productType
+          }
+        })
+      })
+    }
+  )
+
+  const productCollections = await graphql(`
+    query {
+      allShopifyCollection {
+        edges {
+          node {
+            id
+            handle
+            products {
+              onlineStoreUrl
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    // Build Collection Pages
+    result.data.allShopifyCollection.edges.forEach(({ node }) => {
+      if (node.products) {
+        const storeUrl = node.products[0].onlineStoreUrl
+        const store = storeUrl.includes("usa.") ? `USA` : `CAN`
+        const countrySpecificPath = store === 'CAN' ? `${node.handle}` : `us/${node.handle}`
+
+        createPage({
+          path: countrySpecificPath,
+          component: path.resolve(
+            `./src/templates/productCollection.jsx`
+          ),
+          context: {
+            // Data passed to context is available in page queries as GraphQL variables.
+            id: node.id,
+            store,
+          },
+        })
+      } else {
+        console.log("NO PRODUCTS")
+      }
+    })
+  })
 }
 
 // ------------------------

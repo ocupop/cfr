@@ -11,13 +11,16 @@ const GetStoked = () => {
       allInstaNode(limit: 24) {
         edges {
           node {
-           localFile{
-              childImageSharp {
-                fluid(maxHeight: 1000, maxWidth: 1000 quality: 90) {
-                 ...GatsbyImageSharpFluid_withWebp
-               }
-             }
-           }
+            caption
+            original
+            mediaType
+            localFile{
+                childImageSharp {
+                  fluid(maxHeight: 1000, maxWidth: 1000 quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
         }
       }
@@ -45,12 +48,13 @@ const GetStoked = () => {
           </div>
         </div>
       </div>
+      
       <section>
         <div className="container">
           <div className="row">
             {data.allInstaNode.edges.map((item, index) => (
+              item.node.mediaType == 'GraphImage' && 
               <div className="col-md-6 col-lg-4" key={index}>
-
                 {/* {item.node.type == 'video' &&
                   <>
                     <BackgroundImage
@@ -80,9 +84,9 @@ const GetStoked = () => {
                     style={{
                       backgroundSize: 'contain'
                     }}
-                  onClick={() => {{ setPhotoSrc(item.node.original) }}}
+                    onClick={() => { { setPhotoSrc(item.node.original) } }}
                   ></BackgroundImage>
-                
+                 
               </div>
             ))}
           </div>
