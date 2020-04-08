@@ -17,11 +17,11 @@ footer_image: /img/cfr-footer-2.jpg
             {% assign product = site.products | where: 'slug', object | first %}
             <a href="{{ product.url }}" class="card">
             <div class="card-image-wrapper">
-              <div class="bg-image aspect-4x3"></div>
+              <div class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image }})"></div>
             </div>
             <div class="card-footer">
               <p class="text-uppercase mb-0">
-                {% for category in product.product_categories limit: 1 %}
+                {% for category in product.categories limit: 1 %}
                   {{ category }}
                 {% endfor %}
               </p>

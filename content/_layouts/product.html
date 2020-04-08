@@ -7,34 +7,31 @@ footer_image: /img/cfr-footer-4.jpg
 
 <section class="py-0">
   <div class="container">
-    <div>
-      <div class="row">
-        <div class="col-12">
-          <div class="content">
-            <h1 class="h4 mb-3">Product Type<small>
-                / {{ product.title }}
-              </small></h1>
-          </div>
+    <!-- <div class="row">
+      <div class="col-12">
+        <div class="content">
+          <h1 class="h4 mb-3">Product Type<small>
+              / {{ product.title }}
+            </small></h1>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <div class="content">
-            <div class="bg-image aspect-4x3 bg-dark"></div>
-          </div>
+    </div> -->
+    <!-- <div class="row">
+      <div class="col">
+        <div class="content">
+          <div class="bg-image aspect-4x3 bg-dark"></div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="row">
       <div class="col-12 col-lg-8 pt-5 order-2 order-lg-1">
-        <div>
-          <div class="row">
-            <div class="col-12">
-              <div class="content">
-                <h3>Product Type<small>
-                    / {{ product.title }}
-                  </small></h3>
-              </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="content">
+              <h3>{{ product.categories.first }}<small>
+                  / {{ product.title }}
+                </small></h3>
+              <div class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image }})"></div>
             </div>
           </div>
         </div>
@@ -42,6 +39,7 @@ footer_image: /img/cfr-footer-4.jpg
           <div class="col-12">
             <div class="content">
               <h1 class="mt-lg-5 mb-lg-3">{{ product.title }}</h1>
+              {{ page.content }}
             </div>
           </div>
         </div>
@@ -49,7 +47,7 @@ footer_image: /img/cfr-footer-4.jpg
       <div class="col-12 col-lg-4 pt-lg-5 sidebar order-1 order-lg-2">
         <div class="content sidebar-layout-content productDetails position-sticky sticky-top">
           <p class="mb-0 text-uppercase text-white-50">
-            Product Type
+            {{ product.categories.first }}
           </p>
           <h1 class="h4 mb-3">{{product.title}}</h1>
           <ProductForm product={product} />
@@ -74,7 +72,7 @@ footer_image: /img/cfr-footer-4.jpg
   </div>
 </section>
 <!-- <RelatedProducts relatedProducts={relatedProducts} /> -->
-<div class="bg-image aspect-footer-hero" style="background-image: url({{ product.footer_image }})">
+<div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image }})">
 </div>
 
 <!-- TODO: Add 2-column responsive layout -->

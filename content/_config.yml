@@ -40,26 +40,26 @@ defaults:
       layout: product
       _options:
         image:
-          uploads_dir: "img/uploads/products/"
+          uploads_dir: "uploads/products/"
   - scope:
       type: "posts"
     values:
       layout: post
       _options:
         featured_image:
-          uploads_dir: "img/uploads/posts/"
+          uploads_dir: "uploads/posts/"
   - scope:
       type: "dealers"
     values:
       _options:
         image:
-          uploads_dir: "img/uploads/dealers/"
+          uploads_dir: "uploads/dealers/"
   - scope:
       type: "product_collections"
     values:
       _options:
         featured_image:
-          uploads_dir: "img/uploads/product_collections/"        
+          uploads_dir: "uploads/product_collections/"        
 
 
 # Build settings
@@ -92,6 +92,13 @@ _array_structures:
         label:
         screenshot_image:
         icon:
+  gallery:
+    - label: Image
+      icon: insert_photo
+      value:
+        _type: image
+        caption:
+        image:     
   assets:
     - label: Image
       icon: insert_photo
