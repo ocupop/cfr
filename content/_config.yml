@@ -25,10 +25,22 @@ collections:
   dealers:
     output: false
   homies:
-    output: false  
+    output: false
+  products:
+    output: true
+  product_collections:
+    output: true
+
 
 
 defaults:
+  - scope:
+      type: "products"
+    values:
+      layout: product
+      _options:
+        image:
+          uploads_dir: "img/uploads/products/"
   - scope:
       type: "posts"
     values:
@@ -41,7 +53,7 @@ defaults:
     values:
       _options:
         image:
-          uploads_dir: "img/uploads/dealers/"        
+          uploads_dir: "img/uploads/dealers/"
 
 
 # Build settings
@@ -87,3 +99,9 @@ _array_structures:
         _type: video
         title:
         embed_url:
+  wholesale:
+    - label: Wholesale Data
+      icon: share
+      value:
+        customer_level:
+        price:

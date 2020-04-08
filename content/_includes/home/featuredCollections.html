@@ -4,42 +4,27 @@
       <div class="col-12">
         <div class="content">
           <div class="responsive-card-deck cards-md-2 cards-lg-2">
-            <a href="/snowmobile" class="card mb-3 mb-lg-0">
-              <div class="bg-image aspect-1x1" style="background-image: url({{ '/img/snowmobile-collection.jpg' | prepend: site.url }})">
+            {% for collection in page.product_collections %}
+            <a href="{{ collection.url }}" class="card mb-3 mb-lg-0">
+              <div class="bg-image aspect-1x1" style="background-image: url('{{ collection.featured_image | prepend: site.url }}')">
                 <div class="overlay hover-overlay">
                   <div class="overlay-content">
                     <div class="hover-secondary-text">Shop</div>
-                    <div class="hover-primary-text">Snowmobile</div>
+                    <div class="hover-primary-text">{{ collection.title }}</div>
                   </div>
                 </div>
               </div>
               <div class="card-body">
-                <h2>Snowmobile</h2>
+                <h2>{{ collection.title }}</h2>
                 <p class="mb-0 text-uppercase">
-                  Handlebars / Racks / Brackets / Bags
+                  {{ collection.label }}
                 </p>
               </div>
               <div class="card-footer pt-0">
                 <button class="btn btn-primary">Shop</button>
               </div>
             </a>
-            <a href="/apparel" class="card mb-3 mb-lg-0">
-              <div class="bg-image aspect-1x1" style="background-image: url({{ '/img/Goat-Skull-Couple.jpg' | prepend: site.url }})">
-                <div class="overlay hover-overlay">
-                  <div class="overlay-content">
-                    <div class="hover-secondary-text">Shop</div>
-                    <div class="hover-primary-text">Apparel</div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <h2>Apparel</h2>
-                <p class="mb-0 text-uppercase">Men / Women / Accessories</p>
-              </div>
-              <div class="card-footer pt-0">
-                <button class="btn btn-primary">Shop</button>
-              </div>
-            </a>
+            {% endfor %}
           </div>
         </div>
       </div>

@@ -63,6 +63,8 @@ node_modules/
 
 # dotenv environment variables file
 *.env
+.env.development
+.env.production
 
 .cache
 
@@ -73,3 +75,4 @@ vendor
 dist
 
 public
+
