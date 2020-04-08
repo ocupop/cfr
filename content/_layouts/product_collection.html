@@ -21,7 +21,9 @@ footer_image: /img/cfr-footer-2.jpg
             </div>
             <div class="card-footer">
               <p class="text-uppercase mb-0">
-                Product Type
+                {% for category in product.product_categories limit: 1 %}
+                  {{ category }}
+                {% endfor %}
               </p>
               <h5 class="card-title mb-0">{{ product.title }}</h5>
               <p class="card-text">
@@ -40,9 +42,7 @@ footer_image: /img/cfr-footer-2.jpg
                 class="d-inline-block d-lg-none">+</span></h2>
             <ul class="nav flex-column">
               <li class="nav-item">All</li>
-              {% for category in site.categories %}
-              <li class="nav-item">{{ category }}</li>
-              {% endfor %}
+              <li class="nav-item">category</li>
             </ul>
               <h3>Brands <span class="d-inline-block d-lg-none">+</span></h3>
               <ul class="nav flex-column">
@@ -57,7 +57,7 @@ footer_image: /img/cfr-footer-2.jpg
     </div>
   </div>
 </section>
-<section>
+<!-- <section>
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -65,6 +65,6 @@ footer_image: /img/cfr-footer-2.jpg
       </div>
     </div>
   </div>
-</section>
-<div class="bg-image aspect-footer-hero" style="background-image: url({{ page.footer_image | prepend: site.url }})">
+</section> -->
+<div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image | prepend: site.url }})">
 </div>
