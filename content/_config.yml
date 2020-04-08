@@ -54,6 +54,12 @@ defaults:
       _options:
         image:
           uploads_dir: "img/uploads/dealers/"
+  - scope:
+      type: "product_collections"
+    values:
+      _options:
+        featured_image:
+          uploads_dir: "img/uploads/product_collections/"        
 
 
 # Build settings
