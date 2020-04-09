@@ -37,7 +37,21 @@ footer_image: /img/cfr-footer-2.jpg
       </div>
       <div class="col-12 col-lg-4 sidebar order-1 order-lg-2">
         <div class="py-3 py-lg-5 px-3 position-sticky sticky-top">
-          <collection-nav></collection-nav>
+          <h2>Product Categories</h2>
+          <category-nav>
+            <ul class="nav flex-column">
+              {% assign categories = "" | split:"," %}
+              {% for product in site.products %}
+                {% for category in product.categories %}
+                  {% assign categories = categories | push: category %}
+                {% endfor %}
+              {% endfor %}
+              {% assign categories = categories | uniq %}
+              {% for item in categories %}
+                <li class="text-uppercase">{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </category-nav>
         </div>
       </div>
     </div>

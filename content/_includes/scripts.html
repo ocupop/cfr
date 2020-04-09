@@ -44,5 +44,11 @@
         .setClassToggle(currentElement, "active")
         .addTo(controller);
     })
+
+    $('.product-thumbnail').on('click', function(){
+      var image = $(this).css('background-image');
+      console.log(image);
+      $('#featured-image').css('background-image', image);
+    })
   })
 </script>
