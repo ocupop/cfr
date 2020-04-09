@@ -17,6 +17,17 @@ footer_image: /img/cfr-footer-4.jpg
                   / {{ product.title }}
                 </small></h3>
               <div class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image }})"></div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="content">
+                    <div class="d-flex align-items-center product-thumbnails mb-3">
+                      {% for item in page.gallery %}
+                        <div class="bg-image aspect-thumbnail" style="background-image: url({{ item.image }})"></div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
