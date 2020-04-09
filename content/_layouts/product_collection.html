@@ -37,34 +37,11 @@ footer_image: /img/cfr-footer-2.jpg
       </div>
       <div class="col-12 col-lg-4 sidebar order-1 order-lg-2">
         <div class="py-3 py-lg-5 px-3 position-sticky sticky-top">
-          <nav class="collectionNav">
-            <h2>Product Categories <span
-                class="d-inline-block d-lg-none">+</span></h2>
-            <ul class="nav flex-column">
-              <li class="nav-item">All</li>
-              <li class="nav-item">category</li>
-            </ul>
-              <h3>Brands <span class="d-inline-block d-lg-none">+</span></h3>
-              <ul class="nav flex-column">
-                <li class="nav-item">Yamaha</li>
-                <li class="nav-item">Polaris</li>
-                <li class="nav-item">Arctic Cat</li>
-                <li class="nav-item">Ski-Doo</li>
-              </ul>
-          </nav>
+          <collection-nav></collection-nav>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- <section>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        {{ content }}
-      </div>
-    </div>
-  </div>
-</section> -->
 <div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image | prepend: site.url }})">
 </div>

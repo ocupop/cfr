@@ -118,3 +118,12 @@ _array_structures:
       value:
         customer_level:
         price:
+
+brands:
+  - Yamaha
+  - Polaris
+  - Arctic Cat
+  - Ski-Doo
+
+_comments:
+  brands: Select the brands this product is compatible with  

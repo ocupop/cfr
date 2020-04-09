@@ -530,7 +530,9 @@ user-nav,
 notification-nav,
 usa-canada,
 my-account,
-cart-component {
+cart-component,
+collection-nav,
+product-form {
   height: 20px;
   width: auto;
   display: flex;
@@ -589,6 +591,24 @@ popular-products {
   }
 }
 
+product-form {
+  background-color: $dark;
+  &::after {
+    text-align: center;
+    content: 'Product Form';
+    color: $white;
+  }
+}
+
+collection-nav {
+  background-color: $dark;
+  &::after {
+    text-align: center;
+    content: 'Collection Nav';
+    color: $white;
+  }
+}
+
 .loader {
   color: $white;
   font-size: 14px;
@@ -638,3 +658,10 @@ popular-products {
     }
   }
 }
+
+.sticky-top {
+  top: 100px;
+}
+
+
+

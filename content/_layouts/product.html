@@ -7,24 +7,8 @@ footer_image: /img/cfr-footer-4.jpg
 
 <section class="py-0">
   <div class="container">
-    <!-- <div class="row">
-      <div class="col-12">
-        <div class="content">
-          <h1 class="h4 mb-3">Product Type<small>
-              / {{ product.title }}
-            </small></h1>
-        </div>
-      </div>
-    </div> -->
-    <!-- <div class="row">
-      <div class="col">
-        <div class="content">
-          <div class="bg-image aspect-4x3 bg-dark"></div>
-        </div>
-      </div>
-    </div> -->
     <div class="row">
-      <div class="col-12 col-lg-8 pt-5 order-2 order-lg-1">
+      <div class="col-12 col-lg-8 pt-5">
         <div class="row">
           <div class="col-12">
             <div class="content">
@@ -38,34 +22,44 @@ footer_image: /img/cfr-footer-4.jpg
         <div class="row">
           <div class="col-12">
             <div class="content">
-              <h1 class="mt-lg-5 mb-lg-3">{{ product.title }}</h1>
-              {{ page.content }}
+              <div class="d-none d-lg-block">
+                <h1 class="mt-lg-5 mb-lg-3">{{ product.title }}</h1>
+                {{ product.content }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-4 pt-lg-5 sidebar order-1 order-lg-2">
+      <div class="col-12 col-lg-4 pt-lg-5 sidebar">
         <div class="content sidebar-layout-content productDetails position-sticky sticky-top">
-          <p class="mb-0 text-uppercase text-white-50">
-            {{ product.categories.first }}
-          </p>
-          <h1 class="h4 mb-3">{{product.title}}</h1>
-          <ProductForm product={product} />
+          <div class="d-none d-lg-block">
+            <p class="mb-0 text-uppercase text-white-50">
+              {{ product.categories.first }}
+            </p>
+            <h1 class="h4 mb-3">{{product.title}}</h1>
+          </div>
+          <product-form></product-form>
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
-            {facebookUrl && facebookUrl &&
-            <a href={facebookUrl} target="_blank" rel="noopener" class="text-white mr-2"
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank" rel="noopener" class="text-white mr-2"
               aria-label="Facebook Share Link">
               <i class="ri-facebook-fill"></i>
             </a>
-            }
-            {twitterUrl && twitterUrl &&
-            <a href={twitterUrl} target="_blank" rel="noopener" class="text-white mr-2"
+            <a href="https://twitter.com/intent/tweet?url={{ page.slug | prepend: site.url }}" target="_blank" rel="noopener" class="text-white mr-2"
               aria-label="Twitter Share Link">
               <i class="ri-twitter-fill"></i>
             </a>
-            }
           </p>
+        </div>
+      </div>
+    </div>
+    <div class="d-block d-lg-none">
+      <div class="row">
+        <div class="col-12">
+          <div class="content">
+            <h1 class="mt-lg-5 mb-lg-3">{{ product.title }}</h1>
+            {{ product.content }}
+          </div>
         </div>
       </div>
     </div>
