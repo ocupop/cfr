@@ -593,6 +593,7 @@ popular-products {
 
 product-form {
   background-color: $dark;
+  margin-bottom: 20px;
   &::after {
     text-align: center;
     content: 'Product Form';
@@ -602,6 +603,7 @@ product-form {
 
 collection-nav {
   background-color: $dark;
+  margin-bottom: 20px;
   &::after {
     text-align: center;
     content: 'Collection Nav';
