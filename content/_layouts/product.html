@@ -6,51 +6,55 @@ footer_image: /img/cfr-footer-4.jpg
 {% assign product = page %}
 {% assign title = product.name | default: product.title %}
 
-<section class="py-0">
+<section class="pt-0">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-8 pt-5">
-        <div class="row">
-          <div class="col-12">
-            <div class="content">
-              <h3>{{ product.categories.first }}<small>
-                  / {{ title }}
-                </small></h3>
-              <div id="featured-image" class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image }})"></div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="content">
-                    <div class="d-flex align-items-center product-thumbnails mb-3">
-                      <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({{ product.featured_image }})"></div>
-                      {% for item in page.gallery %}
-                        <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({{ item.image }})"></div>
-                      {% endfor %}
-                    </div>
-                  </div>
+        <div class="content">
+          <h3>{{ product.categories.first }}<small>
+              / {{ title }}
+            </small></h3>
+          <div id="featured-image" class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image }})"></div>
+          <div class="row">
+            <div class="col-12">
+              <div class="content">
+                <div class="d-flex align-items-center product-thumbnails mb-3">
+                  {% if page.gallery %}
+                    <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({{ product.featured_image }})"></div>
+                    {% for item in page.gallery %}
+                      <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({{ item.image }})"></div>
+                    {% endfor %}
+                  {% endif %}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="content">
-              <div class="d-none d-lg-block">
-                <h1 class="mt-lg-5 mb-lg-3">{{ title }}</h1>
-                {{ product.content }}
-              </div>
-            </div>
-          </div>
+        <div class="content d-block d-lg-none">
+          <product-form></product-form>
+          <h5 class="text-uppercase">Share this</h5>
+          <p class="product-social">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank"
+              rel="noopener" class="text-white mr-2" aria-label="Facebook Share Link">
+              <i class="ri-facebook-fill"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?url={{ page.slug | prepend: site.url }}" target="_blank" rel="noopener"
+              class="text-white mr-2" aria-label="Twitter Share Link">
+              <i class="ri-twitter-fill"></i>
+            </a>
+          </p>
+        </div>
+        <div class="content">
+          <h1 class="mt-lg-5 mb-lg-3">{{ title }}</h1>
+          {{ product.content }}
         </div>
       </div>
       <div class="col-12 col-lg-4 pt-lg-5 d-none d-lg-block sidebar">
         <div class="content sidebar-layout-content productDetails position-sticky sticky-top">
-          <div class="d-none d-lg-block">
-            <p class="mb-0 text-uppercase text-white-50">
-              {{ product.categories.first }}
-            </p>
-            <h1 class="h4 mb-3">{{ title }}</h1>
-          </div>
+          <p class="mb-0 text-uppercase text-white-50">
+            {{ product.categories.first }}
+          </p>
+          <h1 class="h4 mb-3">{{ title }}</h1>
           <product-form></product-form>
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
