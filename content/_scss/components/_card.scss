@@ -6,6 +6,9 @@
   .card-image-wrapper {
     height: auto;
     background: $white;
+    .bg-image {
+      background-size: contain;
+    }
   }
   &:hover {
     background-color: $black;
