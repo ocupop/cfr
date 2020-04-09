@@ -3,9 +3,6 @@ layout: default
 footer_image: /img/cfr-footer-2.jpg
 ---
 
-
-<!-- TODO: Add 2-column responsive layout -->
-<!-- This may inherit from the same layout as product... look for ways of DRYing up code. -->
 <section class="py-0">
   <div class="container">
     <div class="row">
@@ -37,21 +34,33 @@ footer_image: /img/cfr-footer-2.jpg
       </div>
       <div class="col-12 col-lg-4 sidebar order-1 order-lg-2">
         <div class="py-3 py-lg-5 px-3 position-sticky sticky-top">
-          <h2>Product Categories</h2>
-          <category-nav>
-            <ul class="nav flex-column">
-              {% assign categories = "" | split:"," %}
-              {% for product in site.products %}
-                {% for category in product.categories %}
-                  {% assign categories = categories | push: category %}
+          <nav class="collectionNav">
+            <h2>Product Categories</h2>
+            <category-nav>
+              <ul class="nav flex-column">
+                {% assign categories = "" | split:"," %}
+                {% for product in site.products %}
+                  {% for category in product.categories %}
+                    {% assign categories = categories | push: category %}
+                  {% endfor %}
                 {% endfor %}
-              {% endfor %}
-              {% assign categories = categories | uniq %}
-              {% for item in categories %}
-                <li class="text-uppercase">{{ item }}</li>
-              {% endfor %}
-            </ul>
-          </category-nav>
+                {% assign categories = categories | uniq %}
+                {% for item in categories %}
+                  <li class="text-uppercase">{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </category-nav>
+            <h3>Brands</h3>
+            <brand-nav>
+              <ul class="nav flex-column">
+                {% for brand in site.brands %}
+                  <li class="text-uppercase">
+                    {{ brand }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </brand-nav>
+          </nav>
         </div>
       </div>
     </div>

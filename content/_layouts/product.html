@@ -6,7 +6,7 @@ footer_image: /img/cfr-footer-4.jpg
 {% assign product = page %}
 {% assign title = product.name | default: product.title %}
 
-<section class="pt-0">
+<section class="py-0">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-8 pt-5">
@@ -72,6 +72,6 @@ footer_image: /img/cfr-footer-4.jpg
     </div>
   </div>
 </section>
-<!-- <RelatedProducts relatedProducts={relatedProducts} /> -->
+<related-products></related-products>
 <div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image }})">
 </div>

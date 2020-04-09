@@ -532,7 +532,8 @@ notification-nav,
 usa-canada,
 my-account,
 cart-component,
-product-form {
+product-form,
+related-products {
   height: 20px;
   width: auto;
   display: flex;
@@ -608,6 +609,17 @@ collection-nav {
     text-align: center;
     content: 'Collection Nav';
     color: $white;
+  }
+}
+
+related-products {
+  height: 300px;
+  text-align: center;
+  background-color: $dark;
+  justify-content: center;
+  &::after {
+    content: 'Related Products Component';
+    text-align: center;
   }
 }
 
