@@ -1,0 +1,15 @@
+{% if product.suggested_products %}
+  {% for object in product.suggested_products %}
+    {% assign suggested_product = site.products | where: 'slug', object | first %}
+    <ul class="list-unstyled">
+      <li class="row align-items-center">
+        <div class="col-4">
+          <div class="bg-image aspect-4x3" style="background-image: url({{ suggested_product.featured_image }})"></div>
+        </div>
+        <div class="col-8">
+          <h5>{{ suggested_product.name }}</h5>
+        </div>
+      </li>
+    </ul>
+  {% endfor %}
+{% endif %}
