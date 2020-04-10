@@ -32,6 +32,7 @@ footer_image: /img/cfr-footer-4.jpg
         </div>
         <div class="content d-block d-lg-none">
           <product-form></product-form>
+          
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank"
@@ -56,6 +57,22 @@ footer_image: /img/cfr-footer-4.jpg
           </p>
           <h1 class="h4 mb-3">{{ title }}</h1>
           <product-form></product-form>
+          <h5 class="text-uppercase">Related Products</h5>
+          {% if product.related_products %}
+            {% for object in product.related_products %}
+              {% assign related_product = site.products | where: 'slug', object | first %}
+              <ul class="list-unstyled">
+                <li class="row align-items-center">
+                  <div class="col-4">
+                    <div class="bg-image aspect-4x3" style="background-image: url({{ related_product.featured_image }})"></div>
+                  </div>
+                  <div class="col-8">
+                    <h5>{{ related_product.name }}</h5>
+                  </div>
+                </li>
+              </ul>
+            {% endfor %}
+          {% endif %}
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank" rel="noopener" class="text-white mr-2"
