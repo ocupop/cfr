@@ -98,7 +98,8 @@ _array_structures:
       value:
         _type: image
         caption:
-        image:     
+        thumbnail_image:
+        image:
   assets:
     - label: Image
       icon: insert_photo

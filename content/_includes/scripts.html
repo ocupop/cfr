@@ -46,9 +46,9 @@
     })
 
     $('.product-thumbnail').on('click', function(){
-      var image = $(this).css('background-image');
+      var image = $(this).data('image');
       console.log(image);
-      $('#featured-image').css('background-image', image);
+      $('#featured-image').css('background-image', 'url(' + image + ')');
     })
   })
 </script>

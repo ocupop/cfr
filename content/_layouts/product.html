@@ -20,9 +20,9 @@ footer_image: /img/cfr-footer-4.jpg
               <div class="content">
                 <div class="d-flex align-items-center product-thumbnails mb-3">
                   {% if page.gallery %}
-                    <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({{ product.featured_image }})"></div>
-                    {% for item in page.gallery %}
-                      <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({{ item.image }})"></div>
+                    <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({{ product.featured_image }})" data-image="{{ product.featured_image }}"></div>
+                    {% for image in page.gallery %}
+                      <div class="bg-image aspect-thumbnail product-thumbnail" style="background-image: url({% if image.thumbnail_image %}{{ image.thumbnail_image }}{% else %}{{ image.image }}{% endif %})" data-image="{{ image.image }}"></div>
                     {% endfor %}
                   {% endif %}
                 </div>
