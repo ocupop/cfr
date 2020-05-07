@@ -1,7 +1,70 @@
 ---
 layout: default
+footer_image: /img/cfr-footer-2.jpg
 ---
-{{ content }}
 
-<!-- TODO: Add 2-column responsive layout -->
-<!-- This may inherit from the same layout as product... look for ways of DRYing up code. -->
+<section class="py-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 order-2 order-lg-1">
+        <div class="py-3 py-lg-5">
+          <h4>{{ page.title }}</h4>
+          <div class="responsive-card-deck cards-lg-3 cards-md-2">
+            {% for object in page.products %}
+            {% assign product = site.products | where: 'slug', object | first %}
+            <a href="{{ product.url }}" class="card">
+            <div class="card-image-wrapper">
+              <div class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image }})"></div>
+            </div>
+            <div class="card-footer">
+              <p class="text-uppercase mb-0">
+                {% for category in product.categories limit: 1 %}
+                  {{ category }}
+                {% endfor %}
+              </p>
+              <h5 class="card-title mb-0">{{ product.title }}</h5>
+              <p class="card-text">
+                From $0.00
+              </p>
+            </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 sidebar order-1 order-lg-2">
+        <div class="py-3 py-lg-5 px-3 position-sticky sticky-top">
+          <nav class="collectionNav">
+            <h2>Product Categories</h2>
+            <category-nav>
+              <ul class="nav flex-column">
+                {% assign categories = "" | split:"," %}
+                {% for product in site.products %}
+                  {% for category in product.categories %}
+                    {% assign categories = categories | push: category %}
+                  {% endfor %}
+                {% endfor %}
+                {% assign categories = categories | uniq %}
+                {% for item in categories %}
+                  <li class="text-uppercase">{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </category-nav>
+            <h3>Brands</h3>
+            <brand-nav>
+              <ul class="nav flex-column">
+                {% for brand in site.brands %}
+                  <li class="text-uppercase">
+                    {{ brand }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </brand-nav>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image | prepend: site.url }})">
+</div>
