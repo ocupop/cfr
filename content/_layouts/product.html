@@ -47,6 +47,11 @@ footer_image: /img/cfr-footer-4.jpg
         </div>
         <div class="content">
           <h1 class="mt-lg-5 mb-lg-3">{{ title }}</h1>
+          {% if product.disclaimer_html %}
+            <div class="alert alert-danger" role="alert">
+              {{ product.disclaimer_html }}
+            </div>
+          {% endif %}
           {{ product.content }}
         </div>
       </div>

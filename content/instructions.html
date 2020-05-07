@@ -1,17 +1,9 @@
 ---
 layout: page
 title: Instructions
-instructions:
-  - _type: pdf
-    title: Test Instruction title
-    instruction_document: /uploads/cfr-instructions-d-dd-mounting.pdf
-  - _type: video
-    title: Test video instruction title
-    video_embed: >-
-      <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/39mcdq0Si98" frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope;
-      picture-in-picture" allowfullscreen></iframe>
+instruction_sections:
+  - title:
+    instructions:
 ---
 
 <section>
@@ -23,6 +15,16 @@ instructions:
         </div>
       </div>
     </div>
+    {% for section in page.instruction_sections %}
+      <div class="row">
+        <div class="col-12">
+          <h2>{{ section.title }}</h2>
+          {% for instruction in section.instructions %}
+            <h3>{{ instruction.title }}</h3>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
   </div>
 </section>
 
