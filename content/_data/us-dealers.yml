@@ -32,3 +32,8 @@
 - name: distributors
   dealers:
     - wps-inc
+- name:
+  dealers:
+- name: Washington
+  dealers:
+    - jons-sweet-sled-shop
