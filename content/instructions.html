@@ -16,7 +16,7 @@ instruction_sections:
           picture-in-picture" allowfullscreen></iframe>
 ---
 
-<section>
+<section class="pb-0">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -25,16 +25,30 @@ instruction_sections:
         </div>
       </div>
     </div>
-    {% for section in page.instruction_sections %}
+    
+  </div>
+</section>
+{% for section in page.instruction_sections %}
+  <section>
+    <div class="container">
+      <hr>
       <div class="row">
         <div class="col-12">
-          <h2>{{ section.title }}</h2>
+          <h2 class="mb-5">{{ section.title }}</h2>
           {% for instruction in section.instructions %}
-            <h3>{{ instruction.title }}</h3>
+          <h4 class="{% unless forloop.first %}mt-4{% endunless %}">{{ instruction.title }}</h4>
+            {% case instruction._type  %}
+              {% when 'pdf' %}
+              <a href="{{ instruction.instruction_document }}" class="btn btn-secondary" target="_blank"
+              rel="noopener">Download</a>
+        
+              {% when 'video' %}
+                {{ instruction.video_embed }}
+            {% endcase %}
           {% endfor %}
         </div>
       </div>
-    {% endfor %}
-  </div>
-</section>
+    </div>
+  </section>
+{% endfor %}
 
