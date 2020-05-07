@@ -1,1 +1,2 @@
-header_notification: [Opportunity for notifications on sales or news]
+header_notification:
+  - Yo buy this sweet stuff
