@@ -119,6 +119,21 @@ _array_structures:
       value:
         customer_level:
         price:
+  instructions:
+    - label: PDF
+      icon: picture_as_pdf
+      value: 
+        _type: pdf
+        title:
+        instruction_document:
+    - label: Video
+      icon: videocam
+      value: 
+        _type: video
+        title:
+        video_embed:
+          
+
 
 brands:
   - Yamaha
