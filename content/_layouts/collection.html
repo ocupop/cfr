@@ -12,7 +12,7 @@ footer_image: /img/cfr-footer-2.jpg
           <div class="responsive-card-deck cards-lg-3 cards-md-2">
             {% for object in page.products %}
             {% assign product = site.products | where: 'slug', object | first %}
-            <a href="{{ product.url }}" class="card">
+            <a href="{{ product.url }}" class="card {% for category in product.categories %}{{ category }}{% endfor %}">
             <div class="card-image-wrapper">
               <div class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image }})"></div>
             </div>
@@ -39,11 +39,12 @@ footer_image: /img/cfr-footer-2.jpg
             <category-nav>
               <ul class="nav flex-column">
                 {% assign categories = "" | split:"," %}
-                {% for product in site.products %}
+                {% for product in page.products %}
                   {% for category in product.categories %}
                     {% assign categories = categories | push: category %}
                   {% endfor %}
                 {% endfor %}
+                {{ categories }}
                 {% assign categories = categories | uniq %}
                 {% for item in categories %}
                   <li class="text-uppercase">{{ item }}</li>
