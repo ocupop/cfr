@@ -28,6 +28,7 @@ collections:
     output: false
   products:
     output: true
+    _hide_content: false
   collections:
     output: true
 
@@ -126,8 +127,6 @@ _array_structures:
         _type: video
         title:
         video_embed:
-          
-
 
 brands:
   - Yamaha
