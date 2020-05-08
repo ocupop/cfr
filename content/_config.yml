@@ -28,7 +28,7 @@ collections:
     output: false
   products:
     output: true
-  product_collections:
+  collections:
     output: true
 
 
@@ -55,11 +55,11 @@ defaults:
         image:
           uploads_dir: "uploads/dealers/"
   - scope:
-      type: "product_collections"
+      type: "collections"
     values:
       _options:
         featured_image:
-          uploads_dir: "uploads/product_collections/"        
+          uploads_dir: "uploads/collections/"        
 
 
 # Build settings
