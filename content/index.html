@@ -7,6 +7,9 @@ collections:
   - apparel
 footer_image: /img/cfr-footer-1.jpg
 most_popular_products:
+ - boondocker-2-0
+ - brett-turcotte-signature-bar-2020
+ - mountain-rack
 ---
 
 {% include home/featuredCollections.html %}
@@ -17,8 +20,34 @@ most_popular_products:
     <div class="row">
       <div class="col-12">
         <div class="editable">
-          <h2>Most Popular Items</h2>
-          <!-- <popular-products></popular-products> -->
+          <div class="content editable">
+            <h2>Most Popular Items</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="content">
+          <div class="responsive-card-deck cards-lg-3 cards-md-2">
+            {% for object in page.most_popular_products limit: 6 %}
+            {% assign popular = site.products | where: 'slug', object | first %}
+            <a class="card" href="{{ object.url }}">
+              <div class="card-image-wrapper">
+                <div class="bg-image aspect-4x3" style="background-image: url({{ popular.featured_image }})"></div>
+              </div>
+              <div class="card-footer">
+                <p class="text-uppercase mb-0">
+                  {{ popular.categories.first }}
+                </p>
+                <h5 class="card-title mb-0">{{ popular.name | default: popular.title }}</h5>
+                <p class="card-text">
+                  From $0.00
+                </p>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
