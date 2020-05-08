@@ -32,8 +32,6 @@ collections:
   collections:
     output: true
 
-
-
 defaults:
   - scope:
       type: "products"
