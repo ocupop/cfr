@@ -28,7 +28,9 @@ collections:
     output: false
   products:
     output: true
+    permalink: /products/:title/
     _hide_content: false
+    layout: product
   collections:
     output: true
 
