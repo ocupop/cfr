@@ -33,6 +33,7 @@ collections:
     layout: product
   product_collections:
     output: true
+    permalink: /collections/:title/
 
 defaults:
   - scope:
