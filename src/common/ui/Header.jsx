@@ -4,16 +4,12 @@ import parse from 'html-react-parser';
 import { useStaticQuery, graphql } from 'gatsby'
 import UsaCanada from './usaCanada'
 import MyAccount from './myAccount'
-import HeaderCart from '../../features/cart/headerCart'
-// import AuthNav from '../../features/auth/AuthNav'
-// import CartSummary from '../../features/cart/CartSummary'
+import AuthNav from '../../features/auth/AuthNav'
+import CartSummary from '../../features/cart/CartSummary'
 
 const pageComponents = {
-  UsaCanada,
-  MyAccount,
-  HeaderCart
-  // AuthNav,
-  // CartSummary
+  AuthNav,
+  CartSummary
 }
 
 const parseOptions = {

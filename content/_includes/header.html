@@ -7,23 +7,20 @@
         </p>
         <ul class="nav text-white">
           <li class="nav-item">
-            <usa-canada></usa-canada>
-            <!-- <div class="nav-link">
-              USA/CAN
-            </div> -->
+            <auth-nav>
+              <div class="d-flex align-items-center h-100">
+                <div class="my-auto mr-5">USA/CAN</div>
+                <div class="my-auto mr-5">My Account</div>
+              </div>
+            </auth-nav>
           </li>
           <li class="nav-item">
-            <my-account></my-account>
-            <!-- <a href="/account" class="nav-link">
-            My Account
-            </a> -->
-          </li>
-          <li class="nav-item">
-            <header-cart></header-cart>
-            <!-- <a href="/cart" class="nav-link d-flex align-items-center" aria-label="Cart Link">
-            <i class="ri-shopping-cart-line"></i>
-            <span class="ml-2 badge badge-pill badge-light">1</span> -->
-            </a>
+            <cart-summary>
+              <span class="nav-link d-flex align-items-center">
+                <i class="ri-shopping-cart-line"></i>
+                <span class="ml-2 badge badge-pill badge-light">0</span>
+              </span>
+            </cart-summary>
           </li>
         </ul>
       </nav>

@@ -121,7 +121,6 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
-  
 }
 
 .bg-contain {
@@ -138,7 +137,7 @@
 .arrow {
   &::after,
   &::before {
-    content: ' ';
+    content: " ";
     position: absolute;
     left: 96%;
     top: 30%;
@@ -179,8 +178,6 @@
     }
   }
 }
-
-
 
 .responsive-card-deck {
   @include make-responsive-cards();
@@ -513,7 +510,7 @@
     font-size: 29px;
     margin-right: 5px;
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       display: block;
       top: 1px;
@@ -527,102 +524,6 @@
   }
 }
 
-user-nav,
-notification-nav,
-usa-canada,
-my-account,
-cart-component,
-product-form,
-related-products {
-  height: 20px;
-  width: auto;
-  display: flex;
-  align-items: center;
-  color: $white;
-  padding: 20px;
-}
-
-usa-canada {
-  &::before {
-    content: 'USA/CAN'
-  }
-}
-
-my-account {
-  &::before {
-    content: 'My Account'
-  }
-}
-
-cart-component {
-  &::before {
-    content: '\f080';
-    font-family: 'remixicon' !important;
-  }
-}
-
-notification-nav {
-  &::before {
-    content: 'notifications';
-  }
-}
-
-cart-summary {
-  background-color: $primary;
-  display: flex;
-  align-items: center;
-  color: $white;
-  width: auto;
-  padding: 10px;
-  &::before {
-    content: 'Cart';
-  }
-}
-
-popular-products {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 350px;
-  background-color: $black;
-  &::before {
-    color: $white;
-    content: 'Popular Products';
-  }
-}
-
-product-form {
-  background-color: $dark;
-  margin-bottom: 20px;
-  &::after {
-    text-align: center;
-    content: 'Product Form';
-    color: $white;
-  }
-}
-
-collection-nav {
-  background-color: $dark;
-  margin-bottom: 20px;
-  &::after {
-    text-align: center;
-    content: 'Collection Nav';
-    color: $white;
-  }
-}
-
-related-products {
-  height: 300px;
-  text-align: center;
-  background-color: $dark;
-  justify-content: center;
-  &::after {
-    content: 'Related Products Component';
-    text-align: center;
-  }
-}
-
 .loader {
   color: $white;
   font-size: 14px;
@@ -630,8 +531,8 @@ related-products {
   &::before {
     position: absolute;
     left: -20px;
-    content: '\EE61';
-    font-family: 'remixicon' !important;
+    content: "\EE61";
+    font-family: "remixicon" !important;
     @include animation(spin, 1.2s);
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -676,6 +577,3 @@ related-products {
 .sticky-top {
   top: 100px;
 }
-
-
-
