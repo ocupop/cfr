@@ -8,7 +8,6 @@ const HeaderCart = () => {
         <i className="ri-shopping-cart-line"></i>
         <span className="ml-2 badge badge-pill badge-light">1</span>
       </div>
-      
     </>
   )
 }

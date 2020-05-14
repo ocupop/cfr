@@ -7,7 +7,7 @@ permalink: api/pages
   {% for page in pages %}
     {
       "layout": {{ page['layout'] | jsonify }},
-      "pageUrl": {{ page['url'] | jsonify }},
+      "url": {{ page['url'] | jsonify }},
       "title": {{ page['title'] | jsonify }},
       "content": {{ page['content'] | jsonify }}
     }{% unless forloop.last %},{% endunless %}

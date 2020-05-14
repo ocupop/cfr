@@ -64,11 +64,10 @@ module.exports = {
 
 
     // Getting UI Elements
-
     {
       resolve: 'gatsby-source-custom-api',
       options: {
-        url: `${process.env.CMS_BASE_URL}/api/ui.json`,
+        url: `${process.env.CMS_BASE_URL}/api/elements.json`,
         // imageKeys: ["images"],
         rootKey: 'elements',
         schemas: {
@@ -89,6 +88,7 @@ module.exports = {
         schemas: {
           pages: `
             layout: String
+            url: String
             title: String
             content: String
           `
@@ -103,36 +103,79 @@ module.exports = {
         rootKey: 'posts',
         schemas: {
           posts: `
-            output: String
-            url: String
             layout: String
+            url: String
             title: String
             post_date: String
             date: String
-            slug: String
+            categories: String
+            tags: String
+            output: String
           `
         }
       }
     },
+    // Getting Collections
     {
-      resolve: `gatsby-source-shopify`,
+      resolve: 'gatsby-source-custom-api',
       options: {
-        shopName: process.env.GATSBY_SHOP_NAME,
-        // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
-        accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-        verbose: true,
-        // includeCollections: ["shop", "content"],
-      },
+        url: `${process.env.CMS_BASE_URL}/api/collections.json`,
+        // imageKeys: ["images"],
+        rootKey: 'collections',
+        schemas: {
+          collections: `
+            layout: String
+            url: String
+            title: String
+            label: String
+            featuredImage: String
+            description: String
+            output: String
+          `
+        }
+      }
     },
+    // Getting Products
     {
-      resolve: `gatsby-source-shopify`,
+      resolve: 'gatsby-source-custom-api',
       options: {
-        shopName: process.env.GATSBY_US_SHOP_NAME,
-        // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
-        accessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
-        verbose: true,
-      },
+        url: `${process.env.CMS_BASE_URL}/api/products.json`,
+        // imageKeys: ["images"],
+        rootKey: 'products',
+        schemas: {
+          products: `
+            layout: String
+            name: String
+            url: String
+            salesChannel: String
+            featuredImage: String
+            shopifyCanadaID: String
+            shopifyUSID: String
+            disclaimerHTML: String
+            output: String
+          `
+        }
+      }
     },
+    // {
+    //   resolve: `gatsby-source-shopify`,
+    //   options: {
+    //     shopName: process.env.GATSBY_SHOP_NAME,
+    //     // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+    //     accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+    //     verbose: true,
+    //     // includeCollections: ["shop", "content"],
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-shopify`,
+    //   options: {
+    //     shopName: process.env.GATSBY_US_SHOP_NAME,
+    //     // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+    //     accessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
+    //     verbose: true,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -142,7 +185,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/img/header-logo.png` // This path is relative to the root of the site.
+        icon: `siteicon.png` // This path is relative to the root of the site.
       }
     },
 

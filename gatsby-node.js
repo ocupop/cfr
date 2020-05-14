@@ -6,7 +6,7 @@ const _ = require(`lodash`)
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
   if (stage === 'build-html') {
     actions.setWebpackConfig({
-      externals: getConfig().externals.concat(function(context, request, callback) {
+      externals: getConfig().externals.concat(function (context, request, callback) {
         const regex = /^@?firebase(\/(.+))?/
         // exclude firebase products from being bundled, so they will be loaded using require() at runtime.
         if (regex.test(request)) {
@@ -28,7 +28,25 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         edges {
           node {
             id
-            pageUrl
+            url
+            layout
+          }
+        }
+      }
+      allCollections {
+        edges {
+          node {
+            id
+            url
+            layout
+          }
+        }
+      }
+      allProducts {
+        edges {
+          node {
+            id
+            url
             layout
           }
         }
@@ -42,32 +60,26 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           }
         }
       }
-      
+
     }
   `).then(
     ({
       data: {
-        allPages: { edges: pages },
+        allPages: { edges: standalone },
+        allCollections: { edges: collections },
+        allProducts: { edges: products },
         allPosts: { edges: posts }
       }
     }) => {
-      const collections = [...posts]
+      const webPages = [
+        ...standalone,
+        ...posts,
+        ...collections,
+        ...products
+      ]
 
       // Build Web Pages
-      pages.forEach(({ node: { layout, pageUrl, id } }) => {
-        const component = path.resolve(`./src/templates/${layout}.jsx`)
-
-        createPage({
-          component,
-          path: pageUrl,
-          context: {
-            id
-          }
-        })
-      })
-
-      // Build Collection Pages
-      collections.forEach(({ node: { layout, url, id } }) => {
+      webPages.forEach(({ node: { layout, url, id } }) => {
         const component = path.resolve(`./src/templates/${layout}.jsx`)
 
         createPage({
@@ -81,79 +93,79 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   )
 
-  // Product Pages
-  const canProducts = await graphql(`
-    query {
-      allShopifyProduct(filter: {onlineStoreUrl: {regex: "/(?:https\:\/\/cheetahfactoryracing\.com)/"}}) {
-        edges {
-          node {
-            id
-            handle
-            title
-            productType
-          }
-        }
-      }
-    }
-  `).then(
-    ({
-      data: {
-        allShopifyProduct: { edges: products }
-      }
-    }) => {
-      // Build Web Pages
-      products.forEach(({ node: { id, store, productType, handle } }) => {
-        createPage({
-          component: path.resolve(`./src/templates/product.jsx`),
-          path: `products/${handle}`,
-          context: {
-            id,
-            store,
-            productType
-          }
-        })
-      })
-    }
-  )
+  // // Product Pages
+  // const canProducts = await graphql(`
+  //   query {
+  //     allShopifyProduct(filter: {onlineStoreUrl: {regex: "/(?:https\:\/\/cheetahfactoryracing\.com)/"}}) {
+  //       edges {
+  //         node {
+  //           id
+  //           handle
+  //           title
+  //           productType
+  //         }
+  //       }
+  //     }
+  //   }
+  // `).then(
+  //   ({
+  //     data: {
+  //       allShopifyProduct: { edges: products }
+  //     }
+  //   }) => {
+  //     // Build Web Pages
+  //     products.forEach(({ node: { id, store, productType, handle } }) => {
+  //       createPage({
+  //         component: path.resolve(`./src/templates/product.jsx`),
+  //         path: `products/${handle}`,
+  //         context: {
+  //           id,
+  //           store,
+  //           productType
+  //         }
+  //       })
+  //     })
+  //   }
+  // )
 
-  const productCollections = await graphql(`
-    query {
-      allShopifyCollection {
-        edges {
-          node {
-            id
-            handle
-            products {
-              onlineStoreUrl
-            }
-          }
-        }
-      }
-    }
-  `).then(result => {
-    // Build Collection Pages
-    result.data.allShopifyCollection.edges.forEach(({ node }) => {
-      if (node.products) {
-        const storeUrl = node.products[0].onlineStoreUrl
-        const store = storeUrl.includes("usa.") ? `USA` : `CAN`
-        const countrySpecificPath = store === 'CAN' ? `${node.handle}` : `us/${node.handle}`
+  // const productCollections = await graphql(`
+  //   query {
+  //     allShopifyCollection {
+  //       edges {
+  //         node {
+  //           id
+  //           handle
+  //           products {
+  //             onlineStoreUrl
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `).then(result => {
+  //   // Build Collection Pages
+  //   result.data.allShopifyCollection.edges.forEach(({ node }) => {
+  //     if (node.products) {
+  //       const storeUrl = node.products[0].onlineStoreUrl
+  //       const store = storeUrl.includes("usa.") ? `USA` : `CAN`
+  //       const countrySpecificPath = store === 'CAN' ? `${node.handle}` : `us/${node.handle}`
 
-        createPage({
-          path: countrySpecificPath,
-          component: path.resolve(
-            `./src/templates/productCollection.jsx`
-          ),
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            id: node.id,
-            store,
-          },
-        })
-      } else {
-        console.log("NO PRODUCTS")
-      }
-    })
-  })
+  //       createPage({
+  //         path: countrySpecificPath,
+  //         component: path.resolve(
+  //           `./src/templates/productCollection.jsx`
+  //         ),
+  //         context: {
+  //           // Data passed to context is available in page queries as GraphQL variables.
+  //           id: node.id,
+  //           store,
+  //         },
+  //       })
+  //     } else {
+  //       console.log("NO PRODUCTS")
+  //     }
+  //   })
+  // })
 }
 
 // ------------------------

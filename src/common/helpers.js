@@ -29,4 +29,5 @@ export const decodeURLParams = search => {
 
     return Object.assign(params, { [key]: decodeURIComponent(val) });
   }, {});
-};
+}
+

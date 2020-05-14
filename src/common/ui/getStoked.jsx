@@ -7,7 +7,7 @@ const GetStoked = () => {
   console.log('photoSrc', photoSrc)
   const data = useStaticQuery(graphql`
     query {
-      
+
       allInstaNode(limit: 24) {
         edges {
           node {
@@ -48,12 +48,12 @@ const GetStoked = () => {
           </div>
         </div>
       </div>
-      
+
       <section>
         <div className="container">
           <div className="row">
             {data.allInstaNode.edges.map((item, index) => (
-              item.node.mediaType == 'GraphImage' && 
+              item.node.mediaType === 'GraphImage' &&
               <div className="col-md-6 col-lg-4" key={index}>
                 {/* {item.node.type == 'video' &&
                   <>
@@ -75,7 +75,7 @@ const GetStoked = () => {
                     </BackgroundImage>
                   </>
                 } */}
-                 
+
                   <BackgroundImage
                     Tag="div"
                     className="bg-image aspect-1x1 mb-4"
@@ -85,8 +85,8 @@ const GetStoked = () => {
                       backgroundSize: 'contain'
                     }}
                     onClick={() => { { setPhotoSrc(item.node.original) } }}
-                  ></BackgroundImage>
-                 
+                  />
+
               </div>
             ))}
           </div>
@@ -96,7 +96,12 @@ const GetStoked = () => {
         <div className="modal-wrapper">
           <div className="video-player-content">
             <button onClick={() =>  { setVideoSrc('') } } className="close-modal"><i className="ri-close-circle-line"></i></button>
-            <video src={videoSrc} controls autoPlay></video>
+            <video src={videoSrc} controls autoPlay>
+              <track default kind="descriptions"
+                srclang="en"/>
+
+              Sorry, your browser doesn't support embedded videos.
+            </video>
           </div>
         </div>
       }
