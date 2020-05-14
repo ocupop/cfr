@@ -4,13 +4,8 @@ import { graphql } from 'gatsby'
 import _ from 'lodash'
 import parse from 'html-react-parser'
 
-import GetStoked from '../common/ui/getStoked'
 
-const pageComponents = {
-  GetStoked
-  // FeaturedProducts
-  // MyAccount
-}
+const pageComponents = {}
 
 const parseOptions = {
   replace: ({ attribs, name }) => {

@@ -2,8 +2,6 @@ import React from 'react'
 import _ from 'lodash'
 import parse from 'html-react-parser';
 import { useStaticQuery, graphql } from 'gatsby'
-import UsaCanada from './usaCanada'
-import MyAccount from './myAccount'
 import AuthNav from '../../features/auth/AuthNav'
 import CartSummary from '../../features/cart/CartSummary'
 
