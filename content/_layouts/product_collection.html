@@ -9,10 +9,10 @@ footer_image: /img/cfr-footer-2.jpg
       <div class="col-12 col-lg-8 order-2 order-lg-1">
         <div class="py-3 py-lg-5">
           <h4>{{ page.title }}</h4>
-          <div class="responsive-card-deck cards-lg-3 cards-md-2">
+          <div id="product-grid" class="responsive-card-deck cards-lg-3 cards-md-2">
             {% for object in page.products %}
             {% assign product = site.products | where: 'slug', object | first %}
-            <a href="{{ product.url }}" class="card {% for category in product.categories %}{{ category }}{% endfor %} {% for brand in product.brands %}{{ brand | slugify }} {% endfor %}">
+            <a href="{{ product.url }}" class="card {% for category in product.categories %}{{ category | slugify }}{% endfor %} {% for brand in product.brands %}{{ brand | slugify }} {% endfor %} mix">
             <div class="card-image-wrapper">
               <div class="bg-image aspect-4x3" style="background-image: url({{ product.featured_image | prepend: site.url }})"></div>
             </div>
@@ -38,6 +38,9 @@ footer_image: /img/cfr-footer-2.jpg
             <h2>Product Categories</h2>
             <category-nav>
               <ul class="nav flex-column">
+                <li class="text-uppercase" data-filter="all">
+                  <button data-filter="all">All</button>  
+                </li>
                 {% assign categories = "" | split:"," %}
                 {% for object in page.products %}
                 {% assign product = site.products | where: 'slug', object | first %}
@@ -47,16 +50,21 @@ footer_image: /img/cfr-footer-2.jpg
                 {% endfor %}
                 {% assign categories = categories | uniq %}
                 {% for item in categories %}
-                  <li class="text-uppercase">{{ item }}</li>
+                  <li class="text-uppercase">
+                    <button data-filter=".{{ item | slugify }}">{{ item }}</button>
+                  </li>
                 {% endfor %}
               </ul>
             </category-nav>
             <h3>Brands</h3>
             <brand-nav>
               <ul class="nav flex-column">
+                <li>
+                  <button data-filter="all">All Brands</button>
+                </li>
                 {% for brand in site.brands %}
                   <li class="text-uppercase">
-                    {{ brand }}
+                    <button data-filter=".{{ brand | slugify }}">{{ brand }}</button>
                   </li>
                 {% endfor %}
               </ul>

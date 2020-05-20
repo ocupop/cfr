@@ -1,6 +1,7 @@
 {% if product.suggested_products %}
   {% for object in product.suggested_products %}
     {% assign suggested_product = site.products | where: 'slug', object | first %}
+    <!-- loop through and build out string of objects using capture -->
     <ul class="list-unstyled">
       <li class="row align-items-center">
         <div class="col-4">
