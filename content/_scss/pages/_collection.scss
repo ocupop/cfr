@@ -5,10 +5,7 @@
     &:hover {
       cursor: pointer;
     }
-    &.active {
-      font-weight: 800;
-      font-family: $headings-font-family;
-    }
+    
   }
   button {
     border: 0;
@@ -16,9 +13,20 @@
     text-transform: uppercase;
     color: $white;
     padding: 0;
+    &.mixitup-control-active {
+      font-weight: 800;
+      font-family: $headings-font-family;
+    }
   }
 }
 
 .product_collection {
-  
+  &.mixitup-container-failed {
+    #product-grid {
+      &::after {
+        content: 'No products match this filter';
+        margin-left: 15px;
+      }
+    }
+  }
 }

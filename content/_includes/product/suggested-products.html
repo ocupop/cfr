@@ -1,7 +1,19 @@
 {% if product.suggested_products %}
+  {% assign suggested_data = "" | split:"," %}
   {% for object in product.suggested_products %}
     {% assign suggested_product = site.products | where: 'slug', object | first %}
+    {% capture item %}
+    [
+      'name': '{{suggested_product.name }}',
+      'url': '{{ suggested_product.url }}',
+      'canadian_id': '{{ suggested_product.shopify_canada_id }}',
+      'us_id': '{{ suggested_product.shopify_us_id }}'
+    ]{% unless forloop.last %},{% endunless %}
+    {% endcapture %}
+    {% assign suggested_data = suggested_data | push: item %}
+    
     <!-- loop through and build out string of objects using capture -->
+
     <ul class="list-unstyled">
       <li class="row align-items-center">
         <div class="col-4">
