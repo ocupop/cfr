@@ -1,12 +1,18 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import { RecoilRoot } from 'recoil'
+
 import Layout from './src/containers/Layout'
+import 'flag-icon-css/css/flag-icon.css'
 import 'remixicon/fonts/remixicon.css'
 import './content/_scss/main.scss'
 
 const App = ({ element }) => {
   return (
-    <Layout>{element}</Layout>
+    <RecoilRoot>
+      <Layout>
+        {element}
+      </Layout>
+    </RecoilRoot>
   )
 }
 
