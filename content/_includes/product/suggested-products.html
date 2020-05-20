@@ -4,10 +4,10 @@
     <ul class="list-unstyled">
       <li class="row align-items-center">
         <div class="col-4">
-          <div class="bg-image aspect-4x3" style="background-image: url({{ suggested_product.featured_image }})"></div>
+          <a href="{{ suggested_product.url }}" class="bg-image aspect-4x3" style="background-image: url({{ suggested_product.featured_image }})"></a>
         </div>
         <div class="col-8">
-          <h5>{{ suggested_product.name }}</h5>
+          <h5><a href="{{ suggested_product.url }}">{{ suggested_product.name }}</a></h5>
         </div>
       </li>
     </ul>
