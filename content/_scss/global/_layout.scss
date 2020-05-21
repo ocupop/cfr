@@ -116,8 +116,7 @@
     margin-bottom: 15px;
   }
   .nav-link {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 3px 0;
     color: $gray-100;
     @include media-breakpoint-down(md) {
       padding-top: 3px;

@@ -65,18 +65,22 @@ footer_image: /img/cfr-footer-4.jpg
             {% for object in product.suggested_products %}
               {% assign suggested_product = site.products | where: 'slug', object | first %}
                 {% capture item %}
-                  [
+                  {
                   'name': '{{suggested_product.name }}',
                   'url': '{{ suggested_product.url }}',
                   'canadian_id': '{{ suggested_product.shopify_canada_id }}',
                   'us_id': '{{ suggested_product.shopify_us_id }}'
-                  ]{% unless forloop.last %},{% endunless %}
+                  }{% unless forloop.last %},{% endunless %}
                 {% endcapture %}
               {% assign suggested_data = suggested_data | push: item %}
             {% endfor %}
+            {% capture formatted_suggested_data %}
+              [
+                {{ suggested_data }}  
+              ]
+            {% endcapture %}  
           {% endif %}
-
-          <product-form suggested-products="{{suggested_data}}">
+          <product-form suggested-products="{{ formatted_suggested_data }}">
             <p class="lead mt-3">$0.00</p>
             <div class="bg-image aspect-4x3 mb-3" style="background-image: url('https://via.placeholder.com/500?text=Variant+Image')"></div>
             <div class="form-group">

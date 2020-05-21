@@ -52,7 +52,7 @@
       $('#featured-image').css('background-image', 'url(' + image + ')');
     })
 
-
+    
     var getQueryString = function (field, url) {
       var href = url ? url : window.location.href;
       var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
@@ -74,6 +74,14 @@
       },
       controls: {
         toggleDefault: 'none',
+      },
+      callbacks: {
+        onMixClick: function (state, originalEvent) {
+          console.log('The control "' + this.innerText + '" was clicked');
+          var filterString = this.dataset.filter;
+          var filter = filterString.replace(".", "");
+          
+        }
       }
     });
 
