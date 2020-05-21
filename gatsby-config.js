@@ -33,7 +33,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-load-script',
       options: {
-        src: 'https://code.jquery.com/jquery-3.4.1.slim.min.js'
+        src: 'https://code.jquery.com/jquery-3.5.1.min.js'
       }
     },
     {
@@ -45,7 +45,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-load-script',
       options: {
-        src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+        src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
       }
     },
     // {
