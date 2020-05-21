@@ -15,7 +15,8 @@ footer_image: /img/cfr-footer-4.jpg
               / {{ title }}
             </small></h3>
           <div id="featured-image" class="bg-image aspect-4x3" style="background-image: url({% if product.featured_image contains '//' %}{{ product.featured_image }}{% else %}{{ product.featured_image | prepend: site.url }}{% endif %})"></div>
-          <div class="row">
+          <!-- code for gallery, can re-use for pulling images from shopify potentially -->
+          <!-- <div class="row">
             <div class="col-12">
               <div class="content">
                 <div class="d-flex align-items-center product-thumbnails mb-3">
@@ -28,7 +29,7 @@ footer_image: /img/cfr-footer-4.jpg
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="content d-block d-lg-none">
           <product-form></product-form>

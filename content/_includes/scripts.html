@@ -80,11 +80,16 @@
           console.log('The control "' + this.innerText + '" was clicked');
           var filterString = this.dataset.filter;
           var filter = filterString.replace(".", "");
-          
+          const urlParams = new URLSearchParams(window.location.search);
+          if(filter == 'all'){
+            urlParams.set('filter', '');
+            window.location.search = urlParams;
+          }else {
+            urlParams.set('filter', filter);
+            window.location.search = urlParams;
+          }
         }
       }
     });
-
-    
   })
 </script>

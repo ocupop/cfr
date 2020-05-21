@@ -11,13 +11,10 @@
     ]{% unless forloop.last %},{% endunless %}
     {% endcapture %}
     {% assign suggested_data = suggested_data | push: item %}
-    
-    <!-- loop through and build out string of objects using capture -->
-
     <ul class="list-unstyled">
       <li class="row align-items-center">
         <div class="col-4">
-          <a href="{{ suggested_product.url }}" class="bg-image aspect-4x3" style="background-image: url({{ suggested_product.featured_image }})"></a>
+          <a href="{{ suggested_product.url }}" class="bg-image aspect-4x3" style="background-image: url({% if suggested_product.featured_image contains '//' %}{{ suggested_product.featured_image }}{% else %}{{ suggested_product.featured_image | prepend: site.url }}{% endif %})"></a>
         </div>
         <div class="col-8">
           <h5><a href="{{ suggested_product.url }}">{{ suggested_product.name }}</a></h5>
