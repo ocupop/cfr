@@ -1,0 +1,5 @@
+{% if include.url contains '//' %}
+  {% assign relativeURL = include.url %}
+{% else %}
+  {% assign relativeURL = include.url | prepend: site.url %}
+{% endif %}

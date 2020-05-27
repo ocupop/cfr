@@ -1,24 +1,16 @@
 {% if product.suggested_products %}
-  {% assign suggested_data = "" | split:"," %}
   {% for object in product.suggested_products %}
-    {% assign suggested_product = site.products | where: 'slug', object | first %}
-    {% capture item %}
-    [
-      'name': '{{suggested_product.name }}',
-      'url': '{{ suggested_product.url }}',
-      'canadian_id': '{{ suggested_product.shopify_canada_id }}',
-      'us_id': '{{ suggested_product.shopify_us_id }}'
-    ]{% unless forloop.last %},{% endunless %}
-    {% endcapture %}
-    {% assign suggested_data = suggested_data | push: item %}
-    <ul class="list-unstyled">
-      <li class="row align-items-center">
-        <div class="col-4">
-          <a href="{{ suggested_product.url }}" class="bg-image aspect-4x3" style="background-image: url({% if suggested_product.featured_image contains '//' %}{{ suggested_product.featured_image }}{% else %}{{ suggested_product.featured_image | prepend: site.url }}{% endif %})"></a>
-        </div>
-        <div class="col-8">
-          <h5><a href="{{ suggested_product.url }}">{{ suggested_product.name }}</a></h5>
-        </div>
+    {% assign suggested = site.products | where: 'slug', object | first %}
+    {% include logic/relativeURL.html url=suggested.featured_image %}
+    <ul class="list-group">
+      <li class="list-group-item p-0 bg-dark text-white">
+        <a href="#" class="d-flex align-items-center justify-content-between">
+          <div class="col-4 bg-white">
+            <div class="bg-image aspect-4x3" style="background-image: url('{{ relativeURL }}')"></div>
+          </div>
+          <div class="col-1"><i class="ri-add-circle-line"></i></div>
+          <div class="col-7"><small>Add {{ suggested.name }}</small></div>
+        </a>
       </li>
     </ul>
   {% endfor %}

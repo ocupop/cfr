@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald|Work+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Oswald|Work+Sans&display=swap");
 
 html {
   scroll-behavior: smooth;
@@ -44,6 +44,12 @@ a {
         text-decoration: underline;
       }
     }
+  }
+}
+
+button {
+  &:focus {
+    box-shadow: none !important;
   }
 }
 
