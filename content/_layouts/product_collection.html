@@ -22,7 +22,7 @@ footer_image: /img/cfr-footer-2.jpg
                   {{ category }}
                 {% endfor %}
               </p>
-              <h5 class="card-title mb-0">{{ product.title }}</h5>
+              <h5 class="card-title mb-0">{{ product.name | default: product.title }}</h5>
               <p class="card-text">
                 From $0.00
               </p>
