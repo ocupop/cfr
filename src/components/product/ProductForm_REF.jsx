@@ -2,10 +2,9 @@ import React, { useState, useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import BackgroundImage from "gatsby-background-image"
 import StoreContext from "../../common/StoreContext"
-import VariantSelector from "../../features/product/VariantSelector"
+import VariantSelector from "./VariantSelector"
 
 const ProductForm = ({ product }) => {
-  console.log(product.variants)
   const context = useContext(StoreContext)
   const [quantity, setQuantity] = useState(1)
   const [variant, setVariant] = useState(product.variants[0])

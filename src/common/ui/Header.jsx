@@ -2,8 +2,8 @@ import React from 'react'
 import _ from 'lodash'
 import parse from 'html-react-parser';
 import { useStaticQuery, graphql } from 'gatsby'
-import AuthNav from '../../features/auth/AuthNav'
-import CartSummary from '../../features/cart/CartSummary'
+import AuthNav from '../../components/auth/AuthNav'
+import CartSummary from '../../components/cart/CartSummary'
 
 const pageComponents = {
   AuthNav,

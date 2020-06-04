@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const VariantSelector = props => {
-  const { option } = props
+const VariantSelector = ({ option, onBlur }) => {
+
   return (
     <>
       <div className="form-group">
@@ -10,16 +10,16 @@ const VariantSelector = props => {
         <div className="styled-select">
           <select
             name={option.name}
-            key={option.id}
-            onChange={props.onChange}
+            onBlur={onBlur}
             className="form-control"
           >
-            {option.values.map(value => {
+            {Object.values(option.values).map(({value}) => {
               return (
                 <option
                   value={value}
-                  key={`${option.name}-${value}`}
-                >{`${value}`}</option>
+                  key={`${option.name}-${value}`}>
+                    {`${value}`}
+                </option>
               )
             })}
           </select>
@@ -35,7 +35,7 @@ VariantSelector.propTypes = {
   option: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
-    values: PropTypes.arrayOf(PropTypes.string),
+    values: PropTypes.instanceOf(Object),
   }),
 }
 

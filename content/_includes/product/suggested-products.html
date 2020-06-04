@@ -2,6 +2,7 @@
   {% for object in product.suggested_products %}
     {% assign suggested = site.products | where: 'slug', object | first %}
     {% include logic/relativeURL.html url=suggested.featured_image %}
+
     <ul class="list-group">
       <li class="list-group-item p-0 bg-dark text-white">
         <a href="#" class="d-flex align-items-center justify-content-between">

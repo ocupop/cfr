@@ -147,7 +147,7 @@ module.exports = {
             layout: String
             name: String
             url: String
-            salesChannel: String
+            salesChannels: String
             featuredImage: String
             shopifyCanadaID: String
             shopifyUSID: String

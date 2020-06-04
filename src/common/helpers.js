@@ -1,3 +1,30 @@
+/* eslint-disable no-useless-escape */
+import React from 'react'
+import _ from 'lodash'
+import { domToReact } from 'html-react-parser'
+import SharedComponents from './SharedComponents'
+
+export function getParseOptions(props) {
+  return ({
+    replace: ({ attribs, name, children }) => {
+      if (!attribs) return
+      if (attribs.id === 'pageFooter' || attribs.id === 'pageHeader' || name === 'script' || name === 'head') return (<></>)
+      if (name === 'html' || name === 'body') {
+        return <>{domToReact(children, getParseOptions(props))}</>
+      }
+
+      if (attribs.id === 'pageContent') {
+        return <>{domToReact(children, getParseOptions(props))}</>
+      }
+
+      if (name.includes('-')) {
+        const component = _.upperFirst(_.camelCase(name))
+        return React.createElement(SharedComponents[component], { ...attribs, props })
+      }
+    }
+  })
+}
+
 export function slugify(string) {
   const a = 'àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;'
   const b = 'aaaaaaaaacccddeeeeeeegghiiiiilmnnnnooooooprrsssssttuuuuuuuuuwxyyzzz------'
