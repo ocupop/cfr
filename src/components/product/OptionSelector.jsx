@@ -1,24 +1,26 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import React from "react"
 import PropTypes from "prop-types"
 
-const VariantSelector = ({ option, onBlur }) => {
+const OptionSelector = ({ option, onChange }) => {
 
   return (
     <>
       <div className="form-group">
         <label htmlFor={option.name}>{option.name} </label>
-        <div className="styled-select">
+        <div className="select">
           <select
             name={option.name}
-            onBlur={onBlur}
+            onChange={onChange}
             className="form-control"
           >
-            {Object.values(option.values).map(({value}) => {
+            <option>Choose {option.name}...</option>
+            {Object.values(option.values).map(({ value }) => {
               return (
                 <option
                   value={value}
                   key={`${option.name}-${value}`}>
-                    {`${value}`}
+                  {`${value}`}
                 </option>
               )
             })}
@@ -30,7 +32,7 @@ const VariantSelector = ({ option, onBlur }) => {
   )
 }
 
-VariantSelector.propTypes = {
+OptionSelector.propTypes = {
   onChange: PropTypes.func,
   option: PropTypes.shape({
     id: PropTypes.string,
@@ -39,4 +41,4 @@ VariantSelector.propTypes = {
   }),
 }
 
-export default VariantSelector
+export default OptionSelector

@@ -58,3 +58,6 @@ export const decodeURLParams = search => {
   }, {});
 }
 
+export function encodeID(id) {
+  return window.btoa(`gid://shopify/Product/${id}`)
+}

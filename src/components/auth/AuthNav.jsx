@@ -2,7 +2,7 @@ import React from 'react'
 import { useRecoilState } from 'recoil'
 // import PropTypes from 'prop-types'
 import { ButtonGroup, Button } from 'react-bootstrap'
-import { activeCountry } from './authAtoms'
+import { activeCountry } from '../../state'
 
 const AuthNav = () => {
   const [country, setCountry] = useRecoilState(activeCountry)
@@ -27,7 +27,6 @@ const AuthNav = () => {
           </Button>
         </ButtonGroup>
       </div>
-      <div className="my-auto mr-5">My Account</div>
     </div>
   )
 }
