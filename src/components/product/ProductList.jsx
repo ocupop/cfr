@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import BackgroundImage from "gatsby-background-image"
-import { slugify } from '../../common/helpers'
+import { slugify } from '../../common/utils/helpers'
 
 const ProductList = ({ products, productCategory }) => {
   const filteredProducts = products.filter(product => {

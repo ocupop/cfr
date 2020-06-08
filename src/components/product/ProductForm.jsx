@@ -2,12 +2,10 @@
 import React, { useState, useEffect } from 'react'
 // import PropTypes from 'prop-types'
 import { Formik, Field, Form } from 'formik'
-import * as Yup from 'yup'
 import { useRecoilState, useRecoilValue } from 'recoil'
-
-import FormikDebug from '../../common/utils/FormikDebug'
+// import FormikDebug from '../../common/utils/FormikDebug'
 import { activeCountry, activeStore, activeCheckout } from '../../state'
-import { encodeID } from '../../common/helpers'
+import { encodeID } from '../../common/utils/helpers'
 import ProductVariant from './ProductVariant'
 // import ProductSuggested from './ProductSuggested'
 
@@ -57,7 +55,7 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
       initialValues={initialValues}
       onSubmit={(values) => addToCart(values)}>
 
-      {({ values, setFieldValue }) => (
+      {({ values }) => (
         <Form>
           <div className="row">
             <div className="col-12">
@@ -86,8 +84,6 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
               Add to Cart
             </button>
           )}
-
-
           {/* <FormikDebug /> */}
         </Form>
       )}

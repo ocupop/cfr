@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import parse from 'html-react-parser'
-import { getParseOptions } from '../common/helpers'
+import { getParseOptions } from '../common/utils/helpers'
 
 const ProductTemplate = ({ data: { products: product }}) => {
   const { output } = product
