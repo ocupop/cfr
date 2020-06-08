@@ -10,39 +10,28 @@ import { activeCountry, activeStore, activeCheckout } from '../../state'
 import { encodeID } from '../../common/helpers'
 import ProductVariant from './ProductVariant'
 // import ProductSuggested from './ProductSuggested'
-import {
-  // TextInput,
-  // TextArea,
-  NumberInput,
-  // SelectInput
-} from '../../common/fields'
 
 const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID } }) => {
   const productCAID = encodeID(shopifyCanadaID)
   const productUSID = encodeID(shopifyUSID)
   const [country] = useRecoilState(activeCountry)
-  const [checkout, setCheckout] = useRecoilState(activeCheckout)
+  const [checkout] = useRecoilState(activeCheckout)
   const store = useRecoilValue(activeStore)
 
-
   const [product, setProduct] = useState()
-  // const [variant, setVariant] = useState()
-  // const [variantOptions, setVariantOptions] = useState({})
+  const [available, setAvailable] = useState(true)
 
-  const [available] = useState(false)
-
-
-  // const handleOptionChange = ({ target: { name, value } }) => {
-  //   console.log("Change options", name, value)
-  //   setVariantOptions(options => ({ ...options, [name]: value }))
-  // }
   const addToCart = async (values) => {
-    console.log("Checking out... need to grab form values", values)
-    // const newCheckout = await store.checkout.addLineItems(checkout.id, [])
-    // console.log("New Checkout:", newCheckout)
-    // setCheckout(newCheckout)
-  }
+    try {
+      // console.log("Checking out... need to grab form values", values)
+      await store.checkout.addLineItems(checkout.id, values.defaultVariant)
+      // console.log("New Checkout:", newCheckout)
+      console.log(await store.checkout.fetch(checkout.id))
 
+    } catch (error) {
+      console.log("Error:",error)
+    }
+  }
 
   useEffect(() => {
     const storefrontID = country === 'CA' ? productCAID : productUSID
@@ -52,36 +41,12 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
 
   }, [store.product, country, productCAID, productUSID])
 
-
-  // useEffect(() => {
-  //   async function getVariant() {
-  //     const variant = await store.product.helpers.variantForOptions(product, variantOptions)
-  //     setVariant(variant)
-  //   }
-
-  //   if (store && product) {
-  //     getVariant()
-  //   }
-
-  // }, [product, variantOptions])
-
-  // useEffect(() => {
-  //   if (variant) {
-  //     setAvailable(variant.available)
-  //   }
-  // }, [variant])
-
-  const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, 'Too Short!')
-      .max(100, 'Too Long!')
-      .required('Required')
-  })
   const defaultValues = {
-    variant: {
+    defaultVariant: {
       variantId: '',
       quantity: 1
-    }
+    },
+    addOns: []
   }
   const activeValues = false
   const initialValues = activeValues || defaultValues
@@ -90,20 +55,17 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
     <Formik
       enableReinitialize
       initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={(values) => console.log(values)}>
+      onSubmit={(values) => addToCart(values)}>
 
       {({ values, setFieldValue }) => (
         <Form>
           <div className="row">
             <div className="col-12">
               <Field
-                name="variant"
+                name="defaultVariant"
                 component={ProductVariant}
                 product={product}
-                onChange={value => console.log(value)}
               />
-
             </div>
           </div>
 
@@ -116,13 +78,17 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-secondary mb-3 mb-lg-5">
-            Add to Cart
-          </button>
+          {available && (
+            <button
+              type="submit"
+              className="btn btn-secondary mb-3 mb-lg-5"
+              onClick={() => addToCart(values)}>
+              Add to Cart
+            </button>
+          )}
 
-          <FormikDebug />
+
+          {/* <FormikDebug /> */}
         </Form>
       )}
     </Formik>

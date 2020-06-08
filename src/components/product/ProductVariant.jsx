@@ -74,9 +74,9 @@ const ProductVariant = ({ product, lineItems, field, form: { errors, touched, se
       {available ? (
         <Field
           name={`${field.name}.quantity`}
-          type="text"
+          type="number"
           component={NumberInput}
-          onChange={value => setFieldValue(`${field.name}.quantity`, value)}
+          onChange={value => setFieldValue(`${field.name}.quantity`, value/1)}
           maskOptions={{
             includeThousandsSeparator: false,
             allowDecimal: false,
