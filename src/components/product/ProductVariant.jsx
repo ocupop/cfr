@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'formik'
 import { useRecoilValue } from 'recoil'
-import { activeStore } from '../../state'
+import { activeStore } from '../../shopify'
 import OptionSelector from './OptionSelector'
 import { NumberInput } from '../../common/fields'
 const ProductVariant = ({ product, lineItems, field, form: { errors, touched, setFieldValue, values }  }) => {

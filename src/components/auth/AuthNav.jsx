@@ -2,10 +2,10 @@ import React from 'react'
 import { useRecoilState } from 'recoil'
 // import PropTypes from 'prop-types'
 import { ButtonGroup, Button } from 'react-bootstrap'
-import { activeCountry } from '../../state'
+import { activeCurrency } from '../../shopify'
 
 const AuthNav = () => {
-  const [country, setCountry] = useRecoilState(activeCountry)
+  const [currency, setCurrency] = useRecoilState(activeCurrency)
 
   return (
     <div className="d-flex align-items-center h-100">
@@ -13,15 +13,15 @@ const AuthNav = () => {
         <ButtonGroup size="sm">
           <Button
             variant="dark"
-            onClick={() => setCountry('US')}
-            active={country === 'US' ? true : false }>
+            onClick={() => setCurrency('USD')}
+            active={currency === 'USD' ? true : false }>
             <span className="flag-icon flag-icon-us mr-2"></span>
             USA
           </Button>
           <Button
             variant="dark"
-            onClick={() => setCountry('CA')}
-            active={country === 'CA' ? true : false}>
+            onClick={() => setCurrency('CAD')}
+            active={currency === 'CAD' ? true : false}>
             <span className="flag-icon flag-icon-ca mr-2"></span>
             Canada
           </Button>

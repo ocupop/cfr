@@ -29,7 +29,7 @@ const CartSummaryItem = ({ item }) => {
           <small>
             Qty: {quantity}
             <br/>
-            <a href="/cart" className="text-info"><i class="ri-edit-2-line"></i> edit</a>
+            <a href="/cart" className="text-info"><i className="ri-edit-2-line"></i> edit</a>
           </small>
         </div>
       </div>
