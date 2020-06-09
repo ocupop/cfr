@@ -1,11 +1,9 @@
-import React from 'react'
-import { useRecoilState } from 'recoil'
+import React, { useState } from 'react'
 // import PropTypes from 'prop-types'
 import { ButtonGroup, Button } from 'react-bootstrap'
-import { activeCurrency } from '../../shopify'
 
 const AuthNav = () => {
-  const [currency, setCurrency] = useRecoilState(activeCurrency)
+  const [currency, setCurrency] = useState("CAD")
 
   return (
     <div className="d-flex align-items-center h-100">

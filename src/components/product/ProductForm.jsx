@@ -2,9 +2,7 @@
 import React, { useState, useEffect } from 'react'
 // import PropTypes from 'prop-types'
 import { Formik, Field, Form } from 'formik'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import FormikDebug from '../../common/utils/FormikDebug'
-import { activeCurrency, activeStore, activeCheckout } from '../../shopify'
 import { encodeID } from '../../common/utils/helpers'
 import ProductVariant from './ProductVariant'
 // import ProductSuggested from './ProductSuggested'
@@ -12,31 +10,32 @@ import ProductVariant from './ProductVariant'
 const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID } }) => {
   const productCAID = encodeID(shopifyCanadaID)
   const productUSID = encodeID(shopifyUSID)
-  const [currency] = useRecoilState(activeCurrency)
-  const [checkout] = useRecoilState(activeCheckout)
-  const store = useRecoilValue(activeStore)
+  // const [currency] = useRecoilState(activeCurrency)
+  // const [checkout] = useRecoilState(activeCheckout)
+  // const store = useRecoilValue(activeStore)
 
   const [product, setProduct] = useState()
   const [available] = useState(true)
 
   const addToCart = async (values) => {
-    try {
-      // console.log("Checking out... need to grab form values", values)
-      console.log("Adding to checkout:", checkout.id, values)
-      const response = await store.checkout.addLineItems(checkout.id, values.defaultVariant)
-      console.log(response)
-    } catch (error) {
-      console.log("Error:",error)
-    }
+    console.log(values)
+    // try {
+    //   // console.log("Checking out... need to grab form values", values)
+    //   console.log("Adding to checkout:", checkout.id, values)
+    //   const response = await store.checkout.addLineItems(checkout.id, values.defaultVariant)
+    //   console.log(response)
+    // } catch (error) {
+    //   console.log("Error:",error)
+    // }
   }
 
-  useEffect(() => {
-    const storefrontID = currency === 'CAD' ? productCAID : productUSID
-    store.product.fetch(storefrontID).then((product) => {
-      setProduct(product)
-    })
+  // useEffect(() => {
+  //   const storefrontID = currency === 'CAD' ? productCAID : productUSID
+  //   store.product.fetch(storefrontID).then((product) => {
+  //     setProduct(product)
+  //   })
 
-  }, [store.product, currency, productCAID, productUSID])
+  // }, [store.product, currency, productCAID, productUSID])
 
   const defaultValues = {
     defaultVariant: {

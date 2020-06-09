@@ -1,33 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 // import PropTypes from 'prop-types'
 import { Dropdown, NavItem, NavLink } from 'react-bootstrap'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { activeStore, activeCheckout, activeCurrency } from '../../shopify'
 import CartSummaryItem from './CartSummaryItem'
 
 const CartSummary = () => {
-  const store = useRecoilValue(activeStore)
-  const [checkout, setCheckout] = useRecoilState(activeCheckout)
-  const [currency] = useRecoilState(activeCurrency)
+  const [checkout] = useState(false)
+  // const store = useRecoilValue(activeStore)
+  // const [checkout, setCheckout] = useRecoilState(activeCheckout)
+  // const [currency] = useRecoilState(activeCurrency)
 
-  useEffect(() => {
-    // console.log("CHECKOUT:", checkout)
-    async function updateCheckout() {
-      console.log("Creating a new checkout")
-      const newCheckout = await store.checkout.create()
-      setCheckout(newCheckout)
-    }
-    if(!checkout) {
-      updateCheckout()
-    }
+  // useEffect(() => {
+  //   // console.log("CHECKOUT:", checkout)
+  //   async function updateCheckout() {
+  //     console.log("Creating a new checkout")
+  //     const newCheckout = await store.checkout.create()
+  //     setCheckout(newCheckout)
+  //   }
+  //   if(!checkout) {
+  //     updateCheckout()
+  //   }
 
-    if (checkout && checkout.currencyCode !== currency) {
-      // save this checkout and grab a new one
-      updateCheckout()
+  //   if (checkout && checkout.currencyCode !== currency) {
+  //     // save this checkout and grab a new one
+  //     updateCheckout()
 
-    }
+  //   }
 
-  }, [currency])
+  // }, [currency])
 
   return (
     <>

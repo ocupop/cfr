@@ -1,52 +1,28 @@
 import React from 'react'
-import { RecoilRoot, useTransactionObservation_UNSTABLE } from 'recoil'
+import { Provider } from 'react-redux'
+import createStore from './src/store/createStore'
+import ReduxToastr from 'react-redux-toastr'
+import ModalWrapper from './src/common/modals/ModalWrapper'
 import Layout from './src/containers/Layout'
 import 'flag-icon-css/css/flag-icon.css'
 import 'remixicon/fonts/remixicon.css'
 import './content/_scss/main.scss'
-import {
-  activeCurrency,
-  activeCheckout,
-} from './src/shopify'
-
-// TODO: As recoil evolves, i believe that there is or will be a better way to to do this.
-const atoms = {
-  activeCurrency,
-  activeCheckout
-}
-
-function PersistenceObserver() {
-  useTransactionObservation_UNSTABLE(({ atomValues, atomInfo, modifiedAtoms }) => {
-    for (const modifiedAtom of modifiedAtoms) {
-      // console.log(modifiedAtom)
-      window.localStorage.setItem(
-        modifiedAtom,
-        JSON.stringify({ value: atomValues.get(modifiedAtom) })
-      )
-    }
-  })
-  return null
-}
-
-const initializeState = ({ set }) => {
-  for (const [key, value] of Object.entries(window.localStorage)) {
-    const data = JSON.parse(value)
-    if (atoms[key]) {
-      set(atoms[key], data.value)
-    }
-  }
-}
 
 
 const App = ({ element }) => {
-
+  const store = createStore()
   return (
-    <RecoilRoot initializeState={initializeState}>
-      <PersistenceObserver />
+    <Provider store={store}>
+      <ModalWrapper />
+      <ReduxToastr
+        position="bottom-right"
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+      />
       <Layout>
         {element}
       </Layout>
-    </RecoilRoot>
+    </Provider>
   )
 }
 
