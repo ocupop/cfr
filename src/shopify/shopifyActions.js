@@ -4,7 +4,9 @@ import {
   USD_CLIENT,
   CAD_CLIENT,
   FETCH_PRODUCTS,
-  FETCH_CHECKOUT
+  FETCH_CHECKOUT,
+  GET_SHOP,
+  SET_ACTIVE_PRODUCT
 } from './shopifyConstants';
 
 export const setCurrency = (currency) => {
@@ -53,6 +55,22 @@ export const fetchCheckout = (checkout) => {
     type: FETCH_CHECKOUT,
     payload: {
       checkout
+    }
+  }
+}
+export const getShop = (shop) => {
+  return {
+    type: GET_SHOP,
+    payload: {
+      shop
+    }
+  }
+}
+export const setActiveProduct = (product) => {
+  return {
+    type: SET_ACTIVE_PRODUCT,
+    payload: {
+      product
     }
   }
 }

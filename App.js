@@ -6,7 +6,7 @@ import createStore from './src/store/createStore'
 import ReduxToastr from 'react-redux-toastr'
 import ModalWrapper from './src/common/modals/ModalWrapper'
 import Layout from './src/containers/Layout'
-import { createClient, fetchProducts, cadClient, usdClient, fetchCheckout } from './src/shopify/shopifyActions'
+import { createClient, fetchProducts, cadClient, usdClient, fetchCheckout, getShop } from './src/shopify/shopifyActions'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import 'flag-icon-css/css/flag-icon.css'
 import 'remixicon/fonts/remixicon.css'
@@ -66,16 +66,17 @@ const usStore = Client.buildClient({
 })
 store.dispatch(usdClient(usStore))
 
-// buildClient() is synchronous, so we can call all these after!
-client.product.fetchAll().then((products) => {
+
+client.product.fetchAll(250).then((products) => {
   store.dispatch(fetchProducts(products));
 })
+
 client.checkout.create().then((checkout) => {
   store.dispatch(fetchCheckout(checkout));
 })
-// client.shop.fetchInfo().then((res) => {
-//   store.dispatch({ type: 'SHOP_FOUND', payload: res });
-// });
+client.shop.fetchInfo().then((shop) => {
+  store.dispatch(getShop(shop));
+});
 
 const App = ({ element }) => {
 

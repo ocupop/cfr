@@ -4,7 +4,9 @@ import {
   USD_CLIENT,
   CAD_CLIENT,
   FETCH_PRODUCTS,
-  FETCH_CHECKOUT
+  FETCH_CHECKOUT,
+  GET_SHOP,
+  SET_ACTIVE_PRODUCT
 } from './shopifyConstants'
 import { createReducer } from '../common/utils/reducerUtil'
 
@@ -39,6 +41,14 @@ export const fetchCheckout = (state, payload) => {
   const { checkout } = payload
   return { ...state, checkout }
 }
+export const getShop = (state, payload) => {
+  const { shop } = payload
+  return { ...state, shop }
+}
+export const setActiveProduct = (state, payload) => {
+  const { product } = payload
+  return { ...state, product }
+}
 
 
 export default createReducer(initialState, {
@@ -48,4 +58,6 @@ export default createReducer(initialState, {
   [USD_CLIENT]: usdClient,
   [FETCH_PRODUCTS]: fetchProducts,
   [FETCH_CHECKOUT]: fetchCheckout,
+  [GET_SHOP]: getShop,
+  [SET_ACTIVE_PRODUCT]: setActiveProduct,
 })

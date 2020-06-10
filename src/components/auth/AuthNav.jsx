@@ -1,11 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
-import {setCurrency} from '../../shopify/shopifyActions'
+import { setCurrency } from '../../shopify/shopifyActions'
 
 const AuthNav = () => {
-  const currency = useSelector(state => state.shopify.currency)
   const dispatch = useDispatch()
+  const currency = useSelector(state => state.shopify.currency)
+
   return (
     <div className="d-flex align-items-center h-100">
       <div className="my-auto mr-5">
