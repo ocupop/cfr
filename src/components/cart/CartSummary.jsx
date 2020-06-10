@@ -1,44 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
-// import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
-import { toastr } from 'react-redux-toastr'
-import { asyncActionStart, asyncActionFinish } from '../../common/async/asyncActions'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Dropdown, NavItem, NavLink } from 'react-bootstrap'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { activeStore, activeCheckout, activeCurrency } from '../../store/recoil'
 import CartSummaryItem from './CartSummaryItem'
 
 const CartSummary = () => {
-  const dispatch = useDispatch()
-  const store = useRecoilValue(activeStore)
-  const [checkout, setCheckout] = useRecoilState(activeCheckout)
-  const [currency] = useRecoilState(activeCurrency)
+  const checkout = useSelector(state => state.shopify.checkout)
+  const currency = useSelector(state => state.shopify.currency)
 
-  useEffect(() => {
-    // console.log("CHECKOUT:", checkout)
-    async function updateCheckout() {
-      console.log("Creating a new checkout")
-      const newCheckout = await store.checkout.create()
-      setCheckout(newCheckout)
-      toastr.info('Success', 'Your cart has been updated...')
-    }
-    if(!checkout) {
-      updateCheckout()
-    }
+  // useEffect(() => {
+  //   // console.log("CHECKOUT:", checkout)
+  //   async function updateCheckout() {
+  //     console.log("Creating a new checkout")
+  //     const newCheckout = await client.checkout.create()
+  //     setCheckout(newCheckout)
+  //     toastr.info('Success', 'Your cart has been updated...')
+  //   }
+  //   if(!checkout) {
+  //     updateCheckout()
+  //   }
 
-    if (checkout && checkout.currencyCode !== currency) {
-      const message = `Changing countries will delete your cart.`
-      toastr.confirm(message, {
-        onOk: () => {
-          updateCheckout()
-        }
-      })
+  //   if (checkout && checkout.currencyCode !== currency) {
+  //     const message = `Changing countries will delete your cart.`
+  //     toastr.confirm(message, {
+  //       onOk: () => {
+  //         updateCheckout()
+  //       }
+  //     })
 
 
-    }
+  //   }
 
-  }, [currency])
+  // }, [currency])
 
   return (
     <>
@@ -65,23 +58,23 @@ const CartSummary = () => {
                   )}
               </div>
               <hr className="my-0" />
-
-              {/* <div className="p-3 text-center">
+              <div className="p-3 text-center">
+                <small>Cart Total: ${checkout.subtotalPrice} {currency}</small>
                 <p className="text-uppercase font-family-base">
-                  <small>Add $0.00 to receive free delivery</small>
+                  <small>Add $54 to receive free delivery</small>
                 </p>
                 <div className="progress">
 
                   <div
                     className="progress-bar bg-info"
                     style={{
-                      width: `50%`
+                      width: `0%`
                     }}
                     aria-valuenow="50"
                     aria-valuemin="0"
                     aria-valuemax="100"/>
                 </div>
-              </div> */}
+              </div>
 
               <hr className="my-0" />
               {checkout.lineItems.length > 1 ? (
