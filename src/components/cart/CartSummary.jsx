@@ -79,7 +79,7 @@ const CartSummary = () => {
               <hr className="my-0" />
               {checkout.lineItems.length > 1 ? (
                 <div className="p-3 text-center">
-                  <a href="/cart" className="btn btn-success btn-block text-white text-uppercase font-family-base mb-0">
+                  <a href={checkout.webUrl} className="btn btn-success btn-block text-white text-uppercase font-family-base mb-0">
                     <small>Checkout</small>
                   </a>
                 </div>

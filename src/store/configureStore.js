@@ -1,5 +1,9 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 // import thunk from 'redux-thunk'
+import Client from 'shopify-buy'
+import { throttle } from 'lodash'
+import { loadState, saveState } from './localStorage'
+import { createClient, fetchProducts, cadClient, usdClient, fetchCheckout, getShop } from '../shopify/shopifyActions'
 import rootReducer from './reducers'
 
 
@@ -33,6 +37,39 @@ export default function createReduxStore(initialState = {}) {
     initialState,
     compose(applyMiddleware(...middleware), ...enhancers)
   )
+
+  store.subscribe(throttle(() => {
+    saveState(store.getState())
+  }), 1000)
+  const client = Client.buildClient({
+    storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+    domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
+  })
+  store.dispatch(createClient(client))
+
+  const cadStore = Client.buildClient({
+    storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+    domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
+  })
+  store.dispatch(cadClient(cadStore))
+
+  const usStore = Client.buildClient({
+    storefrontAccessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
+    domain: `${process.env.GATSBY_US_SHOP_NAME}.myshopify.com`,
+  })
+  store.dispatch(usdClient(usStore))
+
+
+  client.product.fetchAll(250).then((products) => {
+    store.dispatch(fetchProducts(products));
+  })
+
+  client.checkout.create().then((checkout) => {
+    store.dispatch(fetchCheckout(checkout));
+  })
+  client.shop.fetchInfo().then((shop) => {
+    store.dispatch(getShop(shop));
+  })
 
   return store
 }

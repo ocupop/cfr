@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 // import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
 import FormikDebug from '../../common/utils/FormikDebug'
 import { encodeID } from '../../common/utils/helpers'
@@ -22,11 +23,12 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
   const [available] = useState(false)
 
   const addToCart = async (values) => {
+    const { product } = values
     try {
-      // console.log("Checking out... need to grab form values", values)
       console.log("Adding to checkout:", checkout.id, values)
-      const response = await client.checkout.addLineItems(checkout.id, values.defaultVariant)
+      const response = await client.checkout.addLineItems(checkout.id, product)
       console.log(response)
+      toastr.info('Success', 'Your cart has been updated...')
     } catch (error) {
       console.log("Error:",error)
     }
@@ -70,7 +72,7 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
               <div className="col-12">
                 <div className="p-2 my-4">
                   {/* <FieldArray name="addOns" component={ProductVariant} /> */}
-                  {suggestedProducts && suggestedProducts.map((product) => <ProductSuggested key={product.id} product={product} />)}
+                  {/* {suggestedProducts && suggestedProducts.map((product) => <ProductSuggested key={product.id} product={product} />)} */}
                 </div>
               </div>
             </div>
