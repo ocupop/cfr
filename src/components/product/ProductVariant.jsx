@@ -2,13 +2,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Field } from 'formik'
-import { useRecoilValue } from 'recoil'
-import { activeStore } from '../../store/recoil'
+import { useSelector } from 'react-redux'
 import OptionSelector from './OptionSelector'
 import LoadingComponent from '../../common/ui/LoadingComponent'
+
+
 const ProductVariant = ({ product, lineItems, field, form: { errors, touched, setFieldValue, values } }) => {
-  const store = useRecoilValue(activeStore)
+  const client = useSelector(state => state.shopify.client)
 
   const [variant, setVariant] = useState()
   const [variantOptions, setVariantOptions] = useState({})
@@ -22,11 +22,11 @@ const ProductVariant = ({ product, lineItems, field, form: { errors, touched, se
 
   useEffect(() => {
     async function getVariant() {
-      const variant = await store.product.helpers.variantForOptions(product, variantOptions)
+      const variant = await client.product.helpers.variantForOptions(product, variantOptions)
       setVariant(variant)
     }
 
-    if (store && product) {
+    if (client && product) {
       getVariant()
     }
 
@@ -47,7 +47,7 @@ const ProductVariant = ({ product, lineItems, field, form: { errors, touched, se
 
 
 
-  if (!store || !product) {
+  if (!client || !product) {
     return <LoadingComponent/>
   }
 
