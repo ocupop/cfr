@@ -4,6 +4,7 @@ gem "jekyll", "~>3.8.6"
 gem 'sassc'
 gem 'scss_lint'
 
-# group :jekyll_plugins do
-#   gem 'jekyll-sitemap'
-# end
+group :jekyll_plugins do
+  gem 'jekyll-sitemap'
+  gem 'shopify-storefront'
+end

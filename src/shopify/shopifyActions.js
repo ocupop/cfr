@@ -1,13 +1,13 @@
 import {
-  SET_CURRENCY,
   CREATE_CLIENT,
-  USD_CLIENT,
-  CAD_CLIENT,
-  FETCH_PRODUCTS,
-  FETCH_CHECKOUT,
-  GET_SHOP,
-  SET_ACTIVE_PRODUCT
-} from './shopifyConstants';
+  SET_SHOP,
+  SET_CURRENCY,
+  SET_PRODUCTS,
+  SET_PRODUCT,
+  CREATE_CHECKOUT,
+  UPDATE_CHECKOUT,
+} from './shopifyConstants'
+
 
 export const setCurrency = (currency) => {
   return {
@@ -25,52 +25,45 @@ export const createClient = (client) => {
     }
   }
 }
-export const usdClient = (usStore) => {
-  return {
-    type: USD_CLIENT,
-    payload: {
-      usStore
-    }
-  }
-}
-export const cadClient = (canadianStore) => {
-  return {
-    type: CAD_CLIENT,
-    payload: {
-      canadianStore
-    }
-  }
-}
 
-export const fetchProducts = (products) => {
+export const setShop = (shop) => {
   return {
-    type: FETCH_PRODUCTS,
-    payload: {
-      products
-    }
-  }
-}
-export const fetchCheckout = (checkout) => {
-  return {
-    type: FETCH_CHECKOUT,
-    payload: {
-      checkout
-    }
-  }
-}
-export const getShop = (shop) => {
-  return {
-    type: GET_SHOP,
+    type: SET_SHOP,
     payload: {
       shop
     }
   }
 }
-export const setActiveProduct = (product) => {
+export const setProducts = (products) => {
   return {
-    type: SET_ACTIVE_PRODUCT,
+    type: SET_PRODUCTS,
+    payload: {
+      products
+    }
+  }
+}
+export const setProduct = (product) => {
+  return {
+    type: SET_PRODUCT,
     payload: {
       product
+    }
+  }
+}
+
+export const createCheckout = (checkout) => {
+  return {
+    type: CREATE_CHECKOUT,
+    payload: {
+      checkout
+    }
+  }
+}
+export const updateCheckout = (checkout) => {
+  return {
+    type: UPDATE_CHECKOUT,
+    payload: {
+      checkout
     }
   }
 }

@@ -5,42 +5,40 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
 import FormikDebug from '../../common/utils/FormikDebug'
-import { encodeID } from '../../common/utils/helpers'
 import ProductVariant from './ProductVariant'
 import ProductSuggested from './ProductSuggested'
-import { setActiveProduct } from '../../shopify/shopifyActions'
+import { setProduct, updateCheckout } from '../../shopify/shopifyActions'
 
-const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID } }) => {
+const ProductForm = ({ props: { suggestedProducts, cadStorefrontID, usdStorefrontID } }) => {
   const dispatch = useDispatch()
   const currency = useSelector(state => state.shopify.currency)
   const checkout = useSelector(state => state.shopify.checkout)
   const client = useSelector(state => state.shopify.client)
   const product = useSelector(state => state.shopify.product)
 
-  const productCAID = encodeID(shopifyCanadaID)
-  const productUSID = encodeID(shopifyUSID)
-
   const [available] = useState(false)
 
   const addToCart = async (values) => {
     const { product } = values
     try {
-      console.log("Adding to checkout:", checkout.id, values)
       const response = await client.checkout.addLineItems(checkout.id, product)
-      console.log(response)
-      toastr.info('Success', 'Your cart has been updated...')
+      dispatch(updateCheckout(response))
+      toastr.success('Success', 'Your cart has been updated...')
     } catch (error) {
-      console.log("Error:",error)
+      toastr.error('Error', 'There was an issue updating your cart.')
     }
   }
 
   useEffect(() => {
-    const storefrontID = currency === 'CAD' ? productCAID : productUSID
-    client.product.fetch(storefrontID).then((product) => {
-      dispatch(setActiveProduct(product))
-    })
-
-  }, [currency, productCAID, productUSID])
+    const storefrontID = currency === 'CAD' ? cadStorefrontID : usdStorefrontID
+    if(client) {
+      // If the storefrontID is false then what do we do?
+      client.product.fetch(storefrontID).then((product) => {
+        // TODO: If the product doesn't exist then there is the possibility that the country needs to change.
+        dispatch(setProduct(product))
+      })
+    }
+  }, [currency])
 
   const defaultValues = {
     product: null,

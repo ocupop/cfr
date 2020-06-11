@@ -12,6 +12,7 @@ import './content/_scss/main.scss'
 
 const App = ({ element }) => {
   const store = configureStore()
+
   return (
     <Provider store={store}>
       <ModalWrapper />

@@ -1,22 +1,19 @@
 import {
   SET_CURRENCY,
   CREATE_CLIENT,
-  USD_CLIENT,
-  CAD_CLIENT,
-  FETCH_PRODUCTS,
-  FETCH_CHECKOUT,
-  GET_SHOP,
-  SET_ACTIVE_PRODUCT
+  SET_SHOP,
+  SET_PRODUCTS,
+  SET_PRODUCT,
+  CREATE_CHECKOUT,
+  UPDATE_CHECKOUT,
 } from './shopifyConstants'
 import { createReducer } from '../common/utils/reducerUtil'
 
 const initialState = {
   currency: 'CAD',
-  isCartOpen: false,
-  checkout: { lineItems: [] },
-  products: [],
-  shop: {}
+  checkout: null,
 }
+
 export const setCurrency = (state, payload) => {
   const { currency } = payload
   return { ...state, currency }
@@ -25,39 +22,35 @@ export const createClient = (state, payload) => {
   const { client } = payload
   return { ...state, client }
 }
-export const cadClient = (state, payload) => {
-  const { canadianStore } = payload
-  return { ...state, canadianStore }
-}
-export const usdClient = (state, payload) => {
-  const { usStore } = payload
-  return { ...state, usStore }
-}
-export const fetchProducts = (state, payload) => {
-  const { products } = payload
-  return { ...state, products }
-}
-export const fetchCheckout = (state, payload) => {
+export const createCheckout = (state, payload) => {
   const { checkout } = payload
   return { ...state, checkout }
 }
-export const getShop = (state, payload) => {
+export const updateCheckout = (state, payload) => {
+  const { checkout } = payload
+  return { ...state, checkout }
+}
+export const setShop = (state, payload) => {
   const { shop } = payload
   return { ...state, shop }
 }
-export const setActiveProduct = (state, payload) => {
+export const setProducts = (state, payload) => {
+  const { products } = payload
+  return { ...state, products }
+}
+export const setProduct = (state, payload) => {
   const { product } = payload
   return { ...state, product }
 }
 
 
+
 export default createReducer(initialState, {
   [SET_CURRENCY]: setCurrency,
   [CREATE_CLIENT]: createClient,
-  [CAD_CLIENT]: cadClient,
-  [USD_CLIENT]: usdClient,
-  [FETCH_PRODUCTS]: fetchProducts,
-  [FETCH_CHECKOUT]: fetchCheckout,
-  [GET_SHOP]: getShop,
-  [SET_ACTIVE_PRODUCT]: setActiveProduct,
+  [SET_SHOP]: setShop,
+  [SET_PRODUCTS]: setProducts,
+  [SET_PRODUCT]: setProduct,
+  [CREATE_CHECKOUT]: createCheckout,
+  [UPDATE_CHECKOUT]: updateCheckout,
 })

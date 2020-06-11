@@ -61,7 +61,7 @@ defaults:
     values:
       _options:
         featured_image:
-          uploads_dir: "uploads/collections/"        
+          uploads_dir: "uploads/collections/"
 
 
 # Build settings
@@ -71,6 +71,8 @@ sass:
   sass_dir: _scss
 
 # plugins:
+plugins:
+  - shopify-storefront
 
 # Cloudcannon Configuration
 _array_structures:
@@ -118,13 +120,13 @@ _array_structures:
   instructions:
     - label: PDF
       icon: picture_as_pdf
-      value: 
+      value:
         _type: pdf
         title:
         instruction_document:
     - label: Video
       icon: videocam
-      value: 
+      value:
         _type: video
         title:
         video_embed:
@@ -138,11 +140,11 @@ brands:
 sales_channels:
   - Canada
   - USA
-  - Wholesale  
+  - Wholesale
 
 _comments:
-  brands: Select the brands this product is compatible with  
+  brands: Select the brands this product is compatible with
   sales_channels: Select where the product/collection will appear. Will not show if none selected
 
-  
+
 

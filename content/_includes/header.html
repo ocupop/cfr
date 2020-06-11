@@ -2,18 +2,18 @@
   <div class="bg-black d-none d-lg-block">
     <div class="container">
       <nav id="shopNav">
+        <div class="d-none">
+          <auth-nav>
+            <div class="d-flex align-items-center h-100">
+              <div class="my-auto mr-5">USA/CAN</div>
+              <div class="my-auto mr-5">My Account</div>
+            </div>
+          </auth-nav>
+        </div>
         <p class="mb-0 mx-auto">
           {{ site.data.notifications.header_notification }}
         </p>
         <ul class="nav text-white">
-          <li class="nav-item">
-            <auth-nav>
-              <div class="d-flex align-items-center h-100">
-                <div class="my-auto mr-5">USA/CAN</div>
-                <div class="my-auto mr-5">My Account</div>
-              </div>
-            </auth-nav>
-          </li>
           <cart-summary>
             <li class="nav-item">
               <span class="nav-link d-flex align-items-center">

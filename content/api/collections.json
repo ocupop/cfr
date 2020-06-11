@@ -11,6 +11,34 @@ permalink: api/collections
     "label": {{ collection['label'] | jsonify }},
     "featuredImage": {{ collection['featured_image'] | jsonify }},
     "description": {{ collection['description'] | jsonify }},
+    "products": [
+      {% for object in collection.products %}
+        {% assign product = site.products | where: 'slug', object | first %}
+        {
+          "slug": {{ product['slug'] | jsonify }},
+          "url": {{ product['url'] | jsonify }},
+          "name": {{ product['name'] | jsonify }},
+          "cadStorefrontID": {% if product['shopify_canada_id'] %}{{ product['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
+          "usdStorefrontID": {% if product['shopify_us_id'] %}{{ product['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
+    "categories": [
+      {% assign categories = "" | split:"," %}
+        {% for object in collection.products %}
+          {% assign product = site.products | where: 'slug', object | first %}
+          {% for category in product.categories %}
+            {% assign categories = categories | push: category %}
+          {% endfor %}
+        {% endfor %}
+        {% assign categories = categories | uniq %}
+        {% for item in categories %}
+          {
+            "label": {{ item | jsonify }},
+            "value": {{ item | slugify | jsonify }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    ],
     "output": {{ collection['output'] | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}

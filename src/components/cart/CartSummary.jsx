@@ -46,11 +46,9 @@ const CartSummary = () => {
               <div className="p-3">
                 <h5>Cart</h5>
                 {checkout.lineItems.length > 0 ? (
-                  checkout.lineItems.map((item, key) => {
+                  checkout.lineItems.map(item => {
                     return (
-                      <div>
-                        <CartSummaryItem key={`${item.id}_${key}`} item={item} />
-                      </div>
+                      <CartSummaryItem key={item.id} item={item} />
                     )
                   })
                 ) : (
