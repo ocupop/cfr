@@ -61,15 +61,15 @@ const ProductVariant = ({ product, lineItems, field, form: { errors, touched, se
             style={{ backgroundImage: `url(${variant.image.src})` }} />
         </>
       )}
-      {product && product.variants.length > 1
-        ? product.options.map(option => {
+      {product && product.variants.length > 1 &&
+        product.options.map(option => {
           return (
             <OptionSelector
               key={`${option.id}`}
               option={option}
               onChange={handleOptionChange} />
           )
-        }) : <span>Choose Your Options</span>}
+          })}
 
       {available ? (
         <>
@@ -93,7 +93,7 @@ const ProductVariant = ({ product, lineItems, field, form: { errors, touched, se
       ):(
         <div className="alert alert-warning">
           <i className="ri-arrow-up-line mr-2"></i>
-          <span>Select Options</span>
+          <span>Select options</span>
         </div>
       )}
     </>

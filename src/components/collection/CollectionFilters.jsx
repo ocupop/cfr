@@ -11,13 +11,13 @@ const CollectionFilters = ({props: {brands, categories}}) => {
     <nav className="collectionNav">
       {categories && categories.length > 0 && (
         <>
-          <h2>Product Categories</h2>
+          <h2>Product Categories
+            <small
+              type="button"
+              className="ml-2 text-mid"
+              onClick={() => dispatch(setProductFilter(''))}>(view all)</small>
+          </h2>
           <ul className="nav flex-column">
-            <li className="text-uppercase">
-              <button
-                type="button"
-                onClick={() => dispatch(setProductFilter(''))}>All</button>
-            </li>
             {categories.map((category) => (
               <li key={slugify(category)} className="text-uppercase">
                 <button
@@ -31,13 +31,13 @@ const CollectionFilters = ({props: {brands, categories}}) => {
 
       {brands && brands.length > 0 && (
         <>
-          <h3>Brands</h3>
+          <h3>Brands
+            <small
+              type="button"
+              className="ml-2 text-mid"
+              onClick={() => dispatch(setProductFilter(''))}>(view all)</small>
+          </h3>
           <ul className="nav flex-column">
-            <li className="text-uppercase">
-              <button
-                type="button"
-                onClick={() => dispatch(setProductFilter(''))}>All</button>
-            </li>
             {brands.map((brand) => (
               <li key={slugify(brand)} className="text-uppercase">
                 <button
