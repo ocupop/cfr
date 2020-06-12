@@ -3,26 +3,12 @@
     <div class="container">
       <nav id="shopNav">
         <div class="d-none">
-          <auth-nav>
-            <div class="d-flex align-items-center h-100">
-              <div class="my-auto mr-5">USA/CAN</div>
-              <div class="my-auto mr-5">My Account</div>
-            </div>
-          </auth-nav>
+          {% include components/auth-nav.html %}
         </div>
         <p class="mb-0 mx-auto">
           {{ site.data.notifications.header_notification }}
         </p>
-        <ul class="nav text-white">
-          <cart-summary>
-            <li class="nav-item">
-              <span class="nav-link d-flex align-items-center">
-                <i class="ri-shopping-cart-line"></i>
-                <span class="ml-2 badge badge-pill badge-light">0</span>
-              </span>
-          </li>
-          </cart-summary>
-        </ul>
+        {% include components/cart-summary.html %}
       </nav>
     </div>
   </div>

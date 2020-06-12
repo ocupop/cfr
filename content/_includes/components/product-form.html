@@ -1,0 +1,31 @@
+<product-form>
+  <p class="lead mt-3">$0.00</p>
+  <div class="bg-image aspect-4x3 mb-3"
+    style="background-image: url('https://via.placeholder.com/500?text=Variant+Image')"></div>
+  <div class="form-group">
+    <label>Quantity</label>
+    <input type="number" id="quantity" name="quantity" min="1" step="1" class="form-control" />
+  </div>
+  <br />
+  {% if product.suggested_products %}
+  {% for object in product.suggested_products %}
+  {% assign suggested = site.products | where: 'slug', object | first %}
+  {% include logic/relativeURL.html url=suggested.featured_image %}
+
+  <ul class="list-group">
+    <li class="list-group-item p-0 bg-dark text-white">
+      <a href="#" class="d-flex align-items-center justify-content-between">
+        <div class="col-4 bg-white">
+          <div class="bg-image aspect-4x3" style="background-image: url('{{ relativeURL }}')"></div>
+        </div>
+        <div class="col-1"><i class="ri-add-circle-line"></i></div>
+        <div class="col-7"><small>Add {{ suggested.name }}</small></div>
+      </a>
+    </li>
+  </ul>
+  {% endfor %}
+  {% endif %}
+  <button type="submit" class="btn btn-secondary my-3 my-lg-5">
+    Add to Cart
+  </button>
+</product-form>

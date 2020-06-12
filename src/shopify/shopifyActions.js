@@ -4,6 +4,7 @@ import {
   SET_CURRENCY,
   SET_PRODUCTS,
   SET_PRODUCT,
+  SET_PRODUCT_FILTER,
   CREATE_CHECKOUT,
   UPDATE_CHECKOUT,
 } from './shopifyConstants'
@@ -47,6 +48,14 @@ export const setProduct = (product) => {
     type: SET_PRODUCT,
     payload: {
       product
+    }
+  }
+}
+export const setProductFilter = (filter) => {
+  return {
+    type: SET_PRODUCT_FILTER,
+    payload: {
+      filter
     }
   }
 }

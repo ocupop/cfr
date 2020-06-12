@@ -4,6 +4,7 @@ import {
   SET_SHOP,
   SET_PRODUCTS,
   SET_PRODUCT,
+  SET_PRODUCT_FILTER,
   CREATE_CHECKOUT,
   UPDATE_CHECKOUT,
 } from './shopifyConstants'
@@ -42,6 +43,10 @@ export const setProduct = (state, payload) => {
   const { product } = payload
   return { ...state, product }
 }
+export const setProductFilter = (state, payload) => {
+  const { filter } = payload
+  return { ...state, filter }
+}
 
 
 
@@ -51,6 +56,7 @@ export default createReducer(initialState, {
   [SET_SHOP]: setShop,
   [SET_PRODUCTS]: setProducts,
   [SET_PRODUCT]: setProduct,
+  [SET_PRODUCT_FILTER]: setProductFilter,
   [CREATE_CHECKOUT]: createCheckout,
   [UPDATE_CHECKOUT]: updateCheckout,
 })

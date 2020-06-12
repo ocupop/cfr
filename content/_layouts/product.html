@@ -32,7 +32,9 @@ footer_image: /img/cfr-footer-4.jpg
           </div> -->
         </div>
         <div class="content d-block d-lg-none">
-          <product-form></product-form>
+
+          {% include components/product-form.html %}
+
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank"
@@ -61,19 +63,9 @@ footer_image: /img/cfr-footer-4.jpg
             {{ product.categories.first }}
           </p>
           <h1 class="h4 mb-3">{{ title }}</h1>
-          <product-form>
-            <p class="lead mt-3">$0.00</p>
-            <div class="bg-image aspect-4x3 mb-3" style="background-image: url('https://via.placeholder.com/500?text=Variant+Image')"></div>
-            <div class="form-group">
-              <label>Quantity</label>
-              <input type="number" id="quantity" name="quantity" min="1" step="1" class="form-control" />
-            </div>
-            <br />
-            {% include product/suggested-products.html %}
-            <button type="submit" class="btn btn-secondary my-3 my-lg-5">
-              Add to Cart
-            </button>
-          </product-form>
+
+          {% include components/product-form.html %}
+
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank" rel="noopener" class="text-white mr-2"

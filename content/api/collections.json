@@ -4,6 +4,19 @@ permalink: api/collections
 ---
 [
 {% for collection in site.product_collections %}
+  {% assign brands = "" | split:"," %}
+  {% assign categories = "" | split:"," %}
+  {% for object in collection.products %}
+    {% assign product = site.products | where: 'slug', object | first %}
+    {% for brand in product.brands %}
+      {% assign brands = brands | push: brand %}
+    {% endfor %}
+    {% for category in product.categories %}
+      {% assign categories = categories | push: category %}
+    {% endfor %}
+  {% endfor %}
+  {% assign brands = brands | uniq %}
+  {% assign categories = categories | uniq %}
   {
     "layout": {{ collection['layout'] | jsonify }},
     "url": {{ collection['url'] | jsonify }},
@@ -18,27 +31,16 @@ permalink: api/collections
           "slug": {{ product['slug'] | jsonify }},
           "url": {{ product['url'] | jsonify }},
           "name": {{ product['name'] | jsonify }},
+          "featuredImage": {{ product['featured_image'] | jsonify }},
+          "categories": {{ product['categories'] | jsonify}},
+          "brands": {{ product['brands'] | jsonify}},
           "cadStorefrontID": {% if product['shopify_canada_id'] %}{{ product['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
           "usdStorefrontID": {% if product['shopify_us_id'] %}{{ product['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ],
-    "categories": [
-      {% assign categories = "" | split:"," %}
-        {% for object in collection.products %}
-          {% assign product = site.products | where: 'slug', object | first %}
-          {% for category in product.categories %}
-            {% assign categories = categories | push: category %}
-          {% endfor %}
-        {% endfor %}
-        {% assign categories = categories | uniq %}
-        {% for item in categories %}
-          {
-            "label": {{ item | jsonify }},
-            "value": {{ item | slugify | jsonify }}
-          }{% unless forloop.last %},{% endunless %}
-        {% endfor %}
-    ],
+    "brands": {{ brands | jsonify }},
+    "categories": {{ categories | jsonify }},
     "output": {{ collection['output'] | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
