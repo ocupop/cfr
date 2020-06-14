@@ -3,7 +3,8 @@ import Client from 'shopify-buy'
 // import thunk from 'redux-thunk'
 import { throttle } from 'lodash'
 import { loadState, saveState } from './localStorage'
-import { setShop, createClient, createCheckout } from '../shopify/shopifyActions'
+import { setShop, createClient, createCheckout, setProducts } from '../shopify/shopifyActions'
+import { arrayToObject } from '../common/utils/helpers'
 import rootReducer from './reducers'
 
 const cadClient = Client.buildClient({
@@ -69,11 +70,12 @@ export default function createReduxStore() {
     client.shop.fetchInfo().then((shop) => {
       store.dispatch(setShop(shop));
     })
-    // Fetch all products
-    // client.product.fetchAll(250).then((products) => {
-    //   store.dispatch(setProducts(products));
-    // })
   }
+  // Fetch all products
+  client.product.fetchAll(250).then((products) => {
+
+    store.dispatch(setProducts(arrayToObject(products, 'id')));
+  })
 
   return store
 }

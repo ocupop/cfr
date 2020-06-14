@@ -24,8 +24,8 @@ permalink: api/products
           "url": {{ suggested['url'] | jsonify }},
           "slug": {{ suggested['slug'] | jsonify }},
           "featuredImage": {{ relativeURL | jsonify }},
-          "cadStorefrontID": {% if product['shopify_canada_id'] %}{{ product['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
-          "usdStorefrontID": {% if product['shopify_us_id'] %}{{ product['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
+          "cadStorefrontID": {% if suggested['shopify_canada_id'] %}{{ suggested['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
+          "usdStorefrontID": {% if suggested['shopify_us_id'] %}{{ suggested['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ],

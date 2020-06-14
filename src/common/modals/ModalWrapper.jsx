@@ -2,12 +2,14 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import TestModal from './TestModal'
+import VariantModal from './VariantModal'
 // import LoginModal from './LoginModal'
 // import RegisterModal from './RegisterModal'
 // import NotificationModal from './NotificationModal'
 
 const modalLookup = {
   TestModal,
+  VariantModal,
   // LoginModal,
   // RegisterModal,
   // NotificationModal

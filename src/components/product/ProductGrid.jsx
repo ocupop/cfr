@@ -4,7 +4,7 @@ import { setProductFilter } from '../../shopify/shopifyActions'
 import ProductGridCard from './ProductGridCard'
 import PropTypes from 'prop-types'
 
-const ProductGrid = ({props: { products }}) => {
+const ProductGrid = ({ props: { products } }) => {
   const dispatch = useDispatch()
   const filter = useSelector(state => state.shopify.filter)
   const [filteredProducts, setFilteredProducts] = useState(products)

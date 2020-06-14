@@ -6,15 +6,15 @@ const OptionSelector = ({ option, onChange }) => {
 
   return (
     <>
-      <div className="form-group">
-        <label htmlFor={option.name}>{option.name} </label>
+      <div className="py-1">
+        <label htmlFor={option.name} className="sr-only">{option.name} </label>
         <div className="select">
           <select
             name={option.name}
             onChange={onChange}
             className="form-control"
           >
-            <option>Choose {option.name}...</option>
+            <option value={null}>Choose {option.name}...</option>
             {Object.values(option.values).map(({ value }) => {
               return (
                 <option
@@ -27,7 +27,6 @@ const OptionSelector = ({ option, onChange }) => {
           </select>
         </div>
       </div>
-      <br />
     </>
   )
 }

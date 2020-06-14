@@ -6,7 +6,7 @@ import { getParseOptions } from '../common/utils/helpers'
 
 const PostTemplate = ({ data: { posts: post } }) => {
   const { output } = post
-  const parseOptions = getParseOptions(product)
+  const parseOptions = getParseOptions(post)
   return (
     <>
       {parse(output, parseOptions)}
