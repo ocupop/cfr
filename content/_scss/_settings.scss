@@ -9,9 +9,9 @@ $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #747474;
 $gray-900: #212529 !default;
-$black: #151515;
+$black: #000000;
 
-$blue: #25b0e8;
+$blue: #23405e;
 $indigo: #6610f2 !default;
 $purple: #6f42c1 !default;
 $pink: #e83e8c !default;
@@ -23,8 +23,8 @@ $green: #87a63e;
 $teal: #20c997 !default;
 $cyan: #7dd0e8 !default;
 
-$primary: $gray-800;
-$secondary: #23405e;
+$primary: $red;
+$secondary: $blue;
 $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
@@ -34,8 +34,8 @@ $mid: $gray-400;
 $dark: $gray-900;
 
 $theme-colors: (
-  "primary": $gray-800,
-  "secondary": $red,
+  "primary": $primary,
+  "secondary": $secondary,
   "success": $green,
   "info": $cyan,
   "warning": $yellow,
@@ -43,7 +43,7 @@ $theme-colors: (
   "light": $light,
   "mid": $mid,
   "dark": $dark,
-  "black": $gray-900
+  "black": $black,
 );
 
 $body-bg: $white;
@@ -81,14 +81,14 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 ) !default;
 
 $container-max-widths: (
   sm: 540px,
   md: 800px,
   lg: 960px,
-  xl: 1140px
+  xl: 1140px,
 ) !default;
 
 $screen-sm-min: 576px;

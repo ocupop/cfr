@@ -22,7 +22,7 @@ const NotificationModal = () => {
           <Notifications/>
         </Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={() => dispatch(closeModal())}>Close</Button> */}
+          {/* <Button variant="primary" onClick={() => dispatch(closeModal())}>Close</Button> */}
         </Modal.Footer>
       </Modal>
     </>

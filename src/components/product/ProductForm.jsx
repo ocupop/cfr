@@ -1,10 +1,9 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
+// import FormikDebug from '../../common/utils/FormikDebug'
 import { useSelector, useDispatch } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
-import FormikDebug from '../../common/utils/FormikDebug'
 import ProductVariant from './ProductVariant'
 import { updateCheckout } from '../../shopify/shopifyActions'
 
@@ -88,18 +87,20 @@ const ProductForm = ({ props: product }) => {
           {values.lineItems[0] && (
             <button
               type="submit"
-              className="btn btn-secondary btn-large btn-block mb-3 mb-lg-5"
+              className="btn btn-primary btn-large btn-block mb-3 mb-lg-5"
               disabled={!values.lineItems[0].variantId}>
               Add to Cart
             </button>
           )}
-          <FormikDebug />
+          {/* <FormikDebug /> */}
         </Form>
       )}
     </Formik>
   )
 }
 
-ProductForm.propTypes = {}
+ProductForm.propTypes = {
+  props: PropTypes.instanceOf(Object)
+}
 
 export default ProductForm

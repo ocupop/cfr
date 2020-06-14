@@ -84,12 +84,6 @@ const ProductVariant = ({ addOn, product, field, form: { errors, touched, setFie
         </>
       )}
 
-
-
-
-
-
-
       {shopifyProduct && shopifyProduct.options &&
         shopifyProduct.options.map(option => {
           return (

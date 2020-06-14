@@ -7,6 +7,8 @@ import {
   SET_PRODUCT_FILTER,
   CREATE_CHECKOUT,
   UPDATE_CHECKOUT,
+  OPEN_CART,
+  CLOSE_CART,
 } from './shopifyConstants'
 
 
@@ -73,6 +75,24 @@ export const updateCheckout = (checkout) => {
     type: UPDATE_CHECKOUT,
     payload: {
       checkout
+    }
+  }
+}
+
+export const openCart = () => {
+  return {
+    type: OPEN_CART,
+    payload: {
+      isCartOpen: true
+    }
+  }
+}
+
+export const closeCart = () => {
+  return {
+    type: CLOSE_CART,
+    payload: {
+      isCartOpen: false
     }
   }
 }

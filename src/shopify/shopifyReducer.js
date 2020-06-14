@@ -7,12 +7,15 @@ import {
   SET_PRODUCT_FILTER,
   CREATE_CHECKOUT,
   UPDATE_CHECKOUT,
+  OPEN_CART,
+  CLOSE_CART,
 } from './shopifyConstants'
 import { createReducer } from '../common/utils/reducerUtil'
 
 const initialState = {
   currency: 'CAD',
   checkout: null,
+  isCartOpen: false
 }
 
 export const setCurrency = (state, payload) => {
@@ -48,6 +51,15 @@ export const setProductFilter = (state, payload) => {
   return { ...state, filter }
 }
 
+export const closeCart = (state, payload) => {
+  const { isCartOpen } = payload
+  return { ...state, isCartOpen }
+}
+
+export const openCart = (state, payload) => {
+  const { isCartOpen } = payload
+  return { ...state, isCartOpen }
+}
 
 
 export default createReducer(initialState, {
@@ -59,4 +71,6 @@ export default createReducer(initialState, {
   [SET_PRODUCT_FILTER]: setProductFilter,
   [CREATE_CHECKOUT]: createCheckout,
   [UPDATE_CHECKOUT]: updateCheckout,
+  [OPEN_CART]: openCart,
+  [CLOSE_CART]: closeCart,
 })

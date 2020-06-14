@@ -16,7 +16,7 @@ const VariantModal = ({ heading }) => {
         </Modal.Header>
         <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => dispatch(closeModal())}>Close</Button>
+          <Button variant="primary" onClick={() => dispatch(closeModal())}>Close</Button>
         </Modal.Footer>
       </Modal>
     </>

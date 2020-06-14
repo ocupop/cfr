@@ -1,26 +1,7 @@
 import React from 'react'
-import _ from 'lodash'
-import parse from 'html-react-parser';
 import { useStaticQuery, graphql } from 'gatsby'
-import AuthNav from '../../components/auth/AuthNav'
-import CartSummary from '../../components/cart/CartSummary'
-
-const pageComponents = {
-  AuthNav,
-  CartSummary
-}
-
-const parseOptions = {
-  replace: ({ attribs, name }) => {
-    if (!attribs) return;
-
-    if (name.includes('-')) {
-      const component = _.upperFirst(_.camelCase(name))
-      // @TODO: Write logic to check if component isExists. If not - throw error
-      return React.createElement(pageComponents[component], attribs)
-    }
-  }
-}
+import parse from 'html-react-parser'
+import { getElementParseOptions } from '../utils/helpers'
 
 const Header = () => {
   const { elements: { output: content } } = useStaticQuery(graphql`
@@ -30,6 +11,7 @@ const Header = () => {
       }
     }
   `)
+  const parseOptions = getElementParseOptions()
 
   return (
     <>

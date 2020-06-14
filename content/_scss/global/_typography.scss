@@ -23,14 +23,14 @@ h2,
 .h2,
 h3,
 .h3 {
-  color: $black;
+  color: inherit;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 h4,
 .h4 {
-  color: $dark;
+  color: inherit;
   text-transform: uppercase;
   font-weight: 300;
 }
@@ -39,6 +39,6 @@ h5,
 h6,
 .h5,
 .h6 {
-  color: $dark;
+  color: inherit;
   font-weight: 300;
 }

@@ -82,6 +82,19 @@ export function getParseOptions(props) {
     }
   })
 }
+export function getElementParseOptions() {
+  return ({
+    replace: ({ attribs, name }) => {
+      if (!attribs) return;
+
+      if (name.includes('-')) {
+        const component = _.upperFirst(_.camelCase(name))
+        // @TODO: Write logic to check if component isExists. If not - throw error
+        return React.createElement(SharedComponents[component], attribs)
+      }
+    }
+  })
+}
 
 export function slugify(string) {
   const a = 'àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;'

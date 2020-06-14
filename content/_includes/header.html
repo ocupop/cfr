@@ -2,13 +2,10 @@
   <div class="bg-black d-none d-lg-block">
     <div class="container">
       <nav id="shopNav">
-        <div class="d-none">
-          {% include components/auth-nav.html %}
-        </div>
         <p class="mb-0 mx-auto">
           {{ site.data.notifications.header_notification }}
         </p>
-        {% include components/cart-summary.html %}
+        {% include components/cart-nav.html %}
       </nav>
     </div>
   </div>

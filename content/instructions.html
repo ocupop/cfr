@@ -25,7 +25,7 @@ instruction_sections:
         </div>
       </div>
     </div>
-    
+
   </div>
 </section>
 {% for section in page.instruction_sections %}
@@ -39,9 +39,9 @@ instruction_sections:
           <h4 class="{% unless forloop.first %}mt-4{% endunless %}">{{ instruction.title }}</h4>
             {% case instruction._type  %}
               {% when 'pdf' %}
-              <a href="{{ instruction.instruction_document }}" class="btn btn-secondary" target="_blank"
+              <a href="{{ instruction.instruction_document }}" class="btn btn-primary" target="_blank"
               rel="noopener">Download</a>
-        
+
               {% when 'video' %}
                 {{ instruction.video_embed }}
             {% endcase %}
