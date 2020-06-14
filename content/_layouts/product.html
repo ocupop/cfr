@@ -57,7 +57,7 @@ footer_image: /img/cfr-footer-4.jpg
           {{ product.content }}
         </div>
       </div>
-      <div class="col-12 col-lg-4 pt-lg-5 d-none d-lg-block bg-black bg-bleed text-white">
+      <div class="col-12 col-lg-4 pt-lg-5 d-none d-lg-block bg-dark bg-bleed text-white">
         <div class="content position-sticky sticky-top">
           <p class="mb-0 text-uppercase text-white-50">
             {{ product.categories.first }}
@@ -82,6 +82,22 @@ footer_image: /img/cfr-footer-4.jpg
     </div>
   </div>
 </section>
-{% include product/related-products-grid.html %}
+<section class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="content">
+          <h3>Related Products</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        {% include components/related-products.html %}
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image }})">
 </div>

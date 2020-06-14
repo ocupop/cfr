@@ -1,0 +1,23 @@
+<related-products>
+  <div class="responsive-card-deck cards-lg-3 cards-md-2">
+    {% for object in product.related_products limit: 6 %}
+    {% assign related = site.products | where: 'slug', object | first %}
+    <a class="card" href="{{ object.url }}">
+      <div class="card-image-wrapper">
+        <div class="bg-image aspect-4x3"
+          style="background-image: url({% if related.featured_image contains '//' %}{{ related.featured_image }}{% else %}{{ related.featured_image | prepend: site.url }}{% endif %})">
+        </div>
+      </div>
+      <div class="card-footer">
+        <p class="text-uppercase mb-0">
+          {{ related.categories.first }}
+        </p>
+        <h5 class="card-title mb-0">{{ related.name | default: object.title }}</h5>
+        <p class="card-text">
+          From $0.00
+        </p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</related-products>
