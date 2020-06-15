@@ -1,4 +1,4 @@
-<related-products>
+<product-related>
   <div class="responsive-card-deck cards-lg-3 cards-md-2">
     {% for object in product.related_products limit: 6 %}
     {% assign related = site.products | where: 'slug', object | first %}
@@ -20,4 +20,4 @@
     </a>
     {% endfor %}
   </div>
-</related-products>
+</product-related>

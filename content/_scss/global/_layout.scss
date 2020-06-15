@@ -1,9 +1,13 @@
 #pageHeader {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  height: 60px;
+  @include media-breakpoint-up(lg) {
+    height: 125px;
+  }
   .navbar-brand {
     color: $dark;
     width: 125px;
-    margin-top: -57px;
+    margin-top: -40px;
   }
 }
 
@@ -27,7 +31,6 @@
     border: 0;
   }
   @include media-breakpoint-down(md) {
-
     position: fixed;
     top: 0;
     left: 0;
@@ -101,9 +104,9 @@
 }
 
 #pageContent {
-  padding-top: 57px;
+  padding-top: 60px;
   @include media-breakpoint-up(lg) {
-    padding-top: 124px;
+    padding-top: 125px;
   }
   @include media-breakpoint-down(md) {
     overflow: hidden;

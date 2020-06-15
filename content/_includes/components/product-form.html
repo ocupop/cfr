@@ -12,17 +12,15 @@
   {% assign suggested = site.products | where: 'slug', object | first %}
   {% include logic/relativeURL.html url=suggested.featured_image %}
 
-  <ul class="list-group">
-    <li class="list-group-item p-0 bg-dark text-white">
-      <a href="#" class="d-flex align-items-center justify-content-between">
-        <div class="col-4 bg-white">
-          <div class="bg-image aspect-4x3" style="background-image: url('{{ relativeURL }}')"></div>
-        </div>
-        <div class="col-1"><i class="ri-add-circle-line"></i></div>
-        <div class="col-7"><small>Add {{ suggested.name }}</small></div>
-      </a>
-    </li>
-  </ul>
+
+    <div class="d-flex align-items-center justify-content-between bg-light text-dark border border-dark">
+      <div class="col-4 bg-white">
+        <div class="bg-image aspect-4x3" style="background-image: url('{{ relativeURL }}')"></div>
+      </div>
+      <div class="col-1"><i class="ri-add-circle-line"></i></div>
+      <div class="col-7"><small>Add {{ suggested.name }}</small></div>
+    </div>
+
   {% endfor %}
   {% endif %}
   <button type="submit" class="btn btn-primary my-3 my-lg-5">

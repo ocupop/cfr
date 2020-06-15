@@ -93,11 +93,11 @@ footer_image: /img/cfr-footer-4.jpg
     </div>
     <div class="row">
       <div class="col-12">
-        {% include components/related-products.html %}
+        {% include components/product-related.html %}
       </div>
     </div>
   </div>
 </section>
 
-<div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image }})">
+<div class="bg-image aspect-footer-hero" style="background-image: url({{ layout.footer_image | prepend: site.url }})">
 </div>

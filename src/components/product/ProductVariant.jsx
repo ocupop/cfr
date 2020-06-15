@@ -55,7 +55,7 @@ const ProductVariant = ({ addOn, product, field, form: { errors, touched, setFie
     <>
       {addOn && (
         <div
-          className="d-flex align-items-center justify-content-between">
+          className="d-flex align-items-center justify-content-between bg-light text-dark border border-dark">
           <div className="col-4 bg-white">
             <div className="bg-image aspect-4x3" />
           </div>

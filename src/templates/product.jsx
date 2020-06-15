@@ -31,6 +31,14 @@ export const query = graphql`
         slug
         url
       }
+      relatedProducts {
+        name
+        featuredImage
+        cadStorefrontID
+        usdStorefrontID
+        slug
+        url
+      }
     }
   }
 `

@@ -29,6 +29,20 @@ permalink: api/products
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ],
+    "relatedProducts": [
+      {% for object in product.related_products %}
+      {% assign related = site.products | where: 'slug', object | first %}
+      {% include logic/relativeURL.html url=related.featured_image %}
+        {
+          "name": {{ related['name'] | jsonify }},
+          "url": {{ related['url'] | jsonify }},
+          "slug": {{ related['slug'] | jsonify }},
+          "featuredImage": {{ relativeURL | jsonify }},
+          "cadStorefrontID": {% if related['shopify_canada_id'] %}{{ related['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
+          "usdStorefrontID": {% if related['shopify_us_id'] %}{{ related['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
     "output": {{ product['output'] | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
