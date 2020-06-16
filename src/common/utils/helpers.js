@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { domToReact } from 'html-react-parser'
 import SharedComponents from '../SharedComponents'
 import format from 'date-fns/format'
+import queryString from 'query-string'
 
 /**
  * Formats a date object
@@ -94,6 +95,16 @@ export function getElementParseOptions() {
       }
     }
   })
+}
+
+export const getFilter = (query) => {
+  const defaultFilter = ''
+  if (query) {
+    const queriedFilter = queryString.parse(query)
+    const { filter } = queriedFilter
+    return filter
+  }
+  return defaultFilter
 }
 
 export function slugify(string) {

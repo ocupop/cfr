@@ -3,19 +3,7 @@ import PropTypes from 'prop-types'
 import { useLocation, globalHistory, useNavigate } from "@reach/router"
 import queryString from 'query-string'
 import ProductGridCard from './ProductGridCard'
-import { slugify } from '../../common/utils/helpers'
-
-const getFilter = (query) => {
-  const defaultFilter = ''
-  if (query) {
-    const queriedFilter = queryString.parse(query)
-    const { filter } = queriedFilter
-
-    return filter
-  }
-
-  return defaultFilter
-}
+import { slugify, getFilter } from '../../common/utils/helpers'
 
 const ProductGrid = ({ props: { products } }) => {
   const location = useLocation()

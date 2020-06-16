@@ -1,18 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { useLocation, useNavigate } from "@reach/router"
-import queryString from 'query-string'
-import { slugify } from '../../common/utils/helpers'
+import { slugify, getFilter } from '../../common/utils/helpers'
 
-const getFilter = (query) => {
-  const defaultFilter = ''
-  if (query) {
-    const queriedFilter = queryString.parse(query)
-    const { filter } = queriedFilter
-    return filter
-  }
-  return defaultFilter
-}
 
 const CollectionFilters = ({props: {brands, categories}}) => {
   const location = useLocation()
