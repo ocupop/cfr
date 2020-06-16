@@ -1,22 +1,45 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setProductFilter } from '../../shopify/shopifyActions'
-import ProductGridCard from './ProductGridCard'
 import PropTypes from 'prop-types'
+import { useLocation, globalHistory, useNavigate } from "@reach/router"
+import queryString from 'query-string'
+import ProductGridCard from './ProductGridCard'
+import { slugify } from '../../common/utils/helpers'
+
+const getFilter = (query) => {
+  const defaultFilter = ''
+  if (query) {
+    const queriedFilter = queryString.parse(query)
+    const { filter } = queriedFilter
+
+    return filter
+  }
+
+  return defaultFilter
+}
 
 const ProductGrid = ({ props: { products } }) => {
-  const dispatch = useDispatch()
-  const filter = useSelector(state => state.shopify.filter)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const defaultFilter = (location.search && getFilter(location.search)) || ''
+  const [filter, setFilter] = useState(defaultFilter)
   const [filteredProducts, setFilteredProducts] = useState(products)
+
   useEffect(() => {
     const results = products.filter((product) => {
       const {categories, brands} = product
-      if(filter === '') return true
-      if (brands && brands.includes(filter)) {
+
+      if (filter === '') {
+        navigate(`${location.pathname}?filter=${filter}`, { replace: true })
         return true
       }
-      if (categories && categories.includes(filter)) {
-        return true
+
+      if (brands) {
+        const slugifiedBrands = brands.map(brand => slugify(brand))
+        if(slugifiedBrands.includes(filter)) return true
+      }
+      if (categories) {
+        const slugifiedCategories = categories.map(category => slugify(category))
+        if (slugifiedCategories.includes(filter)) return true
       }
       return false
     })
@@ -24,12 +47,18 @@ const ProductGrid = ({ props: { products } }) => {
     setFilteredProducts(results)
   }, [filter, products])
 
+  useEffect(() => {
+    return globalHistory.listen(({ location }) => {
+      setFilter(getFilter(location.search))
+    })
+  }, [])
+
   return (
     <>
       {filter && (
         <div className="alert alert-mid d-flex align-items-center">
-          <p className="m-0"><strong>Filtered:</strong> {filter}</p>
-          <button title="Clear Filters" type="button" onClick={() => dispatch(setProductFilter(''))} className="btn btn-light text-dark ml-auto">
+          <p className="m-0 text-capitalize"><strong>Filtered:</strong> {filter.replace('-', ' ')}</p>
+          <button title="Clear Filters" type="button" onClick={() => setFilter('')} className="btn btn-light text-dark ml-auto">
             <i className="ri-close-line d-inline-block"></i>
           </button>
         </div>

@@ -32,8 +32,8 @@ permalink: api/collections
           "url": {{ product['url'] | jsonify }},
           "name": {{ product['name'] | jsonify }},
           "featuredImage": {{ product['featured_image'] | jsonify }},
-          "categories": {{ product['categories'] | jsonify}},
-          "brands": {{ product['brands'] | jsonify}},
+          "categories": {{ product['categories'] | slugify | jsonify}},
+          "brands": {{ product['brands'] | slugify | jsonify}},
           "cadStorefrontID": {% if product['shopify_canada_id'] %}{{ product['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
           "usdStorefrontID": {% if product['shopify_us_id'] %}{{ product['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
         }{% unless forloop.last %},{% endunless %}

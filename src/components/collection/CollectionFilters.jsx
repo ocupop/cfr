@@ -1,12 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
-import { useSelector, useDispatch } from 'react-redux'
-import { setProductFilter } from '../../shopify/shopifyActions'
+import { useLocation, useNavigate } from "@reach/router"
+import queryString from 'query-string'
 import { slugify } from '../../common/utils/helpers'
 
+const getFilter = (query) => {
+  const defaultFilter = ''
+  if (query) {
+    const queriedFilter = queryString.parse(query)
+    const { filter } = queriedFilter
+    return filter
+  }
+  return defaultFilter
+}
+
 const CollectionFilters = ({props: {brands, categories}}) => {
-  const dispatch = useDispatch()
-  const filter = useSelector(state => state.shopify.filter)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const defaultFilter = (location.search && getFilter(location.search)) || ''
+  const [filter, setFilter] = useState(defaultFilter)
+
+  useEffect(() => {
+    navigate(`${location.pathname}?filter=${filter}`,{replace: true})
+  }, [filter])
 
   return (
     <nav className="collectionNav">
@@ -17,7 +33,7 @@ const CollectionFilters = ({props: {brands, categories}}) => {
             <button
               type="button"
               className="ml-2 text-mid"
-              onClick={() => dispatch(setProductFilter(''))}>
+              onClick={() => setFilter('')}>
               <small>(view all)</small>
             </button>
           </div>
@@ -26,8 +42,8 @@ const CollectionFilters = ({props: {brands, categories}}) => {
               <li key={slugify(category)} className="text-uppercase">
                 <button
                   type="button"
-                  className={filter === category ? 'active' : ''}
-                  onClick={() => dispatch(setProductFilter(category))}>{category}</button>
+                  className={filter === slugify(category) ? 'active' : ''}
+                  onClick={() => setFilter(slugify(category))}>{category}</button>
               </li>
             ))}
           </ul>
@@ -41,7 +57,7 @@ const CollectionFilters = ({props: {brands, categories}}) => {
             <button
               type="button"
               className="ml-2 text-mid"
-              onClick={() => dispatch(setProductFilter(''))}>
+              onClick={() => setFilter('')}>
               <small>(view all)</small>
             </button>
           </div>
@@ -50,8 +66,8 @@ const CollectionFilters = ({props: {brands, categories}}) => {
               <li key={slugify(brand)} className="text-uppercase">
                 <button
                   type="button"
-                  className={filter === brand ? 'active': ''}
-                  onClick={() => dispatch(setProductFilter(brand))}>{brand}</button>
+                  className={filter === slugify(brand) ? 'active': ''}
+                  onClick={() => setFilter(slugify(brand))}>{brand}</button>
               </li>
             ))}
           </ul>
