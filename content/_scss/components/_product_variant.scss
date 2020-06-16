@@ -1,0 +1,35 @@
+.addOn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // border: 1px solid $dark;
+  background-color: rgba($light, 0.15);
+  color: $light;
+  cursor: pointer;
+  @include transition();
+  &:hover {
+    background-color: rgba($dark, 0.6);
+    color: $light;
+  }
+  &.active {
+    background-color: rgba($mid, 0.6);
+    color: $white;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 30px;
+    top: 0;
+    left: -30px;
+    text-align: center;
+    color: $dark;
+    background-color: lighten($dark, 15%);
+    &:hover {
+      color: $white;
+    }
+  }
+}

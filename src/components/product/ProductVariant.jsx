@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux'
 import OptionSelector from './OptionSelector'
 import { getPriceRange } from '../../common/utils/helpers'
 
-const ProductVariant = ({ addOn, product, field, form: { errors, touched, setFieldValue } }) => {
+const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, touched, setFieldValue } }) => {
   const { cadStorefrontID, usdStorefrontID, name } = product
   const [variant, setVariant] = useState()
   const [variantOptions, setVariantOptions] = useState(null)
   const [quantity] = useState(1)
+  const [showOptions, setShowOptions] = useState(chooseOptions)
   const currency = useSelector(state => state.shopify.currency)
   const client = useSelector(state => state.shopify.client)
   const productID = currency === 'CAD' ? cadStorefrontID : usdStorefrontID
@@ -34,13 +35,16 @@ const ProductVariant = ({ addOn, product, field, form: { errors, touched, setFie
 
   }, [variantOptions, client, quantity, shopifyProduct])
 
+
   useEffect(() => {
+    console.log("VARIANT")
     if(variant) {
       const title = `${shopifyProduct.title} (${variant.title})`
       setFieldValue(`${field.name}.customAttributes[0].key`, 'title')
       setFieldValue(`${field.name}.customAttributes[0].value`, title)
       setFieldValue(`${field.name}.variantId`, variant.id)
       setFieldValue(`${field.name}.quantity`, quantity)
+      setShowOptions(false)
     }
 
     if(!variant) {
@@ -51,17 +55,57 @@ const ProductVariant = ({ addOn, product, field, form: { errors, touched, setFie
 
   }, [variant, quantity, shopifyProduct, setFieldValue, field.name])
 
+  useEffect(() => {
+    // console.log("Options have changed", shopifyProduct)
+
+    // if (shopifyProduct.variants.length === 1) {
+    //   setVariant(shopifyProduct.variants[0])
+    // }
+  }, [showOptions])
+
+  function handleSelect() {
+
+    if (shopifyProduct.variants.length === 1) {
+      setVariant(shopifyProduct.variants[0])
+    }
+    if (shopifyProduct.variants.length > 1) {
+      setShowOptions(!showOptions)
+    }
+  }
   return (
     <>
       {addOn && (
-        <div
-          className="d-flex align-items-center justify-content-between bg-light text-dark border border-dark">
-          <div className="col-4 bg-white">
-            <div className="bg-image aspect-4x3" />
-          </div>
-          <div className="col-1"><i className="ri-add-circle-line"></i></div>
-          <div className="col-7"><small>Add {name}</small></div>
-        </div>
+        <>
+          {variant ? (
+            <div className="addOn active">
+              <div
+                onClick={() => setVariant(null)}
+                className="actions">
+                <i className="ri-close-circle-fill lead"></i>
+              </div>
+              <div className="col-4 bg-white">
+                <div
+                  className='bg-image aspect-4x3'
+                  style={{ backgroundImage: `url(${variant.image.src})` }} />
+              </div>
+              <div className="col-8">
+                <small>
+                  {variant.title === 'Default Title' ? '': variant.title } {name}
+                </small>
+              </div>
+            </div>
+          ):(
+            <div className="addOn" onClick={() => handleSelect()}>
+              <div className="col-4 bg-white">
+                <div
+                  className='bg-image bg-white aspect-4x3'
+                  style={{ backgroundImage: `url(${product.featuredImage})` }} />
+              </div>
+              <div className="col-1"><i className="ri-shopping-cart-fill"></i></div>
+              <div className="col-7"><small>Add {name}</small></div>
+            </div>
+          )}
+        </>
       )}
 
       {!addOn && (
@@ -84,7 +128,7 @@ const ProductVariant = ({ addOn, product, field, form: { errors, touched, setFie
         </>
       )}
 
-      {shopifyProduct && shopifyProduct.options &&
+      {shopifyProduct && shopifyProduct.options && showOptions &&
         shopifyProduct.options.map(option => {
           return (
             <OptionSelector

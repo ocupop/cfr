@@ -55,39 +55,42 @@ const ProductForm = ({ props: product }) => {
                 component={ProductVariant}
                 product={product}
                 addOn={false}
+                chooseOptions={true}
               />
             </div>
           </div>
-          <div className="row">
-            <div className="col-12">
-              <div className="p-2 my-4">
-                <FieldArray name="lineItems">
-                  {({push, remove}) => (
-                    <>
-                      {suggestedProducts.map((product, index) => {
+          {values.lineItems[0].variantId && (
+            <div className="row">
+              <div className="col-12">
+                <div className="my-4">
+                  <FieldArray name="lineItems">
+                    {({ push, remove }) => (
+                      <>
+                        {suggestedProducts.map((product, index) => {
 
-                        const id = currency === 'CAD' ? product.cadStorefrontID : product.usdStorefrontID
-                        return (
-                          <Field
-                            key={`${id}_${index}`}
-                            name={`lineItems[${index + 1}]`}
-                            component={ProductVariant}
-                            product={product}
-                            addOn={true}
-                          />
-                        )
-                      })}
-                    </>
-                  )}
-                </FieldArray>
+                          const id = currency === 'CAD' ? product.cadStorefrontID : product.usdStorefrontID
+                          return (
+                            <Field
+                              key={`${id}_${index}`}
+                              name={`lineItems[${index + 1}]`}
+                              component={ProductVariant}
+                              product={product}
+                              addOn={true}
+                            />
+                          )
+                        })}
+                      </>
+                    )}
+                  </FieldArray>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {values.lineItems[0] && (
             <button
               type="submit"
-              className="btn btn-primary btn-large btn-block mb-3 mb-lg-5"
+              className="btn btn-success btn-large btn-block mb-3 mb-lg-5"
               disabled={!values.lineItems[0].variantId}>
               Add to Cart
             </button>

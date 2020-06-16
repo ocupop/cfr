@@ -8,7 +8,7 @@ const OptionSelector = ({ option, onChange }) => {
     <>
       <div className="py-1">
         <label htmlFor={option.name} className="sr-only">{option.name} </label>
-        <div className="select">
+        <div className="square-select">
           <select
             name={option.name}
             onChange={onChange}

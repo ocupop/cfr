@@ -45,7 +45,7 @@ const ProductGrid = ({ props: { products } }) => {
     <>
       {filter && (
         <div className="alert alert-mid d-flex align-items-center">
-          <p className="m-0 text-capitalize"><strong>Filtered:</strong> {filter.replace('-', ' ')}</p>
+          <p className="m-0 text-capitalize"><strong>Filtered Products:</strong> {filter.replace('-', ' ')}</p>
           <button title="Clear Filters" type="button" onClick={() => setFilter('')} className="btn btn-light text-dark ml-auto">
             <i className="ri-close-line d-inline-block"></i>
           </button>
