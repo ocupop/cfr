@@ -67,7 +67,7 @@ node_modules/
 .env.production
 
 .cache
-
+.jekyll-cache
 .sass-cache
 
 vendor
