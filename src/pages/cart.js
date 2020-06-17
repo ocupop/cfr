@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'gatsby'
 import { useSelector } from 'react-redux'
 import CartSummaryItem from '../components/cart/CartSummaryItem'
+import LoadingComponent from '../common/ui/LoadingComponent'
 
 
 const CartPage = () => {
@@ -18,6 +20,10 @@ const CartPage = () => {
   useEffect(() => {
     setProgress(getProgress(checkout.subtotalPrice))
   }, [checkout])
+
+  if (!checkout) {
+    return <LoadingComponent />
+  }
 
   return (
     <>
@@ -69,20 +75,23 @@ const CartPage = () => {
                           aria-valuemax="100" />
                       </div>
                       <div className="py-3 text-center">
-                        <span className="btn btn-success btn-block text-white text-uppercase font-family-base align-items-center justify-content-center d-flex">
-                          <i className="ri-shopping-cart-fill mr-2"></i>
-                          <small>Continue Shopping...</small>
-                        </span>
+                        <Link to='/'>
+                          <span className="btn btn-success btn-block text-white text-uppercase font-family-base align-items-center justify-content-center d-flex">
+                            <i className="ri-shopping-cart-fill mr-2"></i>
+                            <small>Continue Shopping...</small>
+                          </span>
+                        </Link>
                       </div>
                     </>
                   )}
 
               </div>
-
-              <hr className="my-0" />
-              <p className="font-family-base text-center">
-                <small>Apply any additional discount codes in next step.</small>
-              </p>
+              <div className="px-3">
+                <hr className="mt-0" />
+                <p className="font-family-base text-center">
+                  <small>Apply any additional discount codes in next step.</small>
+                </p>
+              </div>
             </div>
           </div>
         </div>

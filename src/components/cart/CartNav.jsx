@@ -11,7 +11,7 @@ const CartNav = () => {
     <Link to='/cart' className="text-info">
       <div className="d-flex align-items-center">
         <i className="ri-shopping-cart-fill"></i>
-        <span className="ml-2 badge badge-pill badge-info">{checkout.lineItems.length}</span>
+        <span className="ml-2 badge badge-pill badge-info">{checkout && checkout.lineItems.length}</span>
       </div>
     </Link>
   )

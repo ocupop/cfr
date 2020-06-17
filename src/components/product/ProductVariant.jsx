@@ -44,7 +44,7 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
       setFieldValue(`${field.name}.customAttributes[0].value`, title)
       setFieldValue(`${field.name}.variantId`, variant.id)
       setFieldValue(`${field.name}.quantity`, quantity)
-      setShowOptions(false)
+      setShowOptions(chooseOptions)
     }
 
     if(!variant) {
@@ -69,7 +69,7 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
       setVariant(shopifyProduct.variants[0])
     }
     if (shopifyProduct.variants.length > 1) {
-      setShowOptions(!showOptions)
+      setShowOptions(true)
     }
   }
   return (
