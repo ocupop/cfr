@@ -7,7 +7,9 @@ const CartSummaryItem = ({ item }) => {
   const featuredImage = variant.image.src
 
   return (
-    <div className="row border-top py-3">
+    <>
+    <hr/>
+    <div className="row py-3">
       <div className="col-3">
         <div
           className="bg-image aspect-4x3"
@@ -37,6 +39,7 @@ const CartSummaryItem = ({ item }) => {
         <small>{formatMoney(variant.price * quantity)}</small>
       </div>
     </div>
+    </>
   )
 }
 

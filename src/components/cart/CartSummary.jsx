@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Dropdown, NavItem, NavLink } from 'react-bootstrap'
@@ -38,9 +37,12 @@ const CartSummary = () => {
   return (
     <>
       <div
-        className={open ? `cart-summary d-none`: `cart-summary d-none`}>
-        <div className="p-3">
-          <h5>Cart</h5>
+        className={open ? `cart-summary`: `cart-summary`}>
+        <div className="cart-title">
+          <h5 className="cart-title">Cart</h5>
+          <p>$0.00</p>
+        </div>
+        <div className="px-3">
           {checkout.lineItems.length > 0 ? (
             checkout.lineItems.map(item => {
               return (

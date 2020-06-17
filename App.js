@@ -17,10 +17,10 @@ const App = ({ element }) => {
   return (
     <Provider store={store}>
       <ModalWrapper />
-      <CartSummary />
       <Layout>
         {element}
       </Layout>
+      <CartSummary />
       <ReduxToastr
         position="bottom-right"
         transitionIn="fadeIn"
