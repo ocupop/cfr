@@ -48,20 +48,6 @@ module.exports = {
         src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
       }
     },
-    // {
-    //   resolve: `gatsby-source-instagram-all`,
-    //   options: {
-    //     access_token: process.env.GATSBY_INSTAGRAM_ACCESS_TOKEN,
-    //   }
-    // },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        type: `hashtag`,
-        hashtag: `cheetahfactoryracing`,
-      },
-    },
-
 
     // Getting UI Elements
     {
@@ -157,25 +143,6 @@ module.exports = {
         }
       }
     },
-    // {
-    //   resolve: `gatsby-source-shopify`,
-    //   options: {
-    //     shopName: process.env.GATSBY_SHOP_NAME,
-    //     // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
-    //     accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-    //     verbose: true,
-    //     // includeCollections: ["shop", "content"],
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-source-shopify`,
-    //   options: {
-    //     shopName: process.env.GATSBY_US_SHOP_NAME,
-    //     // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
-    //     accessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
-    //     verbose: true,
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -188,15 +155,6 @@ module.exports = {
         icon: `siteicon.png` // This path is relative to the root of the site.
       }
     },
-
-    // {
-    //   resolve: 'gatsby-source-google-sheets',
-    //   options: {
-    //     spreadsheetId: 'get this from the sheet url',
-    //     worksheetTitle: 'ie the name in the worksheet tab',
-    //     credentials: require('./path-to-credentials-file.json')
-    //   }
-    // },
 
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
