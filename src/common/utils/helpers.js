@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { domToReact } from 'html-react-parser'
 import SharedComponents from '../SharedComponents'
 import format from 'date-fns/format'
+import queryString from 'query-string'
 
 /**
  * Formats a date object
@@ -38,13 +39,28 @@ export const formatToPhone = number => {
  *
  * @param {float} Money Amount
  */
-export const formatMoney = moneyAmount => {
-  const fromatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  })
+// export const formatMoney = moneyAmount => {
+//   const fromatter = new Intl.NumberFormat('en-US', {
+//     style: 'currency',
+//     currency: 'USD'
+//   })
 
-  return fromatter.format(moneyAmount)
+//   return fromatter.format(moneyAmount)
+// }
+export const formatMoney = (amount, currency = '$', decimalCount = 2, decimal = '.', thousands = ',') => {
+  try {
+    decimalCount = Math.abs(decimalCount)
+    decimalCount = isNaN(decimalCount) ? 2 : decimalCount
+
+    const negativeSign = amount < 0 ? '-' : ''
+
+    const i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString()
+    const j = (i.length > 3) ? i.length % 3 : 0
+
+    return currency + negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, `$1${thousands}`) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : '')
+  } catch (e) {
+    console.log('Error formatting value:', e)
+  }
 }
 
 export function getParseOptions(props) {
@@ -66,6 +82,29 @@ export function getParseOptions(props) {
       }
     }
   })
+}
+export function getElementParseOptions() {
+  return ({
+    replace: ({ attribs, name }) => {
+      if (!attribs) return;
+
+      if (name.includes('-')) {
+        const component = _.upperFirst(_.camelCase(name))
+        // @TODO: Write logic to check if component isExists. If not - throw error
+        return React.createElement(SharedComponents[component], attribs)
+      }
+    }
+  })
+}
+
+export const getFilter = (query) => {
+  const defaultFilter = ''
+  if (query) {
+    const queriedFilter = queryString.parse(query)
+    const { filter } = queriedFilter
+    return filter
+  }
+  return defaultFilter
 }
 
 export function slugify(string) {
@@ -104,3 +143,19 @@ export const decodeURLParams = search => {
 export function encodeID(id) {
   return window.btoa(`gid://shopify/Product/${id}`)
 }
+
+
+export function getPriceRange({ variants }) {
+  const minPrice = variants.reduce((min, b) => Math.min(min, b.price), variants[0].price)
+  const maxPrice = variants.reduce((max, b) => Math.max(max, b.price), variants[0].price)
+  if (minPrice === maxPrice) {
+    return formatMoney(minPrice)
+  }
+  return `${formatMoney(minPrice)} - ${formatMoney(maxPrice)}`
+}
+
+export const arrayToObject = (array, keyField) =>
+  array.reduce((obj, item) => {
+    obj[item[keyField]] = item
+    return obj
+  }, {})

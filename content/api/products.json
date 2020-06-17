@@ -12,8 +12,8 @@ permalink: api/products
     "name": {{ product['name'] | jsonify }},
     "salesChannels": {{ product['sales_channels'] | jsonify }},
     "featuredImage": {{ relativeURL | jsonify }},
-    "shopifyCanadaID": {{ product['shopify_canada_id'] | jsonify }},
-    "shopifyUSID": {{ product['shopify_us_id'] | jsonify }},
+    "cadStorefrontID": {% if product['shopify_canada_id'] %}{{ product['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
+    "usdStorefrontID": {% if product['shopify_us_id'] %}{{ product['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
     "disclaimerHTML": {{ product['disclaimer_html'] | jsonify }},
     "suggestedProducts": [
       {% for object in product.suggested_products %}
@@ -24,8 +24,22 @@ permalink: api/products
           "url": {{ suggested['url'] | jsonify }},
           "slug": {{ suggested['slug'] | jsonify }},
           "featuredImage": {{ relativeURL | jsonify }},
-          "shopifyCanadaID": {{ suggested['shopify_canada_id'] | jsonify }},
-          "shopifyUSID": {{ suggested['shopify_us_id'] | jsonify }}
+          "cadStorefrontID": {% if suggested['shopify_canada_id'] %}{{ suggested['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
+          "usdStorefrontID": {% if suggested['shopify_us_id'] %}{{ suggested['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
+    "relatedProducts": [
+      {% for object in product.related_products %}
+      {% assign related = site.products | where: 'slug', object | first %}
+      {% include logic/relativeURL.html url=related.featured_image %}
+        {
+          "name": {{ related['name'] | jsonify }},
+          "url": {{ related['url'] | jsonify }},
+          "slug": {{ related['slug'] | jsonify }},
+          "featuredImage": {{ relativeURL | jsonify }},
+          "cadStorefrontID": {% if related['shopify_canada_id'] %}{{ related['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
+          "usdStorefrontID": {% if related['shopify_us_id'] %}{{ related['shopify_us_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %}
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ],

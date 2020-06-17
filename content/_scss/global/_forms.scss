@@ -1,32 +1,26 @@
-.styled-select {
-  position: relative;
-  font-family: $font-family-base;
-  width: auto;
-  border-radius: 20px;
-  border: 1px solid $gray-600;
-  background: $white;
-  min-width: 50%;
+.square-select {
+  border-radius: 0;
   padding: 7px;
-
+  margin: 0;
+  margin-top: -5px;
+  // border: 1px solid $gray-400;
+  background-color: rgba($light, 0.1);
+  font-weight: 100;
   select {
+    appearance: none;
+    color: $gray-400;
     background: transparent;
     border: none;
-    color: $gray-600;
+    color: $gray-300;
     width: 100%;
-  }
-  &.square-select {
-    border-radius: 0;
-    padding: 13px 7px;
-    margin: 10px 0;
-    border: 1px solid $gray-400;
-    font-weight: 100;
-    select {
-      color: $gray-400;
+    &:focus {
+      background-color: lighten($dark, 10%);
+      color: $white;
     }
   }
 }
 
-input[type='search'] {
+input[type="search"] {
   border-radius: 20px;
 }
 
@@ -41,13 +35,13 @@ input[type='search'] {
   font-weight: 100;
 }
 
-[type='radio']:checked,
-[type='radio']:not(:checked) {
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
   position: absolute;
   left: -9999px;
 }
-[type='radio']:checked + label,
-[type='radio']:not(:checked) + label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
   position: relative;
   padding-left: 28px;
   cursor: pointer;
@@ -55,9 +49,9 @@ input[type='search'] {
   display: inline-block;
   color: $gray-600;
 }
-[type='radio']:checked + label:before,
-[type='radio']:not(:checked) + label:before {
-  content: '';
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -67,12 +61,12 @@ input[type='search'] {
   border-radius: 0;
   background: $white;
 }
-[type='radio']:checked + label:after,
-[type='radio']:not(:checked) + label:after {
-  content: '';
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+  content: "";
   width: 10px;
   height: 10px;
-  background: $secondary;
+  background: $primary;
   position: absolute;
   top: 4px;
   left: 4px;
@@ -80,11 +74,11 @@ input[type='search'] {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-[type='radio']:not(:checked) + label:after {
+[type="radio"]:not(:checked) + label:after {
   opacity: 0;
   transform: scale(0);
 }
-[type='radio']:checked + label:after {
+[type="radio"]:checked + label:after {
   opacity: 1;
   transform: scale(1);
 }

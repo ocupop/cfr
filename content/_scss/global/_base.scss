@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald|Work+Sans&display=swap");
 
+html,
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 55px;
@@ -56,6 +62,7 @@ button {
 hr {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  border-color: inherit;
 }
 
 blockquote {
@@ -71,7 +78,5 @@ blockquote {
     font-family: $font-family-base;
     font-size: 1rem;
     font-weight: 400;
-  }
-  cite {
   }
 }

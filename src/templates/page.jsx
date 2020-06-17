@@ -22,12 +22,12 @@ const parseOptions = {
   }
 }
 
-const PageTemplate = ({
-  data: {
-    pages: { content }
-  }
-}) => {
-  return <>{parse(content, parseOptions)}</>
+const PageTemplate = ({ data: { pages: { content }} }) => {
+  return (
+    <>
+      {parse(content, parseOptions)}
+    </>
+  )
 }
 
 export const query = graphql`

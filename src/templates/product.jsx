@@ -20,14 +20,22 @@ export const query = graphql`
     products(id: { eq: $id }) {
       name
       featuredImage
-      shopifyCanadaID
-      shopifyUSID
+      cadStorefrontID
+      usdStorefrontID
       output
       suggestedProducts {
         name
         featuredImage
-        shopifyCanadaID
-        shopifyUSID
+        cadStorefrontID
+        usdStorefrontID
+        slug
+        url
+      }
+      relatedProducts {
+        name
+        featuredImage
+        cadStorefrontID
+        usdStorefrontID
         slug
         url
       }

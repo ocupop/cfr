@@ -1,6 +1,37 @@
 .cart-summary {
-  background-color: $white;
+  position: absolute;
   width: 520px;
-  // max-width: 80%;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  max-width: 80%;
+  right: -520px;
+  z-index: 99;
+  left: auto;
+  top: 125px;
+  bottom: 0;
+  background-color: $white;
+  box-shadow: 2px 2px 5px rgba(0px, 2px, 0, 0.3);
+  border-top: 10px solid $light;
+  @include transition();
+  &.open {
+    right: 0;
+  }
+  .cart-title {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.9rem;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $headings-font-family;
+    text-transform: uppercase;
+    color: $black;
+    h5 {
+      font-weight: 600;
+      font-size: 18px;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+    }
+  }
 }

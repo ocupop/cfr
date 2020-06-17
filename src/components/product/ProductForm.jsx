@@ -1,58 +1,49 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react'
-// import PropTypes from 'prop-types'
-import { Formik, Field, Form } from 'formik'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import React from 'react'
+import PropTypes from 'prop-types'
 // import FormikDebug from '../../common/utils/FormikDebug'
-import { activeCountry, activeStore, activeCheckout } from '../../state'
-import { encodeID } from '../../common/utils/helpers'
+import { useSelector, useDispatch } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
+import { Formik, Field, Form, FieldArray } from 'formik'
 import ProductVariant from './ProductVariant'
-// import ProductSuggested from './ProductSuggested'
+import { updateCheckout } from '../../shopify/shopifyActions'
 
-const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID } }) => {
-  const productCAID = encodeID(shopifyCanadaID)
-  const productUSID = encodeID(shopifyUSID)
-  const [country] = useRecoilState(activeCountry)
-  const [checkout] = useRecoilState(activeCheckout)
-  const store = useRecoilValue(activeStore)
-
-  const [product, setProduct] = useState()
-  const [available, setAvailable] = useState(true)
+const ProductForm = ({ props: product }) => {
+  const { suggestedProducts } = product
+  const dispatch = useDispatch()
+  const currency = useSelector(state => state.shopify.currency)
+  const checkout = useSelector(state => state.shopify.checkout)
+  const client = useSelector(state => state.shopify.client)
 
   const addToCart = async (values) => {
+    const { lineItems } = values
+    const validLineItems = lineItems.filter(item => item.quantity && item.variantId)
     try {
-      // console.log("Checking out... need to grab form values", values)
-      await store.checkout.addLineItems(checkout.id, values.defaultVariant)
-      // console.log("New Checkout:", newCheckout)
-      console.log(await store.checkout.fetch(checkout.id))
-
+      const response = await client.checkout.addLineItems(checkout.id, validLineItems)
+      console.log(response)
+      dispatch(updateCheckout(response))
+      toastr.success('Success', 'These items are in your cart now.')
     } catch (error) {
-      console.log("Error:",error)
+      console.log(error)
+      toastr.error('Error', 'There was an issue updating your cart.')
     }
   }
 
-  useEffect(() => {
-    const storefrontID = country === 'CA' ? productCAID : productUSID
-    store.product.fetch(storefrontID).then((product) => {
-      setProduct(product)
-    })
-
-  }, [store.product, country, productCAID, productUSID])
-
-  const defaultValues = {
-    defaultVariant: {
-      variantId: '',
-      quantity: 1
-    },
-    addOns: []
-  }
-  const activeValues = false
-  const initialValues = activeValues || defaultValues
 
   return (
     <Formik
       enableReinitialize
-      initialValues={initialValues}
+      initialValues={{
+        lineItems: [{
+          variantId: null,
+          quantity: 0,
+          customAttributes: [
+            {
+              key: 'title',
+              value: ''
+            }
+          ]
+        }]
+      }}
       onSubmit={(values) => addToCart(values)}>
 
       {({ values }) => (
@@ -60,27 +51,47 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
           <div className="row">
             <div className="col-12">
               <Field
-                name="defaultVariant"
+                name="lineItems[0]"
                 component={ProductVariant}
                 product={product}
+                addOn={false}
+                chooseOptions={true}
               />
             </div>
           </div>
+          {values.lineItems[0].variantId && (
+            <div className="row">
+              <div className="col-12">
+                <div className="my-4">
+                  <FieldArray name="lineItems">
+                    {({ push, remove }) => (
+                      <>
+                        {suggestedProducts.map((product, index) => {
 
-          <div className="row">
-            <div className="col-12">
-              <div className="border-top border-bottom p-2 border-white my-4">
-                {/* <FieldArray name="lineItems" component={ProductVariant} /> */}
-                {/* {suggestedProducts && suggestedProducts.map((product) => <ProductSuggested key={product.id} product={product} />)} */}
+                          const id = currency === 'CAD' ? product.cadStorefrontID : product.usdStorefrontID
+                          return (
+                            <Field
+                              key={`${id}_${index}`}
+                              name={`lineItems[${index + 1}]`}
+                              component={ProductVariant}
+                              product={product}
+                              addOn={true}
+                            />
+                          )
+                        })}
+                      </>
+                    )}
+                  </FieldArray>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
-          {available && (
+          {values.lineItems[0] && (
             <button
               type="submit"
-              className="btn btn-secondary mb-3 mb-lg-5"
-              onClick={() => addToCart(values)}>
+              className="btn btn-success btn-large btn-block mb-3 mb-lg-5"
+              disabled={!values.lineItems[0].variantId}>
               Add to Cart
             </button>
           )}
@@ -91,6 +102,8 @@ const ProductForm = ({ props: { suggestedProducts, shopifyCanadaID, shopifyUSID 
   )
 }
 
-ProductForm.propTypes = {}
+ProductForm.propTypes = {
+  props: PropTypes.instanceOf(Object)
+}
 
 export default ProductForm

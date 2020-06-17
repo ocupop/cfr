@@ -1,13 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 import { formatMoney } from '../../common/utils/helpers'
+import { updateCheckout } from '../../shopify/shopifyActions'
 
 const CartSummaryItem = ({ item }) => {
+  const dispatch = useDispatch()
   const { title, quantity, variant } = item
   const featuredImage = variant.image.src
+  const client = useSelector(state => state.shopify.client)
+  const checkout = useSelector(state => state.shopify.checkout)
+
+  async function removeItem() {
+    try {
+      const newCheckout = await client.checkout.removeLineItems(checkout.id, [item.id])
+      console.log(newCheckout)
+      dispatch(updateCheckout(newCheckout))
+      toastr.success('Success', 'Your cart has been updated')
+    } catch (error) {
+      console.log(error)
+      toastr.error('Error', error)
+    }
+  }
 
   return (
-    <div className="row border-top py-3">
+    <>
+    <hr/>
+    <div className="row py-3">
       <div className="col-3">
         <div
           className="bg-image aspect-4x3"
@@ -29,7 +49,9 @@ const CartSummaryItem = ({ item }) => {
           <small>
             Qty: {quantity}
             <br/>
-            <a href="/cart" className="text-info"><i class="ri-edit-2-line"></i> edit</a>
+            <p onClick={() => removeItem()}>
+              <i className="ri-delete-bin-fill"></i> remove
+            </p>
           </small>
         </div>
       </div>
@@ -37,6 +59,7 @@ const CartSummaryItem = ({ item }) => {
         <small>{formatMoney(variant.price * quantity)}</small>
       </div>
     </div>
+    </>
   )
 }
 

@@ -3,6 +3,7 @@
   @include transition(background-color, 0.5s);
   background-color: $white;
   margin-bottom: 20px;
+  color: inherit;
   .card-image-wrapper {
     height: auto;
     background: $white;
@@ -29,8 +30,6 @@
         background-color: $red;
         color: $white;
       }
-    }
-    .card-body {
     }
   }
   .card-body {
