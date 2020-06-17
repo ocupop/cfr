@@ -37,7 +37,7 @@ const CartPage = () => {
                 <hr />
                 {checkout.lineItems.length > 0 ? (
                   <div className="d-flex py-3">
-                    <a href={checkout.webUrl} className="btn btn-info text-white text-uppercase font-family-base mb-0">
+                    <a href={checkout.webUrl} className="btn btn-secondary text-white text-uppercase font-family-base mb-0">
                       <small>Checkout now</small>
                     </a>
                     <a href={`/`} className="btn btn-light text-mid text-uppercase font-family-base ml-auto">

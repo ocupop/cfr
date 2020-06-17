@@ -8,10 +8,10 @@ const CartNav = () => {
   const checkout = useSelector(state => state.shopify.checkout)
   // const currency = useSelector(state => state.shopify.currency)
   return (
-    <Link to='/cart' className="text-info">
+    <Link to='/cart' className="text-secondary">
       <div className="d-flex align-items-center">
         <i className="ri-shopping-cart-fill"></i>
-        <span className="ml-2 badge badge-pill badge-info">{checkout && checkout.lineItems.length}</span>
+        <span className="ml-2 badge badge-pill badge-secondary">{checkout && checkout.lineItems.length}</span>
       </div>
     </Link>
   )
