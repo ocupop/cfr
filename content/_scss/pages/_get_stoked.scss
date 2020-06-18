@@ -1,0 +1,9 @@
+.lightwidget-widget {
+  height: 5300px;
+  @include media-breakpoint-up(md) {
+    height: 7700px;
+  }
+  @include media-breakpoint-up(lg) {
+    height: 11150px;
+  }
+}
