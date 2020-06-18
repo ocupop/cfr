@@ -6,7 +6,6 @@ import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
 import ProductVariant from './ProductVariant'
 import { updateCheckout } from '../../shopify/shopifyActions'
-import LoadingComponent from '../../common/ui/LoadingComponent'
 
 const ProductForm = ({ props: product }) => {
   const { suggestedProducts } = product
@@ -29,10 +28,6 @@ const ProductForm = ({ props: product }) => {
       toastr.error('Error', 'There was an issue updating your cart.')
     }
   }
-
-  // if(!product) {
-  //   return <LoadingComponent/>
-  // }
 
   return (
     <Formik
