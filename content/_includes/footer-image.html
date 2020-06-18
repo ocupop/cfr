@@ -1,0 +1,15 @@
+{% if layout.footer_image %}
+  {% assign image = layout.footer_image %}
+{% endif %}
+
+{% if page.footer_image %}
+  {% assign image = page.footer_image %}
+{% endif %}
+
+{% if include.image %}
+  {% assign image = include.image %}
+{% endif %}
+
+{% if image %}
+  <div class="bg-image aspect-footer-hero" style="background-image: url('{{ image | prepend: site.url }}')"></div>
+{% endif %}
