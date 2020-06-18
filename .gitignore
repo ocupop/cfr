@@ -70,7 +70,7 @@ node_modules/
 .jekyll-cache
 .sass-cache
 
-vendor
+/vendor
 
 dist
 
