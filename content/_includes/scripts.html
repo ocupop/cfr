@@ -48,8 +48,7 @@
 
     $('.product-thumbnail').on('click', function(){
       var image = $(this).data('image');
-      console.log(image);
-      $('#featured-image').css('background-image', 'url(' + image + ')');
+      $('#featured-image').attr('src', image);
     })
 
 
@@ -93,6 +92,6 @@
         }
       });
     }
-    
+
   })
 </script>

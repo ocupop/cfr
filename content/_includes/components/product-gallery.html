@@ -1,0 +1,19 @@
+{% if page.gallery %}
+<div class="row">
+  <div class="col-12">
+    <div class="content">
+      <div class="d-flex align-items-center product-thumbnails mb-3">
+        {% for item in page.gallery %}
+        <div class="bg-image aspect-thumbnail product-thumbnail"
+          {% if item.thumbnail_image %}
+          style="background-image: url('{{ item.thumbnail_image }}')"
+          {% else %}
+          style="background-image: url('{{ item.image }}')"
+          {% endif %}
+          data-image="{{ image.image }}"></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
