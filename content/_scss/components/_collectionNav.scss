@@ -16,19 +16,19 @@
     }
   }
   .nav {
-    @include media-breakpoint-down(md) {
-      @include transition(opacity, 0.5s);
-      opacity: 0;
-      height: 0;
-      visibility: hidden;
-      margin-bottom: 0;
-      &.active {
-        opacity: 1;
-        height: auto;
-        visibility: visible;
-        margin-bottom: 50px;
-      }
-    }
+    // @include media-breakpoint-down(md) {
+    //   @include transition(opacity, 0.5s);
+    //   opacity: 0;
+    //   height: 0;
+    //   visibility: hidden;
+    //   margin-bottom: 0;
+    //   &.active {
+    //     opacity: 1;
+    //     height: auto;
+    //     visibility: visible;
+    //     margin-bottom: 50px;
+    //   }
+    // }
     .nav-item {
       text-transform: uppercase;
     }

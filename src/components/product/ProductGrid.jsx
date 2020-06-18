@@ -43,13 +43,12 @@ const ProductGrid = ({ props: { products } }) => {
   return (
     <>
       {filter && (
-        <div className="alert alert-mid d-flex align-items-center">
+        <div className="alert alert-mid d-none d-md-flex align-items-center">
           <p className="m-0 text-capitalize"><strong>Filtered Products:</strong> {filter.replace('-', ' ')}</p>
           <button title="Clear Filters" type="button" onClick={() => setFilter('')} className="btn btn-light text-dark ml-auto">
             <i className="ri-close-line d-inline-block"></i>
           </button>
         </div>
-
       )}
       <div id="product-grid" className="responsive-card-deck cards-lg-3 cards-md-2">
         {filteredProducts && filteredProducts.map(product => (
