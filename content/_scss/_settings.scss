@@ -99,3 +99,11 @@ $screen-xl-min: 1200px;
 
 $grid-columns: 12;
 $grid-gutter-width: 30px;
+
+// Toastr
+$toastr-width: 350px !default;
+$successBgColor: $secondary;
+$infoBgColor: $info;
+$warningBgColor: $warning;
+$errorBgColor: $danger;
+$defaultSpace: 10px;
