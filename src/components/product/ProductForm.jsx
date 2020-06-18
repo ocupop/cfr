@@ -6,9 +6,11 @@ import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
 import ProductVariant from './ProductVariant'
 import { updateCheckout } from '../../shopify/shopifyActions'
+import LoadingComponent from '../../common/ui/LoadingComponent'
 
 const ProductForm = ({ props: product }) => {
   const { suggestedProducts } = product
+  console.log(product)
   const dispatch = useDispatch()
   const currency = useSelector(state => state.shopify.currency)
   const checkout = useSelector(state => state.shopify.checkout)
@@ -28,6 +30,9 @@ const ProductForm = ({ props: product }) => {
     }
   }
 
+  // if(!product) {
+  //   return <LoadingComponent/>
+  // }
 
   return (
     <Formik
@@ -55,7 +60,7 @@ const ProductForm = ({ props: product }) => {
                 component={ProductVariant}
                 product={product}
                 addOn={false}
-                chooseOptions={product.variants.length > 1}
+                chooseOptions={true}
               />
             </div>
           </div>
