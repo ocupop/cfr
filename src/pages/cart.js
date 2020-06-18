@@ -48,14 +48,17 @@ const CartPage = () => {
               </div>
             </div>
             <div className="col-12 col-md-4 bg-dark bg-bleed text-white">
-              <div className="px-3 py-5 text-center">
+              <div className="px-3 pt-5 text-center">
                 <h5>Total: ${checkout.subtotalPrice} {currency}</h5>
                 <hr />
                 {progress === 100 ? (
                   <>
                     <p className="text-uppercase font-family-base">
-                      <small>Congrats! You qualify for free shipping.</small>
+                      <small>Congrats! You qualify for free shipping.</small><br />
                     </p>
+                    <a href={checkout.webUrl} className="btn btn-secondary btn-block text-white text-uppercase font-family-base mb-4">
+                      <small>Checkout now</small>
+                    </a>
                   </>
                 ) : (
                     <>
