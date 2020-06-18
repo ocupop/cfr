@@ -51,11 +51,14 @@ const CartSummaryItem = ({ item }) => {
         <div>
           <small>
             Qty: {quantity}
-            <br/>
-            <p onClick={() => removeItem()}>
-              <i className="ri-delete-bin-fill"></i> remove
-            </p>
           </small>
+          <button
+            type="button"
+            title="Remove from cart"
+            className="btn text-danger"
+            onClick={() => removeItem()}>
+            <i className="ri-delete-bin-line"></i>
+          </button>
         </div>
       </div>
       <div className="col-2 text-right">
