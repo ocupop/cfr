@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 import configureStore from './src/store/configureStore'
 import ReduxToastr from 'react-redux-toastr'
 import ModalWrapper from './src/common/modals/ModalWrapper'
-import CartSummary from './src/components/cart/CartSummary'
 import Layout from './src/containers/Layout'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import 'flag-icon-css/css/flag-icon.css'
@@ -20,7 +19,6 @@ const App = ({ element }) => {
       <Layout>
         {element}
       </Layout>
-      <CartSummary />
       <ReduxToastr
         position="bottom-right"
         transitionIn="fadeIn"

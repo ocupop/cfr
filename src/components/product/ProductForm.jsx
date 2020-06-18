@@ -55,7 +55,7 @@ const ProductForm = ({ props: product }) => {
                 component={ProductVariant}
                 product={product}
                 addOn={false}
-                chooseOptions={true}
+                chooseOptions={product.variants.length > 1}
               />
             </div>
           </div>

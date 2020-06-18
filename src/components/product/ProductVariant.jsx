@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-onchange */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react'
 // import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
@@ -53,7 +56,7 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
       setFieldValue(`${field.name}.quantity`, 0)
     }
 
-  }, [variant, quantity, shopifyProduct, setFieldValue, field.name])
+  }, [variant, quantity, shopifyProduct, setFieldValue, field.name, chooseOptions])
 
   useEffect(() => {
     // console.log("Options have changed", shopifyProduct)
@@ -78,11 +81,12 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
         <>
           {variant ? (
             <div className="addOn active">
-              <div
+              <button
+                type="button"
                 onClick={() => setVariant(null)}
                 className="actions">
                 <i className="ri-close-circle-fill lead"></i>
-              </div>
+              </button>
               <div className="col-4 bg-white">
                 <div
                   className='bg-image aspect-4x3'

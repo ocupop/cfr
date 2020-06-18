@@ -1,12 +1,10 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { openCart } from '../../shopify/shopifyActions'
+import { useSelector } from 'react-redux'
 import { Link } from 'gatsby'
 
 const CartNav = () => {
-  const dispatch = useDispatch()
   const checkout = useSelector(state => state.shopify.checkout)
-  // const currency = useSelector(state => state.shopify.currency)
+
   return (
     <Link to='/cart' className="text-secondary">
       <div className="d-flex align-items-center">

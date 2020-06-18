@@ -8,18 +8,16 @@ import LoadingComponent from '../common/ui/LoadingComponent'
 const CartPage = () => {
   const checkout = useSelector(state => state.shopify.checkout)
   const currency = useSelector(state => state.shopify.currency)
-  const [freeShipping, setFreeShipping] = useState(400)
+  const [freeShipping] = useState(400)
   const [progress, setProgress] = useState(0)
 
-  function getProgress(value) {
-    const progress = Math.round((value / freeShipping) * 100)
-
-    return progress > 100 ? 100 : progress
-  }
-
   useEffect(() => {
+    function getProgress(value) {
+      const progress = Math.round((value / freeShipping) * 100)
+      return progress > 100 ? 100 : progress
+    }
     setProgress(getProgress(checkout.subtotalPrice))
-  }, [checkout])
+  }, [checkout, freeShipping])
 
   if (!checkout) {
     return <LoadingComponent />

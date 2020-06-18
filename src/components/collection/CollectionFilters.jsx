@@ -12,7 +12,7 @@ const CollectionFilters = ({props: {brands, categories}}) => {
 
   useEffect(() => {
     navigate(`${location.pathname}?filter=${filter}`,{replace: true})
-  }, [filter])
+  }, [filter, location.pathname, navigate])
 
   return (
     <nav className="collectionNav">

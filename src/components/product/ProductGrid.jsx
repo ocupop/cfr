@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useLocation, globalHistory, useNavigate } from "@reach/router"
-import queryString from 'query-string'
 import ProductGridCard from './ProductGridCard'
 import { slugify, getFilter } from '../../common/utils/helpers'
 
@@ -33,7 +32,7 @@ const ProductGrid = ({ props: { products } }) => {
     })
 
     setFilteredProducts(results)
-  }, [filter, products])
+  }, [filter, products, location.pathname, navigate])
 
   useEffect(() => {
     return globalHistory.listen(({ location }) => {

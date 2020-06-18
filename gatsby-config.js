@@ -15,7 +15,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-background-image`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {
