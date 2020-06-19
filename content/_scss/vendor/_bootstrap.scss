@@ -1,1 +1,7 @@
 // Bootstrap specific overrides
+.btn,
+button {
+  &:focus {
+    outline: 0;
+  }
+}

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
 import { setCurrency } from '../../shopify/shopifyActions'
 
-const AuthNav = () => {
+const CountrySelector = () => {
   const dispatch = useDispatch()
   const currency = useSelector(state => state.shopify.currency)
 
@@ -11,13 +11,13 @@ const AuthNav = () => {
     dispatch(setCurrency(country))
   }
   return (
-    <div className="d-flex align-items-center h-100">
-      <div className="my-auto mr-5">
+    <div className="d-flex align-items-center">
+      <div className="m-auto">
         <ButtonGroup size="sm">
           <Button
             variant="dark"
             onClick={() => changeStore('USD')}
-            active={currency === 'USD' ? true : false }>
+            active={currency === 'USD' ? true : false}>
             <span className="flag-icon flag-icon-us mr-2"></span>
             USA
           </Button>
@@ -34,6 +34,6 @@ const AuthNav = () => {
   )
 }
 
-AuthNav.propTypes = {}
+CountrySelector.propTypes = {}
 
-export default AuthNav
+export default CountrySelector

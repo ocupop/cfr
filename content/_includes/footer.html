@@ -118,8 +118,12 @@
       <div class="col-12">
         <div class="content text-center">
           <p><small>For all International orders other than the US and Canada please
-              <Link href="/contact">Contact Us</Link> for assistance on Shipping costs.</small></p>
+              <Link href="/contact">Contact Us</Link> for assistance on Shipping costs.</small><br/>
           © {{ site.time | date: "%Y" }} Cheetah Factory Racing
+          </p>
+
+          {% include components/country-selector.html %}
+
         </div>
       </div>
     </div>
