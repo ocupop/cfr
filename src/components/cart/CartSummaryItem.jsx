@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
@@ -10,14 +10,29 @@ import { updateCheckout } from '../../shopify/shopifyActions'
 
 const CartSummaryItem = ({ item }) => {
   const dispatch = useDispatch()
-  const { title, quantity, variant } = item
+  const { variant } = item
   const featuredImage = variant.image.src
   const client = useSelector(state => state.shopify.client)
   const checkout = useSelector(state => state.shopify.checkout)
+  const [quantity, setQuantity] = useState(item.quantity)
 
   async function removeItem() {
     try {
       const newCheckout = await client.checkout.removeLineItems(checkout.id, [item.id])
+      dispatch(updateCheckout(newCheckout))
+      toastr.success('Success', 'Your cart has been updated')
+    } catch (error) {
+      console.log(error)
+      toastr.error('Error', error)
+    }
+  }
+
+  async function updateItem() {
+    try {
+      const newCheckout = await client.checkout.updateLineItems(checkout.id, [{
+        id: item.id,
+        quantity: quantity
+      }])
       dispatch(updateCheckout(newCheckout))
       toastr.success('Success', 'Your cart has been updated')
     } catch (error) {
@@ -41,27 +56,55 @@ const CartSummaryItem = ({ item }) => {
       <div className="col-7">
         <div>
           <small className="mb-0 text-uppercase">
-            <strong>{title}</strong>
+            <strong>{item.title}</strong>
           </small>
         </div>
         <div>
           <small>{variant.title} [{formatMoney(variant.price)}]</small>
         </div>
-        <div>
-          <small>
-            Qty: {quantity}
-          </small>
-          <button
-            type="button"
-            title="Remove from cart"
-            className="btn text-danger"
-            onClick={() => removeItem()}>
-            <i className="ri-delete-bin-line"></i>
-          </button>
+        <div className="d-flex align-items-center mt-1">
+          <small>Qty:</small>
+          <div className="input-group align-items-center ml-2 w-auto">
+            <div className="input-group-prepend">
+              <button
+                className="btn btn-light text-mid"
+                type="button"
+                onClick={() => setQuantity(quantity ? quantity - 1 : 0)}>
+                <i className="ri-subtract-line"></i>
+              </button>
+            </div>
+            <span className="px-3">{quantity}</span>
+            <div className="input-group-append">
+              <button
+                className="btn btn-light text-mid"
+                type="button"
+                  onClick={() => setQuantity(quantity + 1)}>
+                <i className="ri-add-line"></i>
+              </button>
+            </div>
+          </div>
+          <div className="btn-group mr-auto" role="group" aria-label="Basic example">
+            {quantity !== item.quantity && (
+                <button
+                  type="button"
+                  title="Update Cart"
+                  className="btn btn-secondary"
+                  onClick={() => updateItem()}>
+                  Update
+                </button>
+            )}
+            <button
+              type="button"
+              title="Remove from cart"
+              className="btn text-danger"
+              onClick={() => removeItem()}>
+              <i className="ri-delete-bin-line"></i>
+            </button>
+          </div>
         </div>
       </div>
       <div className="col-2 text-right">
-        <small>{formatMoney(variant.price * quantity)}</small>
+        <small>{formatMoney(variant.price * item.quantity)}</small>
       </div>
     </div>
     </>
