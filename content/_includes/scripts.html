@@ -46,52 +46,57 @@
         .addTo(controller);
     })
 
-    $('.product-thumbnail').on('click', function(){
-      var image = $(this).data('image');
-      $('#featured-image').attr('src', image);
-    })
+    // TB: Not sure if this is needed?
 
+    // $('.product-thumbnail').on('click', function(){
+    //   var image = $(this).data('image');
+    //   $('#featured-image').attr('src', image);
+    // })
 
-    var getQueryString = function (field, url) {
-      var href = url ? url : window.location.href;
-      var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
-      var string = reg.exec(href);
-      return string ? string[1] : null;
-    };
+    // TB: Handled on the React side
 
-    if ($('.product_collection').length){
-      //mixitup
-      var initialFilter = 'all';
-      var urlParams = getQueryString('filter');
-      if (urlParams) {
-        initialFilter = '.' + urlParams;
-        console.log(initialFilter)
-      }
+    // var getQueryString = function (field, url) {
+    //   var href = url ? url : window.location.href;
+    //   var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
+    //   var string = reg.exec(href);
+    //   return string ? string[1] : null;
+    // };
 
-      var mixer = mixitup('.product_collection', {
-        load: {
-          filter: initialFilter
-        },
-        controls: {
-          toggleDefault: 'none',
-        },
-        callbacks: {
-          onMixClick: function (state, originalEvent) {
-            console.log('The control "' + this.innerText + '" was clicked');
-            var filterString = this.dataset.filter;
-            var filter = filterString.replace(".", "");
-            const urlParams = new URLSearchParams(window.location.search);
-            if (filter == 'all') {
-              urlParams.set('filter', '');
-              window.location.search = urlParams;
-            } else {
-              urlParams.set('filter', filter);
-              window.location.search = urlParams;
-            }
-          }
-        }
-      });
-    }
+    // TB: Commenting out because this does not seem to be working and I am now handling it on the React side.
+
+    // if ($('.product_collection').length){
+    //   //mixitup
+    //   var initialFilter = 'all';
+    //   var urlParams = getQueryString('filter');
+    //   if (urlParams) {
+    //     initialFilter = '.' + urlParams;
+    //     console.log(initialFilter)
+    //   }
+
+    //   var mixer = mixitup('.product_collection', {
+    //     load: {
+    //       filter: initialFilter
+    //     },
+    //     controls: {
+    //       toggleDefault: 'none',
+    //     },
+    //     callbacks: {
+    //       onMixClick: function (state, originalEvent) {
+    //         console.log('The control "' + this.innerText + '" was clicked');
+    //         var filterString = this.dataset.filter;
+    //         var filter = filterString.replace(".", "");
+    //         const urlParams = new URLSearchParams(window.location.search);
+    //         if (filter == 'all') {
+    //           urlParams.set('filter', '');
+    //           window.location.search = urlParams;
+    //         } else {
+    //           urlParams.set('filter', filter);
+    //           window.location.search = urlParams;
+    //         }
+    //       }
+    //     }
+    //   });
+    // }
 
   })
 </script>
