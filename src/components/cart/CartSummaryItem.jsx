@@ -28,6 +28,10 @@ const CartSummaryItem = ({ item }) => {
   }
 
   async function updateItem() {
+    if (!quantity) {
+      removeItem()
+      return
+    }
     try {
       const newCheckout = await client.checkout.updateLineItems(checkout.id, [{
         id: item.id,
