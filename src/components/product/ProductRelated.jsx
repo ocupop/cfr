@@ -3,7 +3,6 @@ import ProductGridCard from './ProductGridCard'
 import PropTypes from 'prop-types'
 
 const ProductRelated = ({ props: {relatedProducts} }) => {
-  console.log(relatedProducts)
 
   return (
     <>

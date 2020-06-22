@@ -1,28 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import _ from 'lodash'
 import parse from 'html-react-parser'
+import { getParseOptions } from '../common/utils/helpers'
 
+const PageTemplate = ({ data: { pages: page} }) => {
+  const { content } = page
+  const parseOptions = getParseOptions(page)
 
-const pageComponents = {}
-
-const parseOptions = {
-  replace: ({ attribs, name }) => {
-    if (!attribs) return
-
-    if (name.includes('-')) {
-      const component = _.upperFirst(_.camelCase(name))
-      // Note that attribs converts to lower case, for example
-      // vendorID would come through as vendorID.
-      // Within the react component when destructing props we need to assign it back
-      // example: { vendorid: vendorID }
-      return React.createElement(pageComponents[component], attribs)
-    }
-  }
-}
-
-const PageTemplate = ({ data: { pages: { content }} }) => {
   return (
     <>
       {parse(content, parseOptions)}
@@ -35,6 +20,14 @@ export const query = graphql`
     pages(id: { eq: $id }) {
       title
       content
+      relatedProducts {
+        name
+        featuredImage
+        cadStorefrontID
+        usdStorefrontID
+        slug
+        url
+      }
     }
   }
 `

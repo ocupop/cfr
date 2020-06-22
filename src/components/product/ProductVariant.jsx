@@ -18,6 +18,12 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
   const productID = currency === 'CAD' ? cadStorefrontID : usdStorefrontID
   const shopifyProduct = useSelector(state => state.shopify.products[productID])
 
+  if(!shopifyProduct) {
+    console.log("Currency:", currency)
+    console.log("No Product Found: ", productID, )
+  }
+
+
   const handleOptionChange = ({ target: { name, value } }) => {
     setVariantOptions(options => ({ ...options, [name]: value }))
   }
@@ -40,7 +46,6 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
 
 
   useEffect(() => {
-    console.log("VARIANT")
     if(variant) {
       const title = `${shopifyProduct.title} (${variant.title})`
       setFieldValue(`${field.name}.customAttributes[0].key`, 'title')
@@ -58,16 +63,9 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
 
   }, [variant, quantity, shopifyProduct, setFieldValue, field.name, chooseOptions])
 
-  useEffect(() => {
-    // console.log("Options have changed", shopifyProduct)
-
-    // if (shopifyProduct.variants.length === 1) {
-    //   setVariant(shopifyProduct.variants[0])
-    // }
-  }, [showOptions])
 
   function handleSelect() {
-
+    console.log(shopifyProduct)
     if (shopifyProduct.variants.length === 1) {
       setVariant(shopifyProduct.variants[0])
     }
@@ -75,6 +73,7 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
       setShowOptions(true)
     }
   }
+
   return (
     <>
       {addOn && (

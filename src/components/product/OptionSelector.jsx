@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import React from "react"
 import PropTypes from "prop-types"
 
@@ -11,7 +12,6 @@ const OptionSelector = ({ option, onChange }) => {
           <select
             name={option.name}
             onChange={onChange}
-            onBlur={() => console.log("BLUR")}
             className="form-control"
           >
             <option value={null}>Choose {option.name}...</option>

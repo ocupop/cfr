@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Dropdown } from 'react-bootstrap'
 // import { useDispatch } from 'react-redux'
-import { logout } from '../../auth/authActions'
+// import { logout } from '../../auth/authActions'
 // import { openModal } from '../../modals/modalActions'
 
 const SignedInMenu = ({ auth: { displayName, photoURL } }) => {

@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
 import ProductVariant from './ProductVariant'
+import ProductBug from './ProductBug'
 import { updateCheckout } from '../../shopify/shopifyActions'
 
 const ProductForm = ({ props: product }) => {
   const { suggestedProducts } = product
-  console.log(product)
   const dispatch = useDispatch()
   const currency = useSelector(state => state.shopify.currency)
   const checkout = useSelector(state => state.shopify.checkout)
@@ -20,7 +20,6 @@ const ProductForm = ({ props: product }) => {
     const validLineItems = lineItems.filter(item => item.quantity && item.variantId)
     try {
       const response = await client.checkout.addLineItems(checkout.id, validLineItems)
-      console.log(response)
       dispatch(updateCheckout(response))
       toastr.success('Success', 'These items are in your cart now.')
     } catch (error) {
@@ -67,8 +66,10 @@ const ProductForm = ({ props: product }) => {
                     {({ push, remove }) => (
                       <>
                         {suggestedProducts.map((product, index) => {
-
                           const id = currency === 'CAD' ? product.cadStorefrontID : product.usdStorefrontID
+                          if(!id) {
+                            return <ProductBug key={`${index}`} product={product} />
+                          }
                           return (
                             <Field
                               key={`${id}_${index}`}
@@ -90,7 +91,7 @@ const ProductForm = ({ props: product }) => {
           {values.lineItems[0] && (
             <button
               type="submit"
-              className="btn btn-success btn-large btn-block mb-3 mb-lg-5"
+              className="btn btn-secondary btn-large btn-block mb-3 mb-lg-5"
               disabled={!values.lineItems[0].variantId}>
               Add to Cart
             </button>

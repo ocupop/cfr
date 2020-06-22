@@ -18,7 +18,6 @@ const CartSummaryItem = ({ item }) => {
   async function removeItem() {
     try {
       const newCheckout = await client.checkout.removeLineItems(checkout.id, [item.id])
-      console.log(newCheckout)
       dispatch(updateCheckout(newCheckout))
       toastr.success('Success', 'Your cart has been updated')
     } catch (error) {

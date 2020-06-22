@@ -2,6 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import TestModal from './TestModal'
+import FixModal from './FixModal'
 import VariantModal from './VariantModal'
 // import LoginModal from './LoginModal'
 // import RegisterModal from './RegisterModal'
@@ -9,6 +10,7 @@ import VariantModal from './VariantModal'
 
 const modalLookup = {
   TestModal,
+  FixModal,
   VariantModal,
   // LoginModal,
   // RegisterModal,
