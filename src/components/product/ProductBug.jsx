@@ -8,11 +8,12 @@ const ProductBug = ({product}) => {
   const json = JSON.stringify(product, null, 2)
 
   return (
-    <div
+    <button
+      type="button"
       onClick={() => dispatch(openModal('FixModal', {heading: 'Product', body: json}))}
-      className="alert alert-danger">
+      className="alert alert-danger my-2">
       <small>fix issue: {product.name && product.name}</small>
-    </div>
+    </button>
   )
 }
 
