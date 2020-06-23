@@ -77,7 +77,7 @@ const CartPage = () => {
                       </div>
                       <div className="py-3 text-center">
                         <Link to='/'>
-                          <span className="btn btn-success btn-block text-white text-uppercase font-family-base align-items-center justify-content-center d-flex">
+                          <span className="btn btn-secondary btn-block text-white text-uppercase font-family-base align-items-center justify-content-center d-flex">
                             <i className="ri-shopping-cart-fill mr-2"></i>
                             <small>Continue Shopping...</small>
                           </span>
