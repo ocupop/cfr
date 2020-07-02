@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// import { useSelector, useDispatch } from 'react-redux'
 import { graphql } from 'gatsby'
 import parse from 'html-react-parser'
 import { getParseOptions } from '../common/utils/helpers'
@@ -7,6 +8,11 @@ import { getParseOptions } from '../common/utils/helpers'
 const CollectionTemplate = ({ data: { collections: collection }}) => {
   const { output } = collection
   const parseOptions = getParseOptions(collection)
+  // const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(Products());
+  // }, [dispatch]);
 
   return (
     <>

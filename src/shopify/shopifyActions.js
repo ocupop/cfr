@@ -1,30 +1,31 @@
 import {
-  CREATE_CLIENT,
+  SET_WHOLESALE,
   SET_SHOP,
   SET_CURRENCY,
+  FETCH_PRODUCTS_BEGIN,
   SET_PRODUCTS,
-  SET_PRODUCT,
+  FETCH_PRODUCTS_FAIL,
   SET_PRODUCT_FILTER,
+  SET_CHECKOUT,
   CREATE_CHECKOUT,
   UPDATE_CHECKOUT,
-  OPEN_CART,
-  CLOSE_CART,
 } from './shopifyConstants'
 
+
+export const setWholesale = (wholesale) => {
+  return {
+    type: SET_WHOLESALE,
+    payload: {
+      wholesale
+    }
+  }
+}
 
 export const setCurrency = (currency) => {
   return {
     type: SET_CURRENCY,
     payload: {
       currency
-    }
-  }
-}
-export const createClient = (client) => {
-  return {
-    type: CREATE_CLIENT,
-    payload: {
-      client
     }
   }
 }
@@ -37,22 +38,32 @@ export const setShop = (shop) => {
     }
   }
 }
+
+export const fetchProductsBegin = () => {
+  return {
+    type: FETCH_PRODUCTS_BEGIN,
+    payload: {}
+  }
+}
 export const setProducts = (products) => {
   return {
     type: SET_PRODUCTS,
     payload: {
-      products
+      products,
+      loading: false
     }
   }
 }
-export const setProduct = (product) => {
+export const fetchProductsFail = (error) => {
   return {
-    type: SET_PRODUCT,
+    type: FETCH_PRODUCTS_FAIL,
     payload: {
-      product
+      error,
+      loading: false
     }
   }
 }
+
 export const setProductFilter = (filter) => {
   return {
     type: SET_PRODUCT_FILTER,
@@ -62,6 +73,16 @@ export const setProductFilter = (filter) => {
   }
 }
 
+export const setCheckout = (checkout) => {
+  return {
+    type: SET_CHECKOUT,
+    payload: {
+      checkout
+    }
+  }
+}
+
+// TODO: Necessary?
 export const createCheckout = (checkout) => {
   return {
     type: CREATE_CHECKOUT,
@@ -70,29 +91,12 @@ export const createCheckout = (checkout) => {
     }
   }
 }
+
 export const updateCheckout = (checkout) => {
   return {
     type: UPDATE_CHECKOUT,
     payload: {
       checkout
-    }
-  }
-}
-
-export const openCart = () => {
-  return {
-    type: OPEN_CART,
-    payload: {
-      isCartOpen: true
-    }
-  }
-}
-
-export const closeCart = () => {
-  return {
-    type: CLOSE_CART,
-    payload: {
-      isCartOpen: false
     }
   }
 }
