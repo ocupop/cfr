@@ -8,11 +8,6 @@ import { getParseOptions } from '../common/utils/helpers'
 const CollectionTemplate = ({ data: { collections: collection }}) => {
   const { output } = collection
   const parseOptions = getParseOptions(collection)
-  // const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(Products());
-  // }, [dispatch]);
 
   return (
     <>

@@ -4,6 +4,8 @@ import {
   SET_SHOP,
   FETCH_PRODUCTS_BEGIN,
   SET_PRODUCTS,
+  SET_CAD_PRODUCTS,
+  SET_USD_PRODUCTS,
   FETCH_PRODUCTS_FAIL,
   SET_PRODUCT_FILTER,
   SET_CHECKOUT,
@@ -32,11 +34,19 @@ export const setShop = (state, payload) => {
   return { ...state, shop }
 }
 export const fetchProductsBegin = (state) => {
-  return { ...state }
+  return { ...state, loading: true }
 }
 export const setProducts = (state, payload) => {
-  const { products, loading } = payload
-  return { ...state, products, loading }
+  const { products } = payload
+  return { ...state, products, loading: false }
+}
+export const setCADProducts = (state, payload) => {
+  const { cadProducts } = payload
+  return { ...state, cadProducts }
+}
+export const setUSDProducts = (state, payload) => {
+  const { usdProducts } = payload
+  return { ...state, usdProducts }
 }
 export const fetchProductsFail = (state, payload) => {
   const { error } = payload
@@ -71,6 +81,8 @@ export default createReducer(initialState, {
   [SET_SHOP]: setShop,
   [FETCH_PRODUCTS_BEGIN]: fetchProductsBegin,
   [SET_PRODUCTS]: setProducts,
+  [SET_CAD_PRODUCTS]: setCADProducts,
+  [SET_USD_PRODUCTS]: setUSDProducts,
   [FETCH_PRODUCTS_FAIL]: fetchProductsFail,
   [SET_PRODUCT_FILTER]: setProductFilter,
   [SET_CHECKOUT]: setCheckout,

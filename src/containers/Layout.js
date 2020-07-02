@@ -9,7 +9,7 @@ import LoadingComponent from '../common/ui/LoadingComponent'
 
 
 function Layout({ children }) {
-  const loading = useSelector(state => state.shopify.loading)
+  // const loading = useSelector(state => state.shopify.loading)
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       site {
@@ -20,9 +20,9 @@ function Layout({ children }) {
     }
   `)
 
-  if (loading) {
-    return <LoadingComponent inverted={true} />
-  }
+  // if (loading) {
+  //   return <LoadingComponent inverted={true} />
+  // }
 
   return (
     <>

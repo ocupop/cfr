@@ -4,6 +4,8 @@ import {
   SET_CURRENCY,
   FETCH_PRODUCTS_BEGIN,
   SET_PRODUCTS,
+  SET_USD_PRODUCTS,
+  SET_CAD_PRODUCTS,
   FETCH_PRODUCTS_FAIL,
   SET_PRODUCT_FILTER,
   SET_CHECKOUT,
@@ -49,11 +51,27 @@ export const setProducts = (products) => {
   return {
     type: SET_PRODUCTS,
     payload: {
-      products,
-      loading: false
+      products
     }
   }
 }
+export const setCADProducts = (cadProducts) => {
+  return {
+    type: SET_CAD_PRODUCTS,
+    payload: {
+      cadProducts
+    }
+  }
+}
+export const setUSDProducts = (usdProducts) => {
+  return {
+    type: SET_USD_PRODUCTS,
+    payload: {
+      usdProducts
+    }
+  }
+}
+
 export const fetchProductsFail = (error) => {
   return {
     type: FETCH_PRODUCTS_FAIL,

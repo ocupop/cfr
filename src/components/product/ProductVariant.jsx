@@ -16,11 +16,12 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
   const currency = useSelector(state => state.shopify.currency)
   const client = useSelector(state => state.shopify.client)
   const productID = currency === 'CAD' ? cadStorefrontID : usdStorefrontID
-  const shopifyProduct = useSelector(state => state.shopify.products[productID])
+  const shopifyProduct = useSelector(state => state.shopify.products && state.shopify.products[productID])
 
   if(!shopifyProduct) {
+    // TODO: Need a test to catch if the ID exists in the other store
     console.log("Currency:", currency)
-    console.log("No Product Found: ", productID, )
+    console.log("No Product Found: ", productID)
   }
 
 
@@ -111,7 +112,7 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
         </>
       )}
 
-      {!addOn && (
+      {shopifyProduct && !addOn &&  (
         <>
           {variant ? (
             <>
@@ -141,6 +142,7 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
           )
         })}
 
+      {!shopifyProduct && <p className="alert alert-info">Checking Inventory...</p>}
     </>
   )
 }
