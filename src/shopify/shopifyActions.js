@@ -1,5 +1,6 @@
 import {
   SET_WHOLESALE,
+  SET_CLIENT,
   SET_SHOP,
   SET_CURRENCY,
   FETCH_PRODUCTS_BEGIN,
@@ -19,6 +20,14 @@ export const setWholesale = (wholesale) => {
     type: SET_WHOLESALE,
     payload: {
       wholesale
+    }
+  }
+}
+export const setClient = (client) => {
+  return {
+    type: SET_CLIENT,
+    payload: {
+      client
     }
   }
 }

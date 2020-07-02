@@ -6,7 +6,7 @@ import {
 } from './shopifyConstants'
 
 import Client from 'shopify-buy'
-import { setProducts, setShop, setCheckout } from './shopifyActions'
+import { setProducts, setShop, setCheckout, setClient } from './shopifyActions'
 import { arrayToObject } from '../common/utils/helpers'
 
 const cadClient = Client.buildClient({
@@ -26,19 +26,6 @@ const getCurrency = (state) => state.shopify.currency
 const getCADCheckout = (state) => state.shopify.cadcheckout
 const getUSDCheckout = (state) => state.shopify.usdcheckout
 
-
-// export function fetchProducts() {
-//   console.log("Fetching Products")
-//   return dispatch => {
-//     dispatch(fetchProductsBegin())
-//     client.product.fetchAll(250)
-//       .then((products) => {
-//         dispatch(setProducts(products))
-//         return products
-//       })
-//       .catch(error => { fetchProductsFail(error) })
-//   }
-// }
 
 async function fetchAllProducts() {
   console.log("Fetching Products From Shopify")
@@ -141,6 +128,7 @@ function* setStore(action) {
     // const cadProducts = yield call(fetchCADProducts)
     // const usdProducts = yield call(fetchUSDProducts)
     // const products = currency === 'CAD' ? cadProducts : usdProducts
+    yield put(setClient(client))
     yield put(setShop(shop))
     yield put(setCheckout(activeCheckout))
     // yield put(setProducts(arrayToObject(products, 'id')))

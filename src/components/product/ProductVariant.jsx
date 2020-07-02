@@ -32,13 +32,18 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
   useEffect(() => {
     async function addVariant() {
       if (!variantOptions) return null
-      const addVariant = await client.product.helpers.variantForOptions(shopifyProduct, variantOptions)
-      if(!addVariant) {
-        setVariant(null)
-        return
+      try {
+        // console.log(client.product)
+        const addVariant = await client.product.helpers.variantForOptions(shopifyProduct, variantOptions)
+        if (!addVariant) {
+          setVariant(null)
+          return
+        }
+        setVariant(addVariant)
+      } catch (error) {
+        console.log(error)
       }
 
-      setVariant(addVariant)
     }
 
     addVariant()
