@@ -1,6 +1,6 @@
 import {
   SET_WHOLESALE,
-  SET_CLIENT,
+  CREATE_CLIENT,
   SET_SHOP,
   SET_CURRENCY,
   FETCH_PRODUCTS_BEGIN,
@@ -23,9 +23,9 @@ export const setWholesale = (wholesale) => {
     }
   }
 }
-export const setClient = (client) => {
+export const createClient = (client) => {
   return {
-    type: SET_CLIENT,
+    type: CREATE_CLIENT,
     payload: {
       client
     }

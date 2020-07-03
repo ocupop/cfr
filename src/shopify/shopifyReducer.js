@@ -1,6 +1,6 @@
 import {
   SET_WHOLESALE,
-  SET_CLIENT,
+  CREATE_CLIENT,
   SET_CURRENCY,
   SET_SHOP,
   FETCH_PRODUCTS_BEGIN,
@@ -25,7 +25,7 @@ export const setWholesale = (state, payload) => {
   const { wholesale } = payload
   return { ...state, wholesale }
 }
-export const setClient = (state, payload) => {
+export const createClient = (state, payload) => {
   const { client } = payload
   return { ...state, client }
 }
@@ -82,7 +82,7 @@ export const updateCheckout = (state, payload) => {
 
 export default createReducer(initialState, {
   [SET_WHOLESALE]: setWholesale,
-  [SET_CLIENT]: setClient,
+  [CREATE_CLIENT]: createClient,
   [SET_CURRENCY]: setCurrency,
   [SET_SHOP]: setShop,
   [FETCH_PRODUCTS_BEGIN]: fetchProductsBegin,

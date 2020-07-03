@@ -6,7 +6,7 @@ import {
 } from './shopifyConstants'
 
 import Client from 'shopify-buy'
-import { setProducts, setShop, setCheckout, setClient } from './shopifyActions'
+import { setProducts, setShop, setCheckout, createClient } from './shopifyActions'
 import { arrayToObject } from '../common/utils/helpers'
 
 const cadClient = Client.buildClient({
@@ -128,7 +128,7 @@ function* setStore(action) {
     // const cadProducts = yield call(fetchCADProducts)
     // const usdProducts = yield call(fetchUSDProducts)
     // const products = currency === 'CAD' ? cadProducts : usdProducts
-    yield put(setClient(client))
+    yield put(createClient(client))
     yield put(setShop(shop))
     yield put(setCheckout(activeCheckout))
     // yield put(setProducts(arrayToObject(products, 'id')))

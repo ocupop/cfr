@@ -1,6 +1,6 @@
 export const SET_WHOLESALE = 'SET_WHOLESALE'
 export const SET_CURRENCY = 'SET_CURRENCY'
-export const SET_CLIENT = 'SET_CLIENT'
+export const CREATE_CLIENT = 'CREATE_CLIENT'
 export const SET_SHOP = 'SET_SHOP'
 export const FETCH_PRODUCTS_BEGIN = 'FETCH_PRODUCTS_BEGIN'
 export const SET_PRODUCTS = 'SET_PRODUCTS'
