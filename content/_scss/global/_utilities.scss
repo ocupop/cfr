@@ -135,6 +135,10 @@
 .sticky {
   position: sticky;
   top: 0;
+  @include media-breakpoint-down(lg) {
+    position: relative;
+    top: auto;
+  }
 }
 
 // Arrows/Carets
@@ -548,6 +552,10 @@
 
 .sticky-top {
   top: 100px;
+  @include media-breakpoint-down(lg) {
+    top: auto;
+    z-index: 10;
+  }
 }
 
 .bg-bleed {

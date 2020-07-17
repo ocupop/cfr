@@ -1,5 +1,7 @@
 #mainNav {
   @include transition();
+  z-index: 1000;
+  background-color: $white;
   .nav-item {
     padding-left: 10px;
     padding-right: 10px;
