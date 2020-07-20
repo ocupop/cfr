@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import TestModal from './TestModal'
 import FixModal from './FixModal'
 import VariantModal from './VariantModal'
+import ImageModal from './ImageModal'
 // import LoginModal from './LoginModal'
 // import RegisterModal from './RegisterModal'
 // import NotificationModal from './NotificationModal'
@@ -12,6 +13,7 @@ const modalLookup = {
   TestModal,
   FixModal,
   VariantModal,
+  ImageModal,
   // LoginModal,
   // RegisterModal,
   // NotificationModal
