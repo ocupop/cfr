@@ -116,16 +116,21 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
           {variant ? (
             <>
               <p className="lead">${variant.price}</p>
-              <div
-                className='bg-image bg-white aspect-4x3 mb-3'
-                style={{ backgroundImage: `url(${variant.image.src})` }} />
+              <div className="height-auto bg-white">
+                <div
+                  className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
+                  style={{ backgroundImage: `url(${variant.image.src})` }} />
+              </div>
             </>
           ) : (
               <>
                 <p className="lead">{getPriceRange(shopifyProduct)}</p>
-                <div
-                  className='bg-image bg-white aspect-4x3 mb-3'
-                  style={{ backgroundImage: `url(${shopifyProduct.images[0].src})` }} />
+                <div className="height-auto bg-white">
+                  <div
+                    className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
+                    style={{ backgroundImage: `url(${shopifyProduct.images[0].src})` }} />
+                </div>
+                
               </>
             )}
         </>
