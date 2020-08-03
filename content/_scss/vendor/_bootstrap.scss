@@ -5,3 +5,11 @@ button {
     outline: 0;
   }
 }
+
+.alert {
+  &.alert-danger {
+    background-color: $red;
+    color: $white;
+    border: 0;
+  }
+}
