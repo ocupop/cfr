@@ -1,7 +1,7 @@
 #pageHeader {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   height: 100px;
-  z-index: 1000;
+  z-index: 1030;
   @include media-breakpoint-up(md) {
     height: 125px;
   }
