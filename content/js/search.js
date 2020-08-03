@@ -1,4 +1,4 @@
-<script defer>
+
   window.data = {
     {% for page in site.pages %}
         "{{ page.url | slugify }}": {
@@ -77,4 +77,3 @@
     
     document.querySelector("#search-results").innerHTML = resultsString;
   })
-</script>
