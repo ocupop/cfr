@@ -1,14 +1,30 @@
 import React from 'react'
+import { toastr } from 'react-redux-toastr'
 import { useSelector, useDispatch } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
 import { setCurrency } from '../../shopify/shopifyActions'
+import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../common/async/asyncActions'
 
 const CountrySelector = () => {
   const dispatch = useDispatch()
   const currency = useSelector(state => state.shopify.currency)
 
   function changeStore(country) {
-    dispatch(setCurrency(country))
+    const message = 'Confirm: Switch Country?'
+    try {
+      toastr.confirm(message, {
+        onOk: () => {
+          dispatch(asyncActionStart())
+          dispatch(setCurrency(country))
+          toastr.success('Success', `You are now in the ${currency === 'USD' ? 'Candadian' : 'US'} store`)
+          dispatch(asyncActionFinish())
+        }
+      })
+    } catch (error) {
+      console.log(error);
+      dispatch(asyncActionError());
+      toastr.error('Oops', 'Staying put')
+    }
   }
   return (
     <div className="d-flex align-items-center">

@@ -1,22 +1,25 @@
 import {
+  SET_WHOLESALE,
   CREATE_CLIENT,
   SET_SHOP,
   SET_CURRENCY,
+  FETCH_PRODUCTS_BEGIN,
   SET_PRODUCTS,
-  SET_PRODUCT,
+  SET_USD_PRODUCTS,
+  SET_CAD_PRODUCTS,
+  FETCH_PRODUCTS_FAIL,
   SET_PRODUCT_FILTER,
+  SET_CHECKOUT,
   CREATE_CHECKOUT,
   UPDATE_CHECKOUT,
-  OPEN_CART,
-  CLOSE_CART,
 } from './shopifyConstants'
 
 
-export const setCurrency = (currency) => {
+export const setWholesale = (wholesale) => {
   return {
-    type: SET_CURRENCY,
+    type: SET_WHOLESALE,
     payload: {
-      currency
+      wholesale
     }
   }
 }
@@ -29,12 +32,28 @@ export const createClient = (client) => {
   }
 }
 
+export const setCurrency = (currency) => {
+  return {
+    type: SET_CURRENCY,
+    payload: {
+      currency
+    }
+  }
+}
+
 export const setShop = (shop) => {
   return {
     type: SET_SHOP,
     payload: {
       shop
     }
+  }
+}
+
+export const fetchProductsBegin = () => {
+  return {
+    type: FETCH_PRODUCTS_BEGIN,
+    payload: {}
   }
 }
 export const setProducts = (products) => {
@@ -45,14 +64,33 @@ export const setProducts = (products) => {
     }
   }
 }
-export const setProduct = (product) => {
+export const setCADProducts = (cadProducts) => {
   return {
-    type: SET_PRODUCT,
+    type: SET_CAD_PRODUCTS,
     payload: {
-      product
+      cadProducts
     }
   }
 }
+export const setUSDProducts = (usdProducts) => {
+  return {
+    type: SET_USD_PRODUCTS,
+    payload: {
+      usdProducts
+    }
+  }
+}
+
+export const fetchProductsFail = (error) => {
+  return {
+    type: FETCH_PRODUCTS_FAIL,
+    payload: {
+      error,
+      loading: false
+    }
+  }
+}
+
 export const setProductFilter = (filter) => {
   return {
     type: SET_PRODUCT_FILTER,
@@ -62,6 +100,16 @@ export const setProductFilter = (filter) => {
   }
 }
 
+export const setCheckout = (checkout) => {
+  return {
+    type: SET_CHECKOUT,
+    payload: {
+      checkout
+    }
+  }
+}
+
+// TODO: Necessary?
 export const createCheckout = (checkout) => {
   return {
     type: CREATE_CHECKOUT,
@@ -70,29 +118,12 @@ export const createCheckout = (checkout) => {
     }
   }
 }
+
 export const updateCheckout = (checkout) => {
   return {
     type: UPDATE_CHECKOUT,
     payload: {
       checkout
-    }
-  }
-}
-
-export const openCart = () => {
-  return {
-    type: OPEN_CART,
-    payload: {
-      isCartOpen: true
-    }
-  }
-}
-
-export const closeCart = () => {
-  return {
-    type: CLOSE_CART,
-    payload: {
-      isCartOpen: false
     }
   }
 }
