@@ -99,7 +99,7 @@
     "deploy": "npm run build && netlify deploy",
     "cms": "gulp dev",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package && gulp dev:install"
   },
   "repository": {
     "type": "git",

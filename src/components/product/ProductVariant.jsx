@@ -3,11 +3,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react'
 // import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { openModal } from '../../common/modals/modalActions'
 import OptionSelector from './OptionSelector'
 import { getPriceRange } from '../../common/utils/helpers'
 
+
 const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, touched, setFieldValue } }) => {
+  const dispatch = useDispatch()
   const { cadStorefrontID, usdStorefrontID, name } = product
   const [variant, setVariant] = useState()
   const [variantOptions, setVariantOptions] = useState(null)
@@ -95,7 +98,8 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
               <div className="col-4 bg-white">
                 <div
                   className='bg-image aspect-4x3'
-                  style={{ backgroundImage: `url(${variant.image.src})` }} />
+                  style={{ backgroundImage: `url(${variant.image.src})` }}
+                  onClick={() => dispatch(openModal('ImageModal', {image: variant.image.src}))}/>
               </div>
               <div className="col-8">
                 <small>
@@ -108,7 +112,8 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
               <div className="col-4 bg-white">
                 <div
                   className='bg-image bg-white aspect-4x3'
-                  style={{ backgroundImage: `url(${product.featuredImage})` }} />
+                  style={{ backgroundImage: `url(${product.featuredImage})` }}
+                  onClick={() => dispatch(openModal('ImageModal', { image: product.featuredImage }))} />
               </div>
               <div className="col-1"><i className="ri-shopping-cart-fill"></i></div>
               <div className="col-7"><small>Add {name}</small></div>
@@ -123,15 +128,17 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
             <>
               <p className="lead">${variant.price}</p>
               <div
-                className='bg-image bg-white aspect-4x3 mb-3'
-                style={{ backgroundImage: `url(${variant.image.src})` }} />
+                className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
+                style={{ backgroundImage: `url(${variant.image.src})` }}
+                onClick={() => dispatch(openModal('ImageModal', { image: variant.image.src }))} />
             </>
           ) : (
               <>
                 <p className="lead">{getPriceRange(shopifyProduct)}</p>
                 <div
-                  className='bg-image bg-white aspect-4x3 mb-3'
-                  style={{ backgroundImage: `url(${shopifyProduct.images[0].src})` }} />
+                  className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
+                  style={{ backgroundImage: `url(${shopifyProduct.images[0].src})` }}
+                  onClick={() => dispatch(openModal('ImageModal', { image: shopifyProduct.images[0].src }))} />
               </>
             )}
         </>

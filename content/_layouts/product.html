@@ -4,21 +4,36 @@ footer_image: /img/cfr-footer-4.jpg
 ---
 
 {% assign product = page %}
+{% assign collection_url = null %}
 {% assign title = product.name | default: product.title %}
 {% include logic/relativeURL.html url=product.featured_image %}
+
+
+<!-- get collection instance -->
+{% for collection in site.product_collections %}
+  {% for object in collection.products %}
+    {% if object == product.slug %}
+      {% assign collection_url = collection.url %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
 
 <section class="py-0">
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-4 order-1 order-md-8 pt-lg-5 bg-dark bg-bleed text-white">
         <div class="p-3 pt-5 pt-md-3 position-sticky sticky-top">
-          <p class="mb-0 text-uppercase text-white-50">
+          <a href="{{ collection_url }}?filter={{ product.categories.first | slugify }}" class="mb-0 text-uppercase text-white-50">
             {{ product.categories.first }}
-          </p>
+          </a>
           <h1 class="h4 mb-3">{{ title }}</h1>
-
           {% include components/product-form.html %}
-
+          {% if product.sidebar_disclaimer_html %}
+            <div class="alert alert-danger" role="alert">
+              {{ product.sidebar_disclaimer_html }}
+            </div>
+          {% endif %}
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank"
@@ -35,20 +50,13 @@ footer_image: /img/cfr-footer-4.jpg
       <div class="col-12 col-md-8 order-4 order-md-1">
         <div class="py-5 pr-4 d-none d-lg-block">
           <h3>
-            {{ product.categories.first }}
+            <a href="{{ collection_url }}?filter={{ product.categories.first | slugify }}" class="text-dark">{{ product.categories.first }}</a>
             <small>&nbsp;/&nbsp;{{ title }}</small>
           </h3>
           <img id="featured-image" src="{{ relativeURL }}" alt="{{ product.title }}" class="img-fluid" />
           {% include components/product-gallery.html %}
         </div>
         <div class="py-5 pr-4">
-
-          {% if product.disclaimer_html %}
-          <div class="alert alert-danger" role="alert">
-            {{ product.disclaimer_html }}
-          </div>
-          {% endif %}
-
           <h1 class="mt-lg-5 mb-lg-3">{{ title }}</h1>
           {% if product.disclaimer_html %}
             <div class="alert alert-danger" role="alert">
@@ -58,7 +66,6 @@ footer_image: /img/cfr-footer-4.jpg
           {{ product.content }}
         </div>
       </div>
-
     </div>
   </div>
 </section>

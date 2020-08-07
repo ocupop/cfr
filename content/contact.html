@@ -22,41 +22,23 @@ meta:
       <div class="col-12">
         <!-- TODO connect form to netlify -->
         <div class="content">
-          <form name="contact" method="POST" data-netlify="true" action="/thank-you">
-            <input type="hidden" name="form-name" value="contact" />
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="firstName">First Name:</label>
-                  <input type="text" name="firstName" class="form-control" />
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="lastName">Last Name:</label>
-                  <input type="text" name="lastName" class="form-control" />
-                </div>
-              </div>
+          <form class="form" name="Contact" method="POST" action="/thank-you/" netlify>
+            <div class="d-none">
+              <input type="hidden" name="form-name" value="contact" />
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="text" name="email" class="form-control" required />
-                </div>
-              </div>
+            <div class="field">
+              <label for="name">Name</label>
+              <input name="name" />
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="inquiry">Inquiry</label>
-                  <textarea name="inquiry" cols="30" rows="8" class="form-control"></textarea>
-                </div>
-              </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" name="email" />
             </div>
-            <button type="submit" class="btn btn-primary">
-              Submit
-            </button>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea name="message"></textarea>
+            </div>
+            <input type="submit" value="Submit"/>
           </form>
         </div>
       </div>

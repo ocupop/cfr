@@ -47,6 +47,12 @@ module.exports = {
         src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
       }
     },
+    {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: 'https://snowy-slipper.cloudvent.net/js/search.js'
+      }
+    },
 
     // Getting UI Elements
     {
