@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   $.ajax({
-    url: "/data/search.json",
+    url: "https://snowy-slipper.cloudvent.net/data/search.json",
     dataType: "json",
     success: function (data) {
       window.data = data;
