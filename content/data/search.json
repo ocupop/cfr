@@ -1,25 +1,22 @@
 ---
 layout: null
 ---
-<!--currently storing this in window object, would be nice to convert to json-->
 {
-  {% for product in site.products %}
-    "{{ product.slug }}": {
-    "title": "{{ product.title | xml_escape }}",
-    "url": " {{ product.url | xml_escape | prepend: site.url }}",
-    "summary": "{{ product.summary }}",
-    "categories": "{{ product.categories }}",
-    "brands": "{{ product.brands }}",
-
+  {% for page in site.pages %}
+    "{{ page.url | slugify }}": {
+    "title": "{{ page.title | xml_escape }}",
+    "url": "{{ page.url | xml_escape }}",
+    "path": "{{ page.url | xml_escape }}"
   },
   {% endfor %}
-  {% for collection in site.collections %}
-    "{{ collection.slug }}": {
-    "title": "{{ collection.title | xml_escape }}",
-    "url": "{{ collection.url | xml_escape | prepend: site.url }}",
-    "description": "{{ collection.description }}"
+    {% for product in site.products %}
+    "{{ product.slug }}": {
+    "title": "{{ product.title | xml_escape }}",
+    "url": "{{ product.url | xml_escape }}",
+    "categories": "{{ product.categories }}",
+    "brands": "{{ product.brands }}",
+    "path": "{{ product.url | xml_escape }}"
   }
-    {% unless forloop.last %},
-  {% endunless %}
+  {% unless forloop.last %},{% endunless %}
   {% endfor %}
 }
