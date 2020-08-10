@@ -50,6 +50,12 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-load-script',
       options: {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.5/lunr.min.js'
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
         src: 'https://snowy-slipper.cloudvent.net/js/search.js'
       }
     },

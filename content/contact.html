@@ -22,24 +22,27 @@ meta:
       <div class="col-12">
         <!-- TODO connect form to netlify -->
         <div class="content">
-          <form class="form" name="Contact" method="POST" action="/thank-you/" netlify>
-            <div class="d-none">
-              <input type="hidden" name="form-name" value="contact" />
-            </div>
-            <div class="field">
-              <label for="name">Name</label>
-              <input name="name" />
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" name="email" />
-            </div>
-            <div class="field">
-              <label for="message">Message</label>
-              <textarea name="message"></textarea>
-            </div>
-            <input type="submit" value="Submit"/>
+          <form name="simpleContactForm" method="POST" id="simple-contact-form" class="contact-form" data-netlify="true">
+            <p class="form-row">
+              <label id="contact-form-name-label" for="contact-form-name" class="form-label">Name</label>
+              <input type="text" name="name" id="contact-form-name" aria-labelledby="contact-form-name-label" class="form-input">
+            </p>
+            <p class="form-row">
+              <label id="contact-form-email-label" for="contact-form-email" class="form-label">Email address</label>
+              <input type="email" name="email" id="contact-form-email" aria-labelledby="contact-form-email-label"
+                class="form-input">
+            </p>
+            <p class="form-row">
+              <label id="contact-form-message-label" for="contact-form-message" class="form-label">Message</label>
+              <textarea name="message" id="contact-form-message" aria-labelledby="contact-form-message-label"
+                class="form-textarea" rows="7"></textarea>
+            </p>
+            <p class="form-row form-submit">
+              <button type="submit" class="button">Send Message</button>
+            </p>
           </form>
+
+
         </div>
       </div>
     </div>
