@@ -50,13 +50,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-load-script',
       options: {
-        src: 'https://www.cognitoforms.com/s/bbN8iw1MJUqjPe6aHn-_rw'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-load-script',
-      options: {
-        src: 'https://snowy-slipper.cloudvent.net/js/cognito.js'
+        src: 'https://www.cognitoforms.com/s/bbN8iw1MJUqjPe6aHn-_rw',
+        onLoad: `() => Cognito.load("forms", { id: "58" })`
+
       }
     },
     {
