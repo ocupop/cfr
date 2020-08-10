@@ -5,6 +5,7 @@ import ReduxToastr from 'react-redux-toastr'
 import ModalWrapper from './src/common/modals/ModalWrapper'
 import Layout from './src/containers/Layout'
 import 'flag-icon-css/css/flag-icon.css'
+import 'semantic-ui-css/semantic.min.css'
 import 'remixicon/fonts/remixicon.css'
 import './content/_scss/main.scss'
 

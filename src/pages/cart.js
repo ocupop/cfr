@@ -87,7 +87,7 @@ const CartPage = () => {
                   )}
 
               </div>
-              <div className="px-3">
+              <div className="px-3 pb-5">
                 <hr className="mt-0" />
                 <p className="font-family-base text-center">
                   <small>Apply any additional discount codes in next step.</small>

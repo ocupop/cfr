@@ -14,6 +14,7 @@
 
 #pageContent {
   padding-top: 100px;
+  min-height: 80vh;
   @include transition(padding-top, 0.5s);
   @include media-breakpoint-up(md) {
     padding-top: 125px;

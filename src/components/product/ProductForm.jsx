@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import FormikDebug from '../../common/utils/FormikDebug'
+import FormikDebug from '../../common/utils/FormikDebug'
 import { useSelector, useDispatch } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
@@ -96,7 +96,7 @@ const ProductForm = ({ props: product }) => {
               Add to Cart
             </button>
           )}
-          {/* <FormikDebug /> */}
+          <FormikDebug />
         </Form>
       )}
     </Formik>

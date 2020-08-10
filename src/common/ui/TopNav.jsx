@@ -6,6 +6,7 @@ import AuthNav from '../auth/AuthNav'
 const TopNav = () => {
   const checkout = useSelector(state => state.shopify.checkout)
   const currency = useSelector(state => state.shopify.currency)
+
   const auth = {
     displayName: 'tombeck',
     photoURL: ''

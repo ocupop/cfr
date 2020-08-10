@@ -1,21 +1,10 @@
 import { applyMiddleware, compose, createStore } from 'redux'
-import Client from 'shopify-buy'
-// import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import { throttle } from 'lodash'
 import { loadState, saveState } from './localStorage'
-import { setShop, createClient, createCheckout, setProducts } from '../shopify/shopifyActions'
-import { arrayToObject } from '../common/utils/helpers'
+import { setCurrency } from '../shopify/shopifyActions'
+import { rootSaga } from '../shopify/shopifySagas'
 import rootReducer from './reducers'
-
-const cadClient = Client.buildClient({
-  storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-  domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
-})
-
-const usdClient = Client.buildClient({
-  storefrontAccessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
-  domain: `${process.env.GATSBY_US_SHOP_NAME}.myshopify.com`,
-})
 
 
 export default function createReduxStore() {
@@ -35,8 +24,11 @@ export default function createReduxStore() {
   // ======================================================
   // Middleware Configuration
   // ======================================================
+  const sagaMiddleware = createSagaMiddleware()
   const middleware = [
-    // thunk.withExtraArgument(getFirebase),
+    sagaMiddleware
+    // thunk
+    // thunk.withExtraArgument(getClient),
     // This is where you add other middleware like redux-observable
   ]
 
@@ -51,31 +43,15 @@ export default function createReduxStore() {
     initialState,
     compose(applyMiddleware(...middleware), ...enhancers)
   )
-
   store.subscribe(throttle(() => {
     saveState(store.getState())
   }), 1000)
 
-  // Build correct client based on country
-  const shopify = store.getState().shopify
-  const client = shopify.currency === 'CAD' ? cadClient : usdClient
-  store.dispatch(createClient(client))
+  sagaMiddleware.run(rootSaga)
 
-  if (!shopify.checkout) {
-    // Create new checkout
-    client.checkout.create().then((checkout) => {
-      store.dispatch(createCheckout(checkout));
-    })
-    // Fetch shop details
-    client.shop.fetchInfo().then((shop) => {
-      store.dispatch(setShop(shop));
-    })
+  if (!loadState()) {
+    store.dispatch(setCurrency('CAD'))
   }
-  // Fetch all products
-  client.product.fetchAll(250).then((products) => {
-
-    store.dispatch(setProducts(arrayToObject(products, 'id')));
-  })
 
   return store
 }

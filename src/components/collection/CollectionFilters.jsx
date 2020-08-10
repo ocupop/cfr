@@ -36,7 +36,7 @@ const CollectionFilters = ({props: {title, brands, categories}}) => {
         <div
             className={showFilters ? 'd-block' : 'd-none d-md-block'}>
             <div className="d-flex align-items-center mb-2">
-              <h2 className="m-0"><span class="d-md-none d-lg-inline-block">Product&nbsp;</span>Categories</h2>
+              <h2 className="m-0"><span className="d-md-none d-lg-inline-block">Product&nbsp;</span>Categories</h2>
               <button
                 type="button"
                 className="ml-2 text-mid"
