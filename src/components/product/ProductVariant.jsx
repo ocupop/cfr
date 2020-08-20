@@ -80,8 +80,8 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
   if (!shopifyProduct) {
     // TODO: Need a test to catch if the ID exists in the other store
 
-    console.log("Currency:", currency)
-    console.log("No Product Found: ", productID)
+    // console.log("Currency:", currency)
+    // console.log("No Product Found: ", productID)
     return (
       <ProductBug
         product={product}
