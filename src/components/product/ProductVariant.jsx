@@ -82,8 +82,6 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
 
     console.log("Currency:", currency)
     console.log("No Product Found: ", productID)
-    console.log("Canadian Product: ", productCAD)
-    console.log("US Product: ", productUSD)
     return (
       <ProductBug
         product={product}
