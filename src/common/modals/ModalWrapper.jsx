@@ -5,6 +5,7 @@ import TestModal from './TestModal'
 import FixModal from './FixModal'
 import VariantModal from './VariantModal'
 import ImageModal from './ImageModal'
+import CountryModal from './CountryModal'
 // import LoginModal from './LoginModal'
 // import RegisterModal from './RegisterModal'
 // import NotificationModal from './NotificationModal'
@@ -14,6 +15,7 @@ const modalLookup = {
   FixModal,
   VariantModal,
   ImageModal,
+  CountryModal,
   // LoginModal,
   // RegisterModal,
   // NotificationModal

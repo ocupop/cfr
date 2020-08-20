@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { throttle } from 'lodash'
+import { throttle, isEmpty } from 'lodash'
 import { loadState, saveState } from './localStorage'
 import { setCurrency } from '../shopify/shopifyActions'
 import { rootSaga } from '../shopify/shopifySagas'
@@ -36,21 +36,23 @@ export default function createReduxStore() {
   // Store Instantiation and HMR Setup
   // ======================================================
 
-  // const initialState = loadState()
   const initialState = loadState() || {}
   const store = createStore(
     rootReducer(),
     initialState,
     compose(applyMiddleware(...middleware), ...enhancers)
   )
-  store.subscribe(throttle(() => {
-    saveState(store.getState())
-  }), 1000)
+  // store.subscribe(throttle(() => {
+  //   saveState(store.getState())
+  // }), 1000)
 
   sagaMiddleware.run(rootSaga)
 
-  if (!loadState()) {
+  // Setting the currency begins a process of fetching products and creating a client for future requests
+  if (isEmpty(initialState)) {
+    console.log("This is a new visitor")
     store.dispatch(setCurrency('CAD'))
+    return store
   }
 
   return store

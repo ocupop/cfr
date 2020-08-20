@@ -67,9 +67,9 @@ const ProductForm = ({ props: product }) => {
                       <>
                         {suggestedProducts.map((product, index) => {
                           const id = currency === 'CAD' ? product.cadStorefrontID : product.usdStorefrontID
-                          if(!id) {
-                            return <ProductBug key={`${index}`} product={product} />
-                          }
+                          // if(!id) {
+                          //   return <ProductBug key={`${index}`} product={product} message="Suggested Products"/>
+                          // }
                           return (
                             <Field
                               key={`${id}_${index}`}
@@ -96,7 +96,7 @@ const ProductForm = ({ props: product }) => {
               Add to Cart
             </button>
           )}
-          <FormikDebug />
+          {/* <FormikDebug /> */}
         </Form>
       )}
     </Formik>

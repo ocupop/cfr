@@ -55,18 +55,18 @@ module.exports = {
 
       }
     },
-    {
-      resolve: 'gatsby-plugin-load-script',
-      options: {
-        src: 'https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.5/lunr.min.js'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-load-script',
-      options: {
-        src: 'https://snowy-slipper.cloudvent.net/js/search.js'
-      }
-    },
+    // {
+    //   resolve: 'gatsby-plugin-load-script',
+    //   options: {
+    //     src: 'https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.5/lunr.min.js'
+    //   }
+    // },
+    // {
+    //   resolve: 'gatsby-plugin-load-script',
+    //   options: {
+    //     src: 'https://snowy-slipper.cloudvent.net/js/search.js'
+    //   }
+    // },
 
     // Getting UI Elements
     {
@@ -217,15 +217,15 @@ module.exports = {
   ],
   // for avoiding CORS while developing Netlify Functions locally
   // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
-  developMiddleware: app => {
-    app.use(
-      '/.netlify/functions/',
-      proxy({
-        target: 'http://localhost:9000',
-        pathRewrite: {
-          '/.netlify/functions/': ''
-        }
-      })
-    )
-  }
+  // developMiddleware: app => {
+  //   app.use(
+  //     '/.netlify/functions/',
+  //     proxy({
+  //       target: 'http://localhost:9000',
+  //       pathRewrite: {
+  //         '/.netlify/functions/': ''
+  //       }
+  //     })
+  //   )
+  // }
 }

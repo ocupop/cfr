@@ -563,6 +563,7 @@
 }
 
 .bg-bleed {
+  min-height: calc(100vh - 350px);
   &::before {
     content: "";
     display: block;

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { openModal } from '../../common/modals/modalActions'
 import OptionSelector from './OptionSelector'
 import { getPriceRange } from '../../common/utils/helpers'
+import ProductBug from './ProductBug'
 
 
 const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, touched, setFieldValue } }) => {
@@ -21,12 +22,6 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
   const productID = currency === 'CAD' ? cadStorefrontID : usdStorefrontID
   const shopifyProduct = useSelector(state => state.shopify.products && state.shopify.products[productID])
 
-  if(!shopifyProduct) {
-    // TODO: Need a test to catch if the ID exists in the other store
-    console.log("Currency:", currency)
-    console.log("No Product Found: ", productID)
-  }
-
 
   const handleOptionChange = ({ target: { name, value } }) => {
     setVariantOptions(options => ({ ...options, [name]: value }))
@@ -36,7 +31,6 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
     async function addVariant() {
       if (!variantOptions) return null
       try {
-        // console.log(client.product)
         const addVariant = await client.product.helpers.variantForOptions(shopifyProduct, variantOptions)
         if (!addVariant) {
           setVariant(null)
@@ -81,6 +75,20 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
     if (shopifyProduct.variants.length > 1) {
       setShowOptions(true)
     }
+  }
+
+  if (!shopifyProduct) {
+    // TODO: Need a test to catch if the ID exists in the other store
+
+    console.log("Currency:", currency)
+    console.log("No Product Found: ", productID)
+    console.log("Canadian Product: ", productCAD)
+    console.log("US Product: ", productUSD)
+    return (
+      <ProductBug
+        product={product}
+        message={`No Shopify product found in ${currency === 'CAD' ? 'the Candadian' : 'the US'} store`} />
+    )
   }
 
   return (
@@ -153,8 +161,6 @@ const ProductVariant = ({ addOn, chooseOptions, product, field, form: { errors, 
               onChange={handleOptionChange} />
           )
         })}
-
-      {!shopifyProduct && <p className="alert alert-info">Checking Inventory...</p>}
     </>
   )
 }

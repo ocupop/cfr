@@ -24,8 +24,11 @@ const ProductGridCard = ({ product }) => {
             {categories && <span>{categories[0]}</span>}
           </p>
           <h5 className="card-title mb-0">{name}</h5>
-          {loading && <Skeleton height={20} />}
-          {shopifyProduct && <p className="card-text">{getPriceRange(shopifyProduct)}</p>}
+          {!shopifyProduct ? (
+            <Skeleton height={20} />
+          ) : (
+            <p className="card-text">{getPriceRange(shopifyProduct)}</p>
+          )}
         </div>
       </a>
     </>
