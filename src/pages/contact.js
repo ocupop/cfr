@@ -1,6 +1,6 @@
 import React, { useEffect }from 'react'
 
-const contact = () => {
+const contactPage = () => {
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://services.cognitoforms.com/s/bbN8iw1MJUqjPe6aHn-_rw';

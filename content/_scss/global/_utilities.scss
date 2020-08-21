@@ -135,6 +135,12 @@
   background-size: contain;
 }
 
+.iframe-content {
+  iframe {
+    height: 75vh !important;
+  }
+}
+
 // Sticky behavior
 .sticky {
   position: sticky;
