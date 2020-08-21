@@ -15,17 +15,39 @@ const ContactPage = () => {
                   for us. We are happy to get back to you as soon as possible.
                   Be sure to check the FAQ below for quick answers.
                 </p>
-                <form name="Contact Form" method="POST" data-netlify="true">
-                  <input type="hidden" name="form-name" value="Contact Form" />
-                  <div>
-                    <label>Your Email:</label>
-                    <input type="email" name="email" />
+                <form name="contact" method="POST" data-netlify="true" action="/thank-you">
+                  <input type="hidden" name="form-name" value="contact" />
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="first-name" class="text-uppercase font-weight-bold">First Name:</label>
+                        <input type="text" name="first-name" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="last-name" class="text-uppercase font-weight-bold">Last Name:</label>
+                        <input type="text" name="last-name" class="form-control" />
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <label>Message:</label>
-                    <textarea name="message" />
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="email" class="text-uppercase font-weight-bold">Email</label>
+                        <input type="text" name="email" class="form-control" required />
+                      </div>
+                    </div>
                   </div>
-                  <button type="submit">Send</button>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="inquiry" class="text-uppercase font-weight-bold">Inquiry</label>
+                        <textarea name="inquiry" id="" cols="30" rows="8" class="form-control"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-secondary text-white">Submit</button>
                 </form>
               </div>
             </div>
