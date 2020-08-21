@@ -3,12 +3,10 @@
   <meta http-equiv="Content-Language" content="en_US" />
   <meta charset="utf-8" />
   <title>
-    {{ site.title }}{% if page.title %}: {{ page.title | escape }}{% endif %}
+    {% if page.meta.title %}{{ page.meta.title | escape }}{% else %}{{ page.title | escape }}{% endif %}
   </title>
-  <meta
-    name="description"
-    content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}"
-  />
+  <meta name="description"
+    content="{% if page.meta.description %}{{ page.meta.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png">
