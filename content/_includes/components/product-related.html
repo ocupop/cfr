@@ -1,6 +1,6 @@
 <product-related>
   <div class="responsive-card-deck cards-lg-3 cards-md-2">
-    {% for object in product.related_products limit: 6 %}
+    {% for object in page.related_products limit: 6 %}
     {% assign related = site.products | where: 'slug', object | first %}
     <a class="card" href="{{ object.url }}">
       <div class="card-image-wrapper">
