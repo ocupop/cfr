@@ -2,11 +2,12 @@
   <div id="product-grid" class="responsive-card-deck cards-lg-3 cards-md-2">
     {% for object in page.products %}
     {% assign product = site.products | where: 'slug', object | first %}
+    {% include logic/relativeURL.html url=product.featured_image %}
     <a href="{{ product.url }}"
       class="card {% for category in product.categories %}{{ category | slugify }}{% endfor %} {% for brand in product.brands %}{{ brand | slugify }} {% endfor %} mix">
       <div class="card-image-wrapper">
         <div class="bg-image aspect-4x3"
-          style="background-image: url({% if product.featured_image contains '//' %}{{ product.featured_image }}{% else %}{{ product.featured_image | prepend: site.url }}{% endif %})">
+          style="background-image: url('{{ relativeURL }}')">
         </div>
       </div>
       <div class="card-footer">

@@ -27,11 +27,12 @@ permalink: api/collections
     "products": [
       {% for object in collection.products %}
         {% assign product = site.products | where: 'slug', object | first %}
+        {% include logic/relativeURL.html url=product.featured_image %}
         {
           "slug": {{ product['slug'] | jsonify }},
           "url": {{ product['url'] | jsonify }},
           "name": {{ product['name'] | jsonify }},
-          "featuredImage": {{ product['featured_image'] | jsonify }},
+          "featuredImage": {{ relativeURL | jsonify }},
           "categories": {{ product['categories'] | jsonify}},
           "brands": {{ product['brands'] | jsonify}},
           "cadStorefrontID": {% if product['shopify_canada_id'] %}{{ product['shopify_canada_id'] | storefront_product_id | jsonify }}{% else %}null{% endif %},
