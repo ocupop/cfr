@@ -47,14 +47,6 @@ module.exports = {
         src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
       }
     },
-    {
-      resolve: 'gatsby-plugin-load-script',
-      options: {
-        src: 'https://www.cognitoforms.com/s/bbN8iw1MJUqjPe6aHn-_rw',
-        onLoad: `() => Cognito.load("forms", { id: "58" })`
-
-      }
-    },
     // {
     //   resolve: 'gatsby-plugin-load-script',
     //   options: {

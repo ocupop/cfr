@@ -1,14 +1,6 @@
-import React, { useEffect }from 'react'
+import React, { useState, useEffect } from 'react'
 
-const contactPage = () => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://services.cognitoforms.com/s/bbN8iw1MJUqjPe6aHn-_rw';
-    document.body.appendChild(script);
-    script.addEventListener('load', () => {
-      Cognito.load("forms", { id: "58" })
-    });
-  }, [])
+const ContactPage = () => {
 
   return (
     <>
@@ -23,11 +15,18 @@ const contactPage = () => {
                   for us. We are happy to get back to you as soon as possible.
                   Be sure to check the FAQ below for quick answers.
                 </p>
-                <div className="cognito">
-                  <div className="preloader">
-                    <img src="/img/favicon.png" />
+                <form name="Contact Form" method="POST" data-netlify="true">
+                  <input type="hidden" name="form-name" value="Contact Form" />
+                  <div>
+                    <label>Your Email:</label>
+                    <input type="email" name="email" />
                   </div>
-                </div>
+                  <div>
+                    <label>Message:</label>
+                    <textarea name="message" />
+                  </div>
+                  <button type="submit">Send</button>
+                </form>
               </div>
             </div>
             <div className="col-lg-3 sidebar">
@@ -68,9 +67,8 @@ const contactPage = () => {
           </div>
         </div>
       </section>
-      <Faq />
     </>
   )
 }
 
-export default contactPage
+export default ContactPage
