@@ -89,6 +89,7 @@ const ProductForm = ({ props: product }) => {
           )}
 
           {values.lineItems[0] && (
+            // TODO: Add logic to test that al fields are complete and there is availability
             <button
               type="submit"
               className="btn btn-secondary btn-large btn-block mb-3 mb-lg-5"
