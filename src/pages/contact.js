@@ -1,29 +1,21 @@
-import React from 'react'
+import React, { useEffect }from 'react'
 
 const contactPage = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.cognitoforms.com/s/bbN8iw1MJUqjPe6aHn-_rw";
+    script.async = true;
+    script.onload = () => this.scriptLoaded();
+
+    document.body.appendChild(script)
+    scriptLoaded() {
+      Cognito.load("forms", { id: "1" })
+    }
+  }, [])
   return (
     <div>
-      <form name="contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contact" />
-        <p>
-          <label>Your Name: <input type="text" name="name" /></label>
-        </p>
-        <p>
-          <label>Your Email: <input type="email" name="email" /></label>
-        </p>
-        <p>
-          <label>Your Role: <select name="role[]" multiple>
-            <option value="leader">Leader</option>
-            <option value="follower">Follower</option>
-          </select></label>
-        </p>
-        <p>
-          <label>Message: <textarea name="message"></textarea></label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
-      </form>
+      <div className="cognito">
+      </div>
     </div>
   )
 }
