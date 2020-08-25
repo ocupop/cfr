@@ -2,7 +2,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { throttle, isEmpty } from 'lodash'
 import { loadState, saveState } from './localStorage'
-import { setCurrency } from '../shopify/shopifyActions'
+import { loadShopify } from '../shopify/shopifyActions'
 import { rootSaga } from '../shopify/shopifySagas'
 import rootReducer from './reducers'
 
@@ -51,7 +51,7 @@ export default function createReduxStore() {
   // Setting the currency begins a process of fetching products and creating a client for future requests
   if (isEmpty(initialState)) {
     console.log("This is a new visitor")
-    store.dispatch(setCurrency('CAD'))
+    store.dispatch(loadShopify('CAD'))
     return store
   }
 

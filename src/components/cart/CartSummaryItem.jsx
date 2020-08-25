@@ -3,17 +3,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 import { formatMoney } from '../../common/utils/helpers'
 import { updateCheckout } from '../../shopify/shopifyActions'
 
-const CartSummaryItem = ({ item }) => {
+const CartSummaryItem = ({ item, client, checkout }) => {
   const dispatch = useDispatch()
   const { variant } = item
   const featuredImage = variant.image.src
-  const client = useSelector(state => state.shopify.client)
-  const checkout = useSelector(state => state.shopify.checkout)
+
   const [quantity, setQuantity] = useState(item.quantity)
 
   async function removeItem() {

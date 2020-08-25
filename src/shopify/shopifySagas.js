@@ -1,77 +1,57 @@
-import { takeLatest, call, put, select, all } from 'redux-saga/effects'
-import {
-  SET_CURRENCY,
-  FETCH_PRODUCTS_FAIL,
-  FETCH_PRODUCTS_BEGIN,
-} from './shopifyConstants'
+import { takeLatest, call, put, all } from 'redux-saga/effects'
+import { LOAD_SHOPIFY } from './shopifyConstants'
 
 import Client from 'shopify-buy'
-import { setProducts, setShop, setCheckout, createClient } from './shopifyActions'
+import { loadChannel, finishLoad } from './shopifyActions'
 import { arrayToObject } from '../common/utils/helpers'
 
-const cadClient = Client.buildClient({
-  storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-  domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
-})
+const CAD = {
+  id: 'CAD',
+  client: Client.buildClient({
+    storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+    domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
+  })
+}
 
-const usdClient = Client.buildClient({
-  storefrontAccessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
-  domain: `${process.env.GATSBY_US_SHOP_NAME}.myshopify.com`,
-})
+const USD = {
+  id: 'USD',
+  client: Client.buildClient({
+    storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+    domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
+  })
+}
 
-let client = cadClient
-
-const getCurrency = (state) => state.shopify.currency
-// const getCheckout = (state) => state.shopify.checkout
-const getCADCheckout = (state) => state.shopify.cadcheckout
-const getUSDCheckout = (state) => state.shopify.usdcheckout
+const channels = [CAD, USD]
 
 
-async function fetchAllProducts() {
+async function fetchAllProducts(client) {
   console.log("Fetching Products From Shopify")
   try {
     const products = await client.product.fetchAll(250)
-    return products
+    // return an object
+    return arrayToObject(products, 'id')
+
   } catch (error) {
     return error
   }
 }
-// async function fetchCADProducts() {
-//   console.log("Fetching Products From CAD Store")
-//   try {
-//     const products = await cadClient.product.fetchAll(250)
-
-//     return products
-//   } catch (error) {
-//     return error
-//   }
-// }
-// async function fetchUSDProducts() {
-//   console.log("Fetching Products From USD Store")
-//   try {
-//     const products = await usdClient.product.fetchAll(250)
-
-//     return products
-//   } catch (error) {
-//     return error
-//   }
-// }
 
 
-async function fetchCheckout(checkout) {
-  console.log("Fetching Checkout:", checkout)
+async function fetchCheckout(client) {
+  console.log("Fetching New Checkout")
   try {
-    const activeCheckout = checkout
-      ? await client.checkout.fetch(checkout.id)
-      : await client.checkout.create()
+    // const activeCheckout = checkout
+    //   ? await client.checkout.fetch(checkout.id)
+    //   : await client.checkout.create()
+    const checkout = await client.checkout.create()
 
-    return activeCheckout
+    return checkout
   } catch (error) {
     return error
   }
 }
 
-async function fetchShopInfo() {
+async function fetchShopInfo(client) {
   console.log("Fetching Shop Details")
   try {
     const shop = await client.shop.fetchInfo()
@@ -82,58 +62,33 @@ async function fetchShopInfo() {
   }
 }
 
-function* updateProducts() {
-  const currency = yield select(getCurrency)
-  client = currency === 'CAD' ? cadClient : usdClient
 
-  yield put({
-    type: FETCH_PRODUCTS_BEGIN,
-    payload: {
-      loading: true
-    }
-  })
-  try {
-    // call the api to get the shop products
-    const products = yield call(fetchAllProducts)
-    // save the products in state
-    yield put(setProducts(arrayToObject(products, 'id')))
+function* addChannel(channel) {
+  const { id, client } = channel
+  const [products, shop, checkout] = yield all([
+    call(fetchAllProducts, client),
+    call(fetchShopInfo, client),
+    call(fetchCheckout, client)
+  ])
 
-    return products
-
-  } catch (error) {
-    yield put({
-      type: FETCH_PRODUCTS_FAIL,
-      payload: {
-        error,
-        loading: false
-      }
-    })
-    return error
-  }
+  yield put(loadChannel({
+    id,
+    client,
+    products,
+    shop,
+    checkout
+  }))
 
 }
 
-function* setStore(action) {
-  const currency = yield select(getCurrency)
-  const cadCheckout = yield select(getCADCheckout)
-  const usdCheckout = yield select(getUSDCheckout)
-
-  const checkout = currency === 'CAD' ? cadCheckout : usdCheckout
-  client = currency === 'CAD' ? cadClient : usdClient
+function* loadAllChannels(action) {
+  // const { payload: { activeChannel } } = action
 
   try {
-    const shop = yield call(fetchShopInfo)
-    const activeCheckout = yield call(fetchCheckout, checkout)
-    yield call(updateProducts)
-    // const cadProducts = yield call(fetchCADProducts)
-    // const usdProducts = yield call(fetchUSDProducts)
-    // const products = currency === 'CAD' ? cadProducts : usdProducts
-    yield put(createClient(client))
-    yield put(setShop(shop))
-    yield put(setCheckout(activeCheckout))
-    // yield put(setProducts(arrayToObject(products, 'id')))
-    // yield put(setUSDProducts(arrayToObject(usdProducts, 'id')))
-    // yield put(setCADProducts(arrayToObject(cadProducts, 'id')))
+    // loop through channels
+    yield all(channels.map(channel => call(addChannel, channel)))
+    // finish loading
+    yield put(finishLoad())
 
   } catch (error) {
     console.log("ERR:", error)
@@ -142,6 +97,6 @@ function* setStore(action) {
 
 export function* rootSaga() {
   yield all([
-    takeLatest(SET_CURRENCY, setStore)
+    takeLatest(LOAD_SHOPIFY, loadAllChannels),
   ]);
 }

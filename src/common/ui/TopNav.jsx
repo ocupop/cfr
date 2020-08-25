@@ -6,8 +6,8 @@ import { openModal } from '../modals/modalActions'
 
 const TopNav = () => {
   const dispatch = useDispatch()
-  const checkout = useSelector(state => state.shopify.checkout)
-  const currency = useSelector(state => state.shopify.currency)
+  const activeChannel = useSelector(state => state.shopify.activeChannel)
+  const checkout = useSelector(state => state.shopify[activeChannel].checkout)
 
   const auth = {
     displayName: 'tombeck',
@@ -28,9 +28,9 @@ const TopNav = () => {
 
       <button
         type="button"
-        onClick={() => dispatch(openModal('CountryModal', { currency: currency }))}
+        onClick={() => dispatch(openModal('ChannelModal', { currency: activeChannel }))}
         className="btn mx-2">
-        {currency === 'CAD' ? (
+        {activeChannel === 'CAD' ? (
           <span className="text-dark">
             <i className="flag-icon flag-icon-ca mr-1"></i>
             <small>CAD</small>

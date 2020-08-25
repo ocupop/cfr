@@ -1,129 +1,60 @@
 import {
-  SET_WHOLESALE,
-  CREATE_CLIENT,
-  SET_SHOP,
-  SET_CURRENCY,
-  FETCH_PRODUCTS_BEGIN,
-  SET_PRODUCTS,
-  SET_USD_PRODUCTS,
-  SET_CAD_PRODUCTS,
-  FETCH_PRODUCTS_FAIL,
-  SET_PRODUCT_FILTER,
-  SET_CHECKOUT,
-  CREATE_CHECKOUT,
+  LOAD_SHOPIFY,
+  LOAD_CHANNEL,
+  FINISH_LOAD,
+  SET_ACTIVE_CHANNEL,
   UPDATE_CHECKOUT,
+  ADD_NOTE,
 } from './shopifyConstants'
 
-
-export const setWholesale = (wholesale) => {
+export const loadShopify = (activeChannel) => {
   return {
-    type: SET_WHOLESALE,
+    type: LOAD_SHOPIFY,
     payload: {
-      wholesale
-    }
-  }
-}
-export const createClient = (client) => {
-  return {
-    type: CREATE_CLIENT,
-    payload: {
-      client
+      activeChannel
     }
   }
 }
 
-export const setCurrency = (currency) => {
+export const loadChannel = ({ id, client, products, shop, checkout }) => {
   return {
-    type: SET_CURRENCY,
+    type: LOAD_CHANNEL,
     payload: {
-      currency
-    }
-  }
-}
-
-export const setShop = (shop) => {
-  return {
-    type: SET_SHOP,
-    payload: {
-      shop
-    }
-  }
-}
-
-export const fetchProductsBegin = () => {
-  return {
-    type: FETCH_PRODUCTS_BEGIN,
-    payload: {}
-  }
-}
-export const setProducts = (products) => {
-  return {
-    type: SET_PRODUCTS,
-    payload: {
-      products
-    }
-  }
-}
-export const setCADProducts = (cadProducts) => {
-  return {
-    type: SET_CAD_PRODUCTS,
-    payload: {
-      cadProducts
-    }
-  }
-}
-export const setUSDProducts = (usdProducts) => {
-  return {
-    type: SET_USD_PRODUCTS,
-    payload: {
-      usdProducts
-    }
-  }
-}
-
-export const fetchProductsFail = (error) => {
-  return {
-    type: FETCH_PRODUCTS_FAIL,
-    payload: {
-      error,
-      loading: false
-    }
-  }
-}
-
-export const setProductFilter = (filter) => {
-  return {
-    type: SET_PRODUCT_FILTER,
-    payload: {
-      filter
-    }
-  }
-}
-
-export const setCheckout = (checkout) => {
-  return {
-    type: SET_CHECKOUT,
-    payload: {
+      id,
+      client,
+      products,
+      shop,
       checkout
     }
   }
 }
 
-// TODO: Necessary?
-export const createCheckout = (checkout) => {
+export const finishLoad = () => {
   return {
-    type: CREATE_CHECKOUT,
-    payload: {
-      checkout
-    }
+    type: FINISH_LOAD,
+    payload: { loading: false }
   }
 }
 
 export const updateCheckout = (checkout) => {
   return {
     type: UPDATE_CHECKOUT,
-    payload: {
-      checkout
-    }
+    payload: { checkout }
   }
 }
+
+export const addNote = (note) => {
+  return {
+    type: ADD_NOTE,
+    payload: { note }
+  }
+}
+
+export const setActiveChannel = (activeChannel) => {
+  return {
+    type: SET_ACTIVE_CHANNEL,
+    payload: { activeChannel }
+  }
+}
+
+

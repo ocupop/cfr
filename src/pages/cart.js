@@ -1,17 +1,42 @@
 import React, { useState, useEffect } from 'react'
+import { toastr } from 'react-redux-toastr'
 import { Link } from 'gatsby'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { Formik, Field, Form } from 'formik'
+// import FormikDebug from '../common/utils/FormikDebug'
+import { TextInput } from '../common/fields'
 import CartSummaryItem from '../components/cart/CartSummaryItem'
 import LoadingComponent from '../common/ui/LoadingComponent'
+import { updateCheckout } from '../shopify/shopifyActions'
 
 
 const CartPage = () => {
-  const checkout = useSelector(state => state.shopify.checkout)
-  const currency = useSelector(state => state.shopify.currency)
+  const dispatch = useDispatch()
+  const activeChannel = useSelector(state => state.shopify.activeChannel)
+  const channel = useSelector(state => state.shopify[activeChannel])
+  const { client, checkout } = channel
+
   const [freeShipping] = useState(400)
   const [progress, setProgress] = useState(0)
 
+
+  async function addNote({ note }) {
+    console.log(note)
+    try {
+      const newCheckout = await client.checkout.updateAttributes(checkout.id, { note: note })
+      dispatch(updateCheckout(newCheckout))
+
+      window.location.replace(newCheckout.webUrl)
+    } catch (error) {
+      console.log(error)
+      toastr.error('Error', error)
+    }
+  }
+
   useEffect(() => {
+    if (!checkout) {
+      return
+    }
     function getProgress(value) {
       const progress = Math.round((value / freeShipping) * 100)
       return progress > 100 ? 100 : progress
@@ -31,17 +56,45 @@ const CartPage = () => {
             <div className="col-12 col-md-8">
               <div className="p-5">
                 <h5>Cart Summary</h5>
-                {checkout.lineItems.length > 0 && checkout.lineItems.map(item => <CartSummaryItem key={item.id} item={item} />)}
+                {checkout.lineItems.length > 0 && checkout.lineItems.map(item => (
+                  <CartSummaryItem
+                    key={item.id}
+                    item={item}
+                    client={client}
+                    checkout={checkout}
+                  />
+                ))}
                 <hr />
                 {checkout.lineItems.length > 0 ? (
-                  <div className="d-flex py-3">
-                    <a href={checkout.checkoutUrl} className="btn btn-secondary text-white text-uppercase font-family-base mb-0">
-                      <small>Checkout now</small>
-                    </a>
-                    <a href={`/`} className="btn btn-light text-mid text-uppercase font-family-base ml-auto">
-                      <small>Continue shopping</small>
-                    </a>
-                  </div>
+                  <>
+                    <Formik
+                      enableReinitialize
+                      initialValues={{
+                        note: ''
+                      }}
+                      onSubmit={(values) => addNote(values)}>
+                      {({ values, dirty }) => (
+                        <Form className="p-3 bg-light text-dark">
+                          <small>Please tell us a little bit about your snowmobile before you can checkout.</small>
+                          <Field
+                            name="note"
+                            className="mt-3"
+                            component={TextInput}
+                            placeholder="Year / Make / Model"
+                          />
+                          <div className="text-center">
+                            {dirty ? (
+                              <button type="submit" className="btn btn-warning text-dark btn-block">Checkout Now</button>
+                            ) : (
+                                <button className="btn btn-dark btn-block" disabled>Checkout Now</button>
+                              )}
+
+                          </div>
+                        </Form>
+                      )}
+                    </Formik>
+
+                  </>
                 ) : (
                     <p>Uh Oh! Your cart is empty...</p>
                   )}
@@ -49,16 +102,13 @@ const CartPage = () => {
             </div>
             <div className="col-12 col-md-4 bg-dark bg-bleed text-white">
               <div className="px-3 pt-5 text-center">
-                <h5>Total: ${checkout.subtotalPrice} {currency}</h5>
+                <h5>Total: ${checkout.subtotalPrice} {activeChannel}</h5>
                 <hr />
                 {progress === 100 ? (
                   <>
                     <p className="text-uppercase font-family-base">
                       <small>Congrats! You qualify for free shipping.</small><br />
                     </p>
-                    <a href={checkout.checkoutUrl} className="btn btn-secondary btn-block text-white text-uppercase font-family-base mb-4">
-                      <small>Checkout now</small>
-                    </a>
                   </>
                 ) : (
                     <>

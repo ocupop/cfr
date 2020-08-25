@@ -2,12 +2,12 @@ import React from 'react'
 import { toastr } from 'react-redux-toastr'
 import { useSelector, useDispatch } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
-import { setCurrency } from '../../shopify/shopifyActions'
+import { setActiveChannel } from '../../shopify/shopifyActions'
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../common/async/asyncActions'
 
 const CountrySelector = () => {
   const dispatch = useDispatch()
-  const currency = useSelector(state => state.shopify.currency)
+  const activeChannel = useSelector(state => state.shopify.activeChannel)
 
   function changeStore(country) {
     const message = `Confirm: Do you want to switch to our ${country === 'CAD' ? 'Canadian' : 'US'} online store?`
@@ -15,8 +15,8 @@ const CountrySelector = () => {
       toastr.confirm(message, {
         onOk: () => {
           dispatch(asyncActionStart())
-          dispatch(setCurrency(country))
-          toastr.success('Success', `You are now in the ${currency === 'USD' ? 'Candadian' : 'US'} store`)
+          dispatch(setActiveChannel(country))
+          toastr.success('Success', `You are now in the ${activeChannel === 'USD' ? 'Candadian' : 'US'} store`)
           dispatch(asyncActionFinish())
         }
       })
@@ -35,16 +35,16 @@ const CountrySelector = () => {
         <div className="m-auto">
           <ButtonGroup size="sm">
             <Button
-              variant="mid"
+              variant="dark"
               onClick={() => changeStore('USD')}
-              active={currency === 'USD' ? true : false}>
+              active={activeChannel === 'USD' ? true : false}>
               <span className="flag-icon flag-icon-us mr-2"></span>
               USA
             </Button>
             <Button
-              variant="mid"
+              variant="dark"
               onClick={() => changeStore('CAD')}
-              active={currency === 'CAD' ? true : false}>
+              active={activeChannel === 'CAD' ? true : false}>
               <span className="flag-icon flag-icon-ca mr-2"></span>
               Canada
             </Button>

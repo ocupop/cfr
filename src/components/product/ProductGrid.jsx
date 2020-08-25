@@ -51,8 +51,8 @@ const ProductGrid = ({ props: { products } }) => {
         </div>
       )}
       <div id="product-grid" className="responsive-card-deck cards-lg-3 cards-md-2">
-        {filteredProducts && filteredProducts.map(product => (
-          <ProductGridCard key={product.slug} product={product} />
+        {filteredProducts && filteredProducts.map((product, index) => (
+          <ProductGridCard key={`${product.slug}_${index}`} product={product} />
         ))}
       </div>
     </>

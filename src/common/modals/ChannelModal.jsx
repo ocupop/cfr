@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { Modal, Button } from 'react-bootstrap'
 import { closeModal } from './modalActions'
@@ -7,7 +7,7 @@ import CountrySelector from '../ui/CountrySelector'
 import logo from '../assets/footer-logo.png'
 
 
-const CountryModal = ({ currency }) => {
+const ChannelModal = ({ activeChannel }) => {
   const dispatch = useDispatch()
 
   return (
@@ -27,8 +27,8 @@ const CountryModal = ({ currency }) => {
   )
 }
 
-// CountryModal.propTypes = {
+ChannelModal.propTypes = {
+  activeChannel: PropTypes.string
+}
 
-// }
-
-export default CountryModal
+export default ChannelModal

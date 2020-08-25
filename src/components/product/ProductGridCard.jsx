@@ -5,11 +5,11 @@ import Skeleton from 'react-loading-skeleton'
 import { getPriceRange } from '../../common/utils/helpers'
 
 const ProductGridCard = ({ product }) => {
-  const { name, categories, url, featuredImage, cadStorefrontID, usdStorefrontID } = product
   // const loading = useSelector(state => state.shopify.loading)
-  const currency = useSelector(state => state.shopify.currency)
-  const productID = currency === 'CAD' ? cadStorefrontID : usdStorefrontID
-  const shopifyProduct = useSelector(state => state.shopify.products && state.shopify.products[productID])
+  const activeChannel = useSelector(state => state.shopify.activeChannel)
+  const { name, categories, url, featuredImage, cadStorefrontID, usdStorefrontID } = product
+  const productID = activeChannel === 'CAD' ? cadStorefrontID : usdStorefrontID
+  const shopifyProduct = useSelector(({ shopify }) => shopify[activeChannel].products && shopify[activeChannel].products[productID])
 
   return (
     <>

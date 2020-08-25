@@ -1,9 +1,10 @@
 .addOn {
+  @extend .row;
+  @extend .no-gutters;
   position: relative;
-  display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  max-width: 400px;
+  margin-bottom: 2px;
   background-color: rgba($light, 0.15);
   color: $light;
   cursor: pointer;
@@ -16,20 +17,25 @@
     background-color: rgba($mid, 0.6);
     color: $white;
   }
-  .actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    height: 100%;
-    width: 30px;
-    top: 0;
-    left: -30px;
-    text-align: center;
-    color: $dark;
-    background-color: lighten($dark, 15%);
-    &:hover {
-      color: $white;
-    }
-  }
+  // .actions {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   position: absolute;
+  //   height: 100%;
+  //   width: 30px;
+  //   top: 0;
+  //   left: -30px;
+  //   text-align: center;
+  //   color: $dark;
+  //   background-color: lighten($dark, 15%);
+  //   &:hover {
+  //     color: $white;
+  //   }
+  // }
+
+  // [class*="col-"] {
+  //   display: flex;
+  //   align-items: stretch;
+  // }
 }
