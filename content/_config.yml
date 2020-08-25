@@ -10,11 +10,10 @@ socialshare:
   featured_image: img/socialshare.png
   twitter:
     username:
-    image:
+    image: img/socialshare.png
 
 # Google Analytics
-analytics:
-  default:
+analytics_code: UA-45693585-1
 
 # Collections
 collections:
