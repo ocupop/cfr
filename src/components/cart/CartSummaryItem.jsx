@@ -48,7 +48,7 @@ const CartSummaryItem = ({ item, client, checkout }) => {
     <>
     <hr className="border-darken" />
     <div className="row py-3">
-      <div className="col-3">
+      <div className="col-sm-3">
         <div
           className="bg-image aspect-4x3"
           style={{
@@ -56,7 +56,7 @@ const CartSummaryItem = ({ item, client, checkout }) => {
           }}
         />
       </div>
-      <div className="col-7">
+      <div className="col-sm-7">
         <div>
           <small className="mb-0 text-uppercase">
             <strong>{item.title}</strong>
@@ -106,8 +106,8 @@ const CartSummaryItem = ({ item, client, checkout }) => {
           </div>
         </div>
       </div>
-      <div className="col-2 text-right">
-        <small>{formatMoney(variant.price * item.quantity)}</small>
+      <div className="col-sm-2 text-sm-right">
+        <small className="mt-3 mt-sm-0">{formatMoney(variant.price * item.quantity)}</small>
       </div>
     </div>
     </>
