@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import TestModal from './TestModal'
 import FixModal from './FixModal'
-import VariantModal from './VariantModal'
+import SearchModal from './SearchModal'
 import ImageModal from './ImageModal'
 import ChannelModal from './ChannelModal'
 import CheckoutModal from './CheckoutModal'
@@ -14,7 +14,7 @@ import CheckoutModal from './CheckoutModal'
 const modalLookup = {
   TestModal,
   FixModal,
-  VariantModal,
+  SearchModal,
   ImageModal,
   ChannelModal,
   CheckoutModal,
