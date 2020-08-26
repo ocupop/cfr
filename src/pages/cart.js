@@ -64,7 +64,7 @@ const CartPage = () => {
                     checkout={checkout}
                   />
                 ))}
-                <hr />
+                <hr className="border-darken" />
                 {checkout.lineItems.length > 0 ? (
                   <>
                     <Formik
@@ -103,7 +103,7 @@ const CartPage = () => {
             <div className="col-12 col-md-4 bg-dark bg-bleed text-white">
               <div className="px-3 pt-5 text-center">
                 <h5>Total: ${checkout.subtotalPrice} {activeChannel}</h5>
-                <hr />
+                <hr className="border-lighten" />
                 {progress === 100 ? (
                   <>
                     <p className="text-uppercase font-family-base">
@@ -138,9 +138,9 @@ const CartPage = () => {
 
               </div>
               <div className="px-3 pb-5">
-                <hr className="mt-0" />
+                {/* <hr className="mt-0 border-lighten" /> */}
                 <p className="font-family-base text-center">
-                  <small>Apply any additional discount codes in next step.</small>
+                  <small>Apply any additional discount codes during checkout.</small>
                 </p>
               </div>
             </div>

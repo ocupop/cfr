@@ -1,11 +1,18 @@
 import { applyMiddleware, compose, createStore } from 'redux'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import createSagaMiddleware from 'redux-saga'
-import { throttle, isEmpty } from 'lodash'
-import { loadState, saveState } from './localStorage'
-import { loadShopify } from '../shopify/shopifyActions'
 import { rootSaga } from '../shopify/shopifySagas'
+import { ShopifyTransform } from './localStorage'
 import rootReducer from './reducers'
 
+const persistConfig = { // configuration object for redux-persist
+  key: 'shopify',
+  storage, // define which storage to use
+  transforms: [ShopifyTransform],
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer()) // create a persisted reducer
 
 export default function createReduxStore() {
   // ======================================================
@@ -27,33 +34,18 @@ export default function createReduxStore() {
   const sagaMiddleware = createSagaMiddleware()
   const middleware = [
     sagaMiddleware
-    // thunk
-    // thunk.withExtraArgument(getClient),
-    // This is where you add other middleware like redux-observable
   ]
 
   // ======================================================
   // Store Instantiation and HMR Setup
   // ======================================================
 
-  const initialState = loadState() || {}
   const store = createStore(
-    rootReducer(),
-    initialState,
+    persistedReducer,
     compose(applyMiddleware(...middleware), ...enhancers)
   )
-  // store.subscribe(throttle(() => {
-  //   saveState(store.getState())
-  // }), 1000)
 
   sagaMiddleware.run(rootSaga)
-
-  // Setting the currency begins a process of fetching products and creating a client for future requests
-  if (isEmpty(initialState)) {
-    console.log("This is a new visitor")
-    store.dispatch(loadShopify('CAD'))
-    return store
-  }
 
   return store
 }

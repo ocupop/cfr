@@ -30,7 +30,9 @@ $info: $cyan !default;
 $warning: $yellow !default;
 $danger: $red !default;
 $light: $gray-100;
+$darken: $gray-300;
 $mid: $gray-400;
+$lighten: $gray-800;
 $dark: $gray-900;
 
 $theme-colors: (
@@ -41,7 +43,9 @@ $theme-colors: (
   "warning": $yellow,
   "danger": $red,
   "light": $light,
+  "darken": $darken,
   "mid": $mid,
+  "lighten": $lighten,
   "dark": $dark,
   "black": $black,
 );

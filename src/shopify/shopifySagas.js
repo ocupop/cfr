@@ -1,12 +1,12 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects'
-import { LOAD_SHOPIFY } from './shopifyConstants'
+import { REHYDRATE } from 'redux-persist/lib/constants'
 
 import Client from 'shopify-buy'
-import { loadChannel, finishLoad } from './shopifyActions'
+import { loadChannel, finishLoad, updateChannel } from './shopifyActions'
 import { arrayToObject } from '../common/utils/helpers'
 
 const CAD = {
-  id: 'CAD',
+  channelId: 'CAD',
   client: Client.buildClient({
     storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
     domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
@@ -14,10 +14,10 @@ const CAD = {
 }
 
 const USD = {
-  id: 'USD',
+  channelId: 'USD',
   client: Client.buildClient({
-    storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-    domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
+    storefrontAccessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
+    domain: `${process.env.GATSBY_US_SHOP_NAME}.myshopify.com`,
   })
 }
 
@@ -38,14 +38,15 @@ async function fetchAllProducts(client) {
 
 
 async function fetchCheckout(client) {
-  console.log("Fetching New Checkout")
+  console.log("Fetching Checkout")
   try {
-    // const activeCheckout = checkout
-    //   ? await client.checkout.fetch(checkout.id)
+    // const activeCheckout = checkoutId
+    //   ? await client.checkout.fetch(checkoutId)
     //   : await client.checkout.create()
-    const checkout = await client.checkout.create()
 
-    return checkout
+    const activeCheckout = await client.checkout.create()
+
+    return activeCheckout
   } catch (error) {
     return error
   }
@@ -62,9 +63,25 @@ async function fetchShopInfo(client) {
   }
 }
 
+function* updateChannelDetails(channel) {
+  const { channelId, client } = channel
+  const [products, shop] = yield all([
+    call(fetchAllProducts, client),
+    call(fetchShopInfo, client),
+  ])
+
+  yield put(updateChannel({
+    channelId,
+    client,
+    products,
+    shop,
+  }))
+
+}
 
 function* addChannel(channel) {
-  const { id, client } = channel
+  const { channelId, client } = channel
+
   const [products, shop, checkout] = yield all([
     call(fetchAllProducts, client),
     call(fetchShopInfo, client),
@@ -72,7 +89,7 @@ function* addChannel(channel) {
   ])
 
   yield put(loadChannel({
-    id,
+    channelId,
     client,
     products,
     shop,
@@ -81,12 +98,18 @@ function* addChannel(channel) {
 
 }
 
-function* loadAllChannels(action) {
-  // const { payload: { activeChannel } } = action
-
+function* refreshAllChannels(action) {
+  const { payload } = action
   try {
     // loop through channels
-    yield all(channels.map(channel => call(addChannel, channel)))
+    yield all(channels.map(channel => {
+      if (payload) {
+        return call(updateChannelDetails, channel)
+      }
+
+      return call(addChannel, channel)
+    }))
+
     // finish loading
     yield put(finishLoad())
 
@@ -97,6 +120,6 @@ function* loadAllChannels(action) {
 
 export function* rootSaga() {
   yield all([
-    takeLatest(LOAD_SHOPIFY, loadAllChannels),
-  ]);
+    takeLatest(REHYDRATE, refreshAllChannels),
+  ])
 }

@@ -46,7 +46,7 @@ const CartSummaryItem = ({ item, client, checkout }) => {
 
   return (
     <>
-    <hr/>
+    <hr className="border-darken" />
     <div className="row py-3">
       <div className="col-3">
         <div

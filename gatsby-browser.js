@@ -5,14 +5,19 @@
  */
 
 // You can delete this file if you're not using it
-import React from 'react'
+
+// import React from 'react'
+// import App from "./App"
+// import configureStore from './src/store/configureStore'
+
+// export const wrapRootElement = ({ element }) => {
+//   const store = configureStore()
+
+//   return (
+//     <App store={store} element={element} />
+//   )
+// }
+
 import App from "./App"
-import configureStore from './src/store/configureStore'
 
-export const wrapRootElement = ({ element }) => {
-  const store = configureStore()
-
-  return (
-    <App store={store} element={element} />
-  )
-}
+export const wrapRootElement = App

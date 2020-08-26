@@ -1,6 +1,7 @@
 import {
   LOAD_SHOPIFY,
   LOAD_CHANNEL,
+  UPDATE_CHANNEL,
   FINISH_LOAD,
   SET_ACTIVE_CHANNEL,
   UPDATE_CHECKOUT,
@@ -21,7 +22,8 @@ const initialState = {
     products: [],
     shop: null,
   },
-  activeChannel: null
+  activeChannel: 'CAD',
+  loading: true
 }
 
 export const loadShopify = (state, payload) => {
@@ -30,8 +32,12 @@ export const loadShopify = (state, payload) => {
 }
 
 export const loadChannel = (state, payload) => {
-  const { id, client, products, checkout, shop } = payload
-  return { ...state, [id]: { ...state[id], client, products, checkout, shop } }
+  const { channelId, client, products, checkout, shop } = payload
+  return { ...state, [channelId]: { ...state[channelId], client, products, checkout, shop } }
+}
+export const updateChannel = (state, payload) => {
+  const { channelId, client, products, shop } = payload
+  return { ...state, [channelId]: { ...state[channelId], client, products, shop } }
 }
 
 export const finishLoad = (state, payload) => {
@@ -61,6 +67,7 @@ export const addNote = (state, payload) => {
 export default createReducer(initialState, {
   [LOAD_SHOPIFY]: loadShopify,
   [LOAD_CHANNEL]: loadChannel,
+  [UPDATE_CHANNEL]: updateChannel,
   [FINISH_LOAD]: finishLoad,
   [SET_ACTIVE_CHANNEL]: setActiveChannel,
   [UPDATE_CHECKOUT]: updateCheckout,

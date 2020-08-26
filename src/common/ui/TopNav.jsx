@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'gatsby'
-import AuthNav from '../auth/AuthNav'
+// import AuthNav from '../auth/AuthNav'
 import { openModal } from '../modals/modalActions'
 
 const TopNav = () => {
@@ -9,20 +9,15 @@ const TopNav = () => {
   const activeChannel = useSelector(state => state.shopify.activeChannel)
   const checkout = useSelector(state => state.shopify[activeChannel].checkout)
 
-  const auth = {
-    displayName: 'tombeck',
-    photoURL: ''
-  }
-
   return (
     <div className="d-flex align-items-center">
       <div className="mr-3">
-        <AuthNav auth={auth}/>
+        {/* <AuthNav auth={auth}/> */}
       </div>
       <Link to='/cart' className="text-inherit mr-2">
         <div className="d-flex align-items-center">
           <i className="ri-shopping-cart-fill"></i>
-          <span className="ml-2 badge badge-pill badge-primary">{checkout && checkout.lineItems.length}</span>
+          <span className="ml-2 badge badge-pill badge-primary">{checkout && checkout.lineItems && checkout.lineItems.length}</span>
         </div>
       </Link>
 

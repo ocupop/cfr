@@ -1,6 +1,7 @@
 import {
   LOAD_SHOPIFY,
   LOAD_CHANNEL,
+  UPDATE_CHANNEL,
   FINISH_LOAD,
   SET_ACTIVE_CHANNEL,
   UPDATE_CHECKOUT,
@@ -16,15 +17,27 @@ export const loadShopify = (activeChannel) => {
   }
 }
 
-export const loadChannel = ({ id, client, products, shop, checkout }) => {
+export const loadChannel = ({ channelId, client, products, shop, checkout }) => {
   return {
     type: LOAD_CHANNEL,
     payload: {
-      id,
+      channelId,
       client,
       products,
       shop,
       checkout
+    }
+  }
+}
+
+export const updateChannel = ({ channelId, client, products, shop }) => {
+  return {
+    type: UPDATE_CHANNEL,
+    payload: {
+      channelId,
+      client,
+      products,
+      shop
     }
   }
 }
