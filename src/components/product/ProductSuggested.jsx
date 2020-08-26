@@ -78,7 +78,7 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
           if(!selectedVariant) handleSelect()
         }}
       >
-        <div className="col-4 col-xxl-2 bg-white">
+        <div className="col-2 bg-white">
           {selectedVariant ? (
             <div
               className='bg-image aspect-4x3'
@@ -91,25 +91,30 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
                 onClick={() => dispatch(openModal('ImageModal', { image: featuredImage }))} />
           )}
         </div>
-        <div className="col-8 col-xxl-10">
+        <div className="col-10">
           <div className="d-flex align-items-stretch justify-content-between h-100">
-            <div className="bg-transparent p-1 align-self-center">
-              {field.value && field.value.quantity > 0 ? (
-                <span className="ml-3">{field.value.quantity}</span>
-              ):(
-                <i className="ri-shopping-cart-fill ml-3"/>
-              )}
-            </div>
-            <div className="d-flex align-items-center flex-fill">
-              <small className="my-auto mx-2">Add {productName}</small>
-            </div>
+
+            {field.value && field.value.quantity > 0 ? (
+              <>
+                <div className="bg-dark p-1 align-self-stretch p-2 pt-3">
+                  <div className="badge badge-dark mt-1">{field.value.quantity}</div>
+                </div>
+                <div className="d-flex align-items-center flex-fill">
+                  <small className="my-auto mx-2">{productName}</small>
+                </div>
+              </>
+            ):(
+              <>
+                <div className="bg-transparent p-1 align-self-center">
+                  <i className="ri-shopping-cart-fill ml-3"/>
+                </div>
+                <div className="d-flex align-items-center flex-fill">
+                  <small className="my-auto mx-2">Add {productName}</small>
+                </div>
+              </>
+            )}
+
             <div className="actions">
-              {/* <button
-                type="button"
-                onClick={() => setSelectedVariant(null)}
-                className="actions">
-                <i className="ri-close-circle-fill lead"></i>
-              </button> */}
 
               {selectedVariant && (
                 <>
