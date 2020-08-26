@@ -12,6 +12,7 @@ import ProductSuggested from './ProductSuggested'
 import ProductBug from './ProductBug'
 
 import { updateCheckout } from '../../shopify/shopifyActions'
+import {CAD, USD} from '../../shopify/shopifySagas'
 
 const ProductForm = ({ props: product }) => {
   const navigate = useNavigate()
@@ -20,7 +21,8 @@ const ProductForm = ({ props: product }) => {
   const activeChannel = useSelector(({ shopify }) => shopify.activeChannel)
   const channel = useSelector(state => state.shopify[activeChannel])
   const productID = activeChannel === 'CAD' ? cadStorefrontID : usdStorefrontID
-  const { client, checkout, products } = channel
+  const { checkout, products } = channel
+  const client = activeChannel === 'CAD' ? CAD.client : USD.client
   const shopifyProduct = products[productID]
 
   if (!channel || !shopifyProduct) {

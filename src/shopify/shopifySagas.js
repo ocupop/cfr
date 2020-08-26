@@ -5,7 +5,7 @@ import Client from 'shopify-buy'
 import { loadChannel, finishLoad, updateChannel } from './shopifyActions'
 import { arrayToObject } from '../common/utils/helpers'
 
-const CAD = {
+export const CAD = {
   channelId: 'CAD',
   client: Client.buildClient({
     storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
@@ -13,7 +13,7 @@ const CAD = {
   })
 }
 
-const USD = {
+export const USD = {
   channelId: 'USD',
   client: Client.buildClient({
     storefrontAccessToken: process.env.GATSBY_US_SHOPIFY_ACCESS_TOKEN,
