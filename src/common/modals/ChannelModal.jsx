@@ -13,8 +13,8 @@ const ChannelModal = ({ activeChannel }) => {
   return (
     <>
       <Modal show onHide={() => dispatch(closeModal())}>
-        <Modal.Body>
-          <div className="bg-dark text-center mb-4">
+        <Modal.Body className="bg-dark text-white text-center pb-4">
+          <div className="mb-4">
             <img src={logo} alt="Cheetah Factory Racing"  className="w-25 my-3"/>
           </div>
           <CountrySelector/>

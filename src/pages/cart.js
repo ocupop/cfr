@@ -3,6 +3,7 @@ import { toastr } from 'react-redux-toastr'
 import { Link } from 'gatsby'
 import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Field, Form } from 'formik'
+import * as Yup from 'yup'
 // import FormikDebug from '../common/utils/FormikDebug'
 import { TextInput } from '../common/fields'
 import CartSummaryItem from '../components/cart/CartSummaryItem'
@@ -19,6 +20,27 @@ const CartPage = () => {
   const [freeShipping] = useState(400)
   const [progress, setProgress] = useState(0)
 
+  const validationSchema = Yup.object().shape({
+    note: Yup.string()
+      .min(10, 'Too Short!')
+      .max(100, 'Too Long!')
+      .required('Required'),
+  })
+
+  function confirmNote(setFieldValue) {
+    const message = `Confirm: Please add your snowmobile details to help us better serve you.`
+    try {
+      toastr.confirm(message, {
+        onOk: () => {
+          console.log("Customer confirmed that they don't have a snowmobile")
+          // setFieldValue('note', "Not Applicable")
+        }
+      })
+    } catch (error) {
+      console.log(error)
+      toastr.error('Oops', 'Staying put')
+    }
+  }
 
   async function addNote({ note }) {
     console.log(note)
@@ -72,8 +94,9 @@ const CartPage = () => {
                       initialValues={{
                         note: ''
                       }}
+                      validationSchema={validationSchema}
                       onSubmit={(values) => addNote(values)}>
-                      {({ values, dirty }) => (
+                      {({ values, dirty, setFieldValue }) => (
                         <Form className="p-3 bg-light text-dark">
                           <small>Please tell us a little bit about your snowmobile before you can checkout.</small>
                           <Field
@@ -84,9 +107,10 @@ const CartPage = () => {
                           />
                           <div className="text-center">
                             {dirty ? (
-                              <button type="submit" className="btn btn-warning text-dark btn-block">Checkout Now</button>
+                              <button type="submit" className="btn btn-success text-white btn-block">Checkout Now</button>
                             ) : (
-                                <button className="btn btn-dark btn-block" disabled>Checkout Now</button>
+
+                                <button className="btn btn-dark btn-block" onClick={() => confirmNote(setFieldValue)}>Checkout Now</button>
                               )}
 
                           </div>

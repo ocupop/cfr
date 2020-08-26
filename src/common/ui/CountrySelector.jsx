@@ -2,6 +2,7 @@ import React from 'react'
 import { toastr } from 'react-redux-toastr'
 import { useSelector, useDispatch } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
+import { closeModal } from '../modals/modalActions'
 import { setActiveChannel } from '../../shopify/shopifyActions'
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../../common/async/asyncActions'
 
@@ -18,6 +19,7 @@ const CountrySelector = () => {
           dispatch(setActiveChannel(country))
           toastr.success('Success', `You are now in the ${activeChannel === 'USD' ? 'Candadian' : 'US'} store`)
           dispatch(asyncActionFinish())
+          dispatch(closeModal())
         }
       })
     } catch (error) {
@@ -29,7 +31,7 @@ const CountrySelector = () => {
   return (
     <>
       <p className="text-center p-4">
-        <strong>Do you need to switch stores?</strong><br />CFR offers shipping from the following countries.
+        <strong>Do you want to switch stores?</strong><br />CFR offers shipping from the following countries.
       </p>
       <div className="d-flex align-items-center">
         <div className="m-auto">
