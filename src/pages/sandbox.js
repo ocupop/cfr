@@ -18,7 +18,7 @@ const SandboxPage = () => {
             <div className="col-12 col-md-8">
               <div className="p-5">
                 <h5>Sandbox</h5>
-                <form name="contact" method="POST" data-netlify="true">
+                <form name="contact" method="POST" netlify>
                   <p>
                     <label>Your Name: <input type="text" name="name" /></label>
                   </p>
