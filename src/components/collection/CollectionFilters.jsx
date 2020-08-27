@@ -21,6 +21,7 @@ const CollectionFilters = ({props: {title, brands, categories}}) => {
       <div className="alert alert-mid d-flex align-items-center d-md-none">
         <button type="button" className="btn text-inherit" onClick={() => setShowFilters(!showFilters)}>
           <i className="ri-filter-3-line"></i>
+          Filters
         </button>
         {filter && (
           <>

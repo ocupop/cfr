@@ -577,6 +577,9 @@
 
 .bg-bleed {
   min-height: calc(100vh - 350px);
+  @include media-breakpoint-down(sm) {
+    min-height: 0;
+  }
   &::before {
     content: "";
     display: block;
@@ -588,7 +591,7 @@
     left: 0;
     z-index: -1;
     background-color: inherit;
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       width: 120vw;
       left: -20vw;
     }

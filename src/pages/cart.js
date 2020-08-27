@@ -76,7 +76,7 @@ const CartPage = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-8">
-              <div className="p-5">
+              <div className="px-lg-5 py-5">
                 <h5>Cart Summary</h5>
                 {checkout.lineItems.length > 0 && checkout.lineItems.map(item => (
                   <CartSummaryItem

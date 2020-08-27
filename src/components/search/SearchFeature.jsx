@@ -8,7 +8,7 @@ const SearchFeature = props => {
 
   return (
     <button
-      className="nav-link border-0 bg-light text-dark rounded"
+      className="nav-link border-0 bg-light text-dark rounded px-3"
       onClick={() => dispatch(openModal('SearchModal'))}>
         <div className="d-flex align-items-center">
           <i className="ri-search-line mr-2"></i> Search
