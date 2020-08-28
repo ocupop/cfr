@@ -100,7 +100,7 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
                   <div className="badge badge-dark mt-1">{field.value.quantity}</div>
                 </div>
                 <div className="d-flex align-items-center flex-fill">
-                  <small className="my-auto mx-2">{productName}</small>
+                  <small className="my-auto mx-2">{productName}&nbsp;{selectedVariant.price}</small>
                 </div>
               </>
             ):(
