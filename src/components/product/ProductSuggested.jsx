@@ -96,8 +96,8 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
 
             {field.value && field.value.quantity > 0 ? (
               <>
-                <div className="bg-dark p-1 align-self-stretch p-2 pt-3">
-                  <div className="badge badge-dark mt-1">{field.value.quantity}</div>
+                <div className="bg-dark p-1 align-self-stretch align-items-center d-flex p-2 pt-3">
+                  <div className="badge badge-dark">{field.value.quantity}</div>
                 </div>
                 <div className="d-flex align-items-center flex-fill">
                   <small className="my-auto mx-2">{productName}&nbsp;{selectedVariant.price}</small>
@@ -114,7 +114,7 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
               </>
             )}
 
-            <div className="actions">
+            <div className="actions d-flex align-items-center">
 
               {selectedVariant && (
                 <>
