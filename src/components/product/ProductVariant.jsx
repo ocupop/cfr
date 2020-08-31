@@ -11,7 +11,7 @@ import { getPriceRange } from '../../common/utils/helpers'
 
 
 const ProductVariant = ({ client, productName, shopifyProduct, field, form: { errors, touched, setFieldValue } }) => {
-  const { options, images, variants, available } = shopifyProduct
+  const { options, images, variants } = shopifyProduct
   const dispatch = useDispatch()
 
   const [selectedVariant, setSelectedVariant] = useState()

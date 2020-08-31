@@ -13,6 +13,7 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
   const { options, variants } = shopifyProduct
   const dispatch = useDispatch()
   const [showOptions, setShowOptions] = useState()
+  const [soldOut, setSoldOut] = useState(false)
   const [selectedVariant, setSelectedVariant] = useState()
   const [variantOptions, setVariantOptions] = useState(null)
   // const [quantity, setQuantity] = useState(0)
@@ -28,6 +29,13 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
         const addVariant = await client.product.helpers.variantForOptions(shopifyProduct, variantOptions)
         if (!addVariant) {
           setSelectedVariant(null)
+          return
+        }
+        if(!addVariant.available) {
+          console.log('sold out')
+          setSelectedVariant(null)
+          setSoldOut(true)
+          console.log('available', soldOut)
           return
         }
         setSelectedVariant(addVariant)
@@ -83,12 +91,14 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
             <div
               className='bg-image aspect-4x3'
               style={{ backgroundImage: `url(${selectedVariant.image.src})` }}
-              onClick={() => dispatch(openModal('ImageModal', { image: selectedVariant.image.src }))} />
+              onClick={() => dispatch(openModal('ImageModal', { image: selectedVariant.image.src }))}> 
+            </div>    
           ):(
               <div
                 className='bg-image bg-white aspect-4x3'
                 style={{ backgroundImage: `url(${featuredImage})` }}
-                onClick={() => dispatch(openModal('ImageModal', { image: featuredImage }))} />
+                onClick={() => dispatch(openModal('ImageModal', { image: featuredImage }))}>
+                </div>
           )}
         </div>
         <div className="col-10">
@@ -100,7 +110,7 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
                   <div className="badge badge-dark">{field.value.quantity}</div>
                 </div>
                 <div className="d-flex align-items-center flex-fill">
-                  <small className="my-auto mx-2">{productName}&nbsp;{selectedVariant.price}</small>
+                  <small className="my-auto mx-2">{productName}&nbsp;${selectedVariant && selectedVariant.price}</small>
                 </div>
               </>
             ):(
@@ -109,7 +119,7 @@ const ProductSuggested = ({ client, productName, shopifyProduct, featuredImage, 
                   <i className="ri-shopping-cart-fill ml-3"/>
                 </div>
                 <div className="d-flex align-items-center flex-fill">
-                  <small className="my-auto mx-2">Add {productName}</small>
+                  <small className="my-auto mx-2">{!soldOut ? 'Add ' + productName : 'Sold Out'}</small>
                 </div>
               </>
             )}

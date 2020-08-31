@@ -47,7 +47,7 @@ const SearchModal = ({ heading }) => {
 
           <div>
             {searchResults.map(product => (
-              <a href={`/products/${product.handle}`} className="list-group-item">
+              <a href={`/products/${product.handle}`} className="list-group-item" onClick={() => dispatch(closeModal())}>
                 <div className="row">
                   <div className="col-1">
                     <img src={product.images[0].src} alt={product.title} className="img-fluid" />
