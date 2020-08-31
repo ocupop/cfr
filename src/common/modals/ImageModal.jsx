@@ -9,7 +9,7 @@ const ImageModal = ({ image }) => {
 
   return (
     <>
-      <Modal show onHide={() => dispatch(closeModal())}>
+      <Modal size="lg" show onHide={() => dispatch(closeModal())}>
         {/* <Modal.Header closeButton></Modal.Header> */}
         <Modal.Body>
           <img src={image} className="img-fluid" alt="modal" />
