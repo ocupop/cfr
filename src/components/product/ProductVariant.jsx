@@ -11,7 +11,7 @@ import { getPriceRange } from '../../common/utils/helpers'
 
 
 const ProductVariant = ({ client, productName, shopifyProduct, field, form: { errors, touched, setFieldValue } }) => {
-  const { options, images, variants } = shopifyProduct
+  const { options, images, variants, available } = shopifyProduct
   const dispatch = useDispatch()
 
   const [selectedVariant, setSelectedVariant] = useState()
@@ -50,7 +50,7 @@ const ProductVariant = ({ client, productName, shopifyProduct, field, form: { er
 
 
   useEffect(() => {
-    if (selectedVariant) {
+    if (selectedVariant && selectedVariant.available) {
       const title = `${productName} (${selectedVariant.title})`
       setFieldValue(`${field.name}.customAttributes[0].key`, 'title')
       setFieldValue(`${field.name}.customAttributes[0].value`, title)
@@ -58,7 +58,7 @@ const ProductVariant = ({ client, productName, shopifyProduct, field, form: { er
       setFieldValue(`${field.name}.quantity`, quantity)
     }
 
-    if (!selectedVariant) {
+    if (!selectedVariant || !selectedVariant.available) {
       setFieldValue(`${field.name}.customAttributes`, [])
       setFieldValue(`${field.name}.variantId`, null)
       setFieldValue(`${field.name}.quantity`, 0)
@@ -66,16 +66,19 @@ const ProductVariant = ({ client, productName, shopifyProduct, field, form: { er
 
   }, [selectedVariant, quantity])
 
-
+  console.log('selectedvariant', selectedVariant)
   return (
     <>
       {selectedVariant ? (
         <>
+          
           <p className="lead">${selectedVariant.price}</p>
           <div
             className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
             style={{ backgroundImage: `url(${selectedVariant.image.src})` }}
-            onClick={() => dispatch(openModal('ImageModal', { image: selectedVariant.image.src }))} />
+            onClick={() => dispatch(openModal('ImageModal', { image: selectedVariant.image.src }))}>
+            {selectedVariant.available ? '' : <p className="badge badge-danger sold-out-badge">Sold Out</p>}  
+          </div>    
         </>
       ) : (
         <>
@@ -83,7 +86,8 @@ const ProductVariant = ({ client, productName, shopifyProduct, field, form: { er
           <div
             className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
             style={{ backgroundImage: `url(${images[0].src})` }}
-            onClick={() => dispatch(openModal('ImageModal', { image: images[0].src }))} />
+            onClick={() => dispatch(openModal('ImageModal', { image: images[0].src }))}>
+          </div>    
         </>
       )}
 

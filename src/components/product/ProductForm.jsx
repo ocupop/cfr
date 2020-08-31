@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from "@reach/router"
 import { Loader } from 'semantic-ui-react'
-// import FormikDebug from '../../common/utils/FormikDebug'
+import FormikDebug from '../../common/utils/FormikDebug'
 import { useSelector, useDispatch } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 import { Formik, Field, Form, FieldArray } from 'formik'
@@ -56,7 +56,7 @@ const ProductForm = ({ props: product }) => {
                 key: 'title',
                 value: ''
               }
-            ]
+            ] 
           }]
         }}
         onSubmit={(values, {resetForm}) => addToCart(values, resetForm)}>
@@ -106,17 +106,16 @@ const ProductForm = ({ props: product }) => {
                 </div>
               </div>
             )}
-
             {values.lineItems[0] && (
               // TODO: Add logic to test that all fields are complete and there is availability
               <button
                 type="submit"
                 className="btn btn-secondary btn-large btn-block mb-3 mb-lg-5"
-                disabled={!values.lineItems[0].variantId}>
+                disabled={!values.lineItems[0].variantId}> 
                 Add to Cart
               </button>
             )}
-            {/* <FormikDebug /> */}
+            <FormikDebug />
           </Form>
         )}
       </Formik>
