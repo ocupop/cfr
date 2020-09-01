@@ -39,3 +39,15 @@
     color: $gray-800;
   }
 }
+
+#carousel-product-images {
+  .carousel-indicators {
+    bottom: -30px;
+    li {
+      width: 10px;
+      height: 10px;
+      background-color: $dark;
+      border-radius: 50%;
+    }
+  }
+}
