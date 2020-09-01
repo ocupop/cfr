@@ -1,0 +1,22 @@
+.cognito {
+  .c-forms-form {
+    .c-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      padding-left: 0 !important;
+    }
+
+    .c-editor {
+      padding-left: 0 !important;
+      
+      input,
+      textarea {
+        border: 1px solid $gray-400;
+        padding: 6px 12px;
+      }
+    }
+    #c-submit-button {
+      margin-left: 0 !important;
+    }
+  }
+}

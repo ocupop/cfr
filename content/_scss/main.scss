@@ -26,6 +26,7 @@
 @import "components/product_variant";
 @import "components/site_search";
 // Pages
+@import "pages/contact";
 @import "pages/cart";
 @import "pages/collection";
 @import "pages/dealers";
@@ -37,3 +38,4 @@
 // Vendor Overrides
 @import "vendor/bootstrap";
 @import "vendor/toastr/index";
+@import "vendor/cognito";
