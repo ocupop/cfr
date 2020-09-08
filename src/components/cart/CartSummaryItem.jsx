@@ -50,7 +50,7 @@ const CartSummaryItem = ({ item, client, checkout }) => {
     <div className="row py-3">
       <div className="col-sm-3">
         <div
-          className="bg-image aspect-4x3"
+          className="bg-image aspect-4x3 bg-contain"
           style={{
             backgroundImage: `url(${featuredImage})`
           }}
