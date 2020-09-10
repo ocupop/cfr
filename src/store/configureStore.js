@@ -7,6 +7,7 @@ import { ShopifyTransform } from './localStorage'
 import { setActiveChannel } from '../shopify/shopifyActions'
 import rootReducer from './reducers'
 
+let subdomain = false
 
 function getSubdomain(host) {
   const hostWithoutPort = host.split(':')[0];
@@ -28,7 +29,7 @@ export default function createReduxStore() {
   const enhancers = []
   if (typeof window !== `undefined`) {
     if (window && window.location) {
-      const subdomain = getSubdomain(window.location.host)
+      subdomain = getSubdomain(window.location.host)
       console.log("Subdomain:", subdomain)
 
       const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
