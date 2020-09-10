@@ -4,7 +4,15 @@ import storage from 'redux-persist/lib/storage'
 import createSagaMiddleware from 'redux-saga'
 import { rootSaga } from '../shopify/shopifySagas'
 import { ShopifyTransform } from './localStorage'
+import { setActiveChannel } from '../shopify/shopifyActions'
 import rootReducer from './reducers'
+
+
+function getSubdomain(host) {
+  const hostWithoutPort = host.split(':')[0];
+  return hostWithoutPort.split('.').slice(0, -2).join('.');
+}
+const subdomain = getSubdomain(window.location.host)
 
 const persistConfig = { // configuration object for redux-persist
   key: 'shopify',
@@ -46,6 +54,10 @@ export default function createReduxStore() {
   )
 
   sagaMiddleware.run(rootSaga)
+
+  if (subdomain === 'us') {
+    store.dispatch(setActiveChannel('USD'))
+  }
 
   return store
 }
