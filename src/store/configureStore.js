@@ -12,8 +12,6 @@ function getSubdomain(host) {
   const hostWithoutPort = host.split(':')[0];
   return hostWithoutPort.split('.').slice(0, -2).join('.');
 }
-const subdomain = getSubdomain(window.location.host)
-console.log("Subdomain:", subdomain)
 
 const persistConfig = { // configuration object for redux-persist
   key: 'shopify',
@@ -29,7 +27,10 @@ export default function createReduxStore() {
   // ======================================================
   const enhancers = []
   if (typeof window !== `undefined`) {
-    if (window && window.location && window.location.hostname === 'localhost') {
+    if (window && window.location) {
+      const subdomain = getSubdomain(window.location.host)
+      console.log("Subdomain:", subdomain)
+
       const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
       if (typeof devToolsExtension === 'function') {
         enhancers.push(devToolsExtension())
