@@ -13,6 +13,7 @@ function getSubdomain(host) {
   return hostWithoutPort.split('.').slice(0, -2).join('.');
 }
 const subdomain = getSubdomain(window.location.host)
+console.log("Subdomain:", subdomain)
 
 const persistConfig = { // configuration object for redux-persist
   key: 'shopify',
