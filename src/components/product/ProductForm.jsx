@@ -85,7 +85,9 @@ const ProductForm = ({ props: product }) => {
                             const id = activeChannel === 'CAD' ? product.cadStorefrontID : product.usdStorefrontID
 
                             if(!id) {
-                              return <ProductBug key={`${index}`} product={product} message="Suggested Products"/>
+                              console.log(`Missing Product ID ${product.name} | ${channel}`)
+                              return 
+                              // <ProductBug key={`${index}`} product={product} message="Suggested Products"/>
                             }
                             return (
                               <Field
