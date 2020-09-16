@@ -28,12 +28,13 @@ footer_image: /img/cfr-footer-4.jpg
             {{ product.categories.first }}
           </a>
           <h1 class="h4 mb-3">{{ title }}</h1>
-          {% include components/product-form.html %}
           {% if product.sidebar_disclaimer_html %}
             <div class="alert alert-danger" role="alert">
               {{ product.sidebar_disclaimer_html }}
             </div>
           {% endif %}
+          {% include components/product-form.html %}
+          
           <h5 class="text-uppercase">Share this</h5>
           <p class="product-social">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.slug | prepend: site.url }}" target="_blank"
