@@ -1,0 +1,80 @@
+- team_name: Tier 1 Team
+  team_members:
+    - brett-turcotte
+    - caleb-kesterke
+    - andreas-bergmark
+    - andrew-munster
+    - cody-mcnolty
+    - jon-jean
+    - cody-borchers
+    - khan-yong-gee
+    - cory-davis
+    - cody-hunt
+    - riley-suhan
+    - duncan-lee
+    - denver-debes
+    - josh-penner
+    - mike-poirier
+    - maria-sandberg
+    - nadine-overwater
+    - julie-ann-chapman
+    - chris-brown
+    - travis-rice
+    - john-jackson
+    - mikey-rencz
+    - charles-reid
+    - chris-rasman
+    - mark-tremblay
+    - kye-peterson
+    - mark-abma
+    - seth-morrison
+- team_name: Tier 2 Team
+  team_members:
+    - albin-johansson
+    - andre-jonsson
+    - ben-birk
+    - cameron-chimenti
+    - christian-gagnon
+    - dave-best
+    - david-deschsnes
+    - dylan-gilbert
+    - emmet-melton
+    - jenna-napier
+    - justin-befu
+    - keaton-roper
+    - luke-nokelby
+    - maverick-walker
+    - nathan-herbert
+    - nick-woods
+    - pekka-moilanen
+    - scott-rhodes
+    - thayne-rich
+    - thomas-hammond
+    - tim-marklund
+    - wally-dagg
+    - zac-parks
+- team_name: Tier 3 Team
+  team_members:
+- team_name: Social Team
+  team_members:
+    - aaron-blatt
+    - alex-andrews
+    - amon-barker
+    - ben-hansen
+    - cedric-landry
+    - colin-wallace
+    - colin-wiseman
+    - dave-norona
+    - micah-cook
+    - sledders-r-us
+    - snowmobile-fails
+- team_name: Industry Goats
+  team_members:
+    - barret-hepburn
+    - chris-ankeny
+    - dave-basterrechea
+    - dave-treadway
+    - delaney-zayac
+    - jeremy-jensen
+    - joe-lax
+    - vanessa-stark
