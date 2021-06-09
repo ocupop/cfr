@@ -1,6 +1,7 @@
 // Bootstrap specific overrides
 .btn,
 button {
+  @include transition(0.5s);
   &:focus {
     outline: 0;
   }

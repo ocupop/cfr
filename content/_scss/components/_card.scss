@@ -4,6 +4,7 @@
   background-color: $white;
   margin-bottom: 20px;
   color: inherit;
+  box-shadow: 2px 2px 6px rgba($dark, 0.2);
   .card-image-wrapper {
     height: auto;
     background: $white;
@@ -14,7 +15,7 @@
   &:hover {
     background-color: $black;
     text-decoration: none;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 5px rgba($dark, 0.3);
     cursor: pointer;
     h1,
     h2,
