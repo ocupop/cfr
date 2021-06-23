@@ -6,76 +6,21 @@
           <img src="{{ '/img/footer-logo.png' | prepend: site.url }}" class="img-fluid" alt="CFR Logo" />
         </a>
       </div>
+      {% for item in site.data.navigation.footer_navigation.navigation %}
       <div class="col-12 col-md-6 mb-md-3 col-lg-2">
-        <h4 class="h5">Company</h4>
+        
+        <h4 class="h5">{{ item.label }}</h4>
         <ul class="nav flex-column mb-3">
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/brochure">
-            Bro-Sure
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/handlebar-guide">
-            Bar Guide
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/dealers">
-            Dealers
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/legal">
-            Legal
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/contact">
-            Contact
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/faq">
-              FAQ
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/warranty">
-              Warranty
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/instructions">
-              Instructions
-            </a>
-          </li>
+          {% for link in item.links %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ link.link }}">
+                {{ link.label }}
+              </a>
+            </li>
+          {% endfor %}
         </ul>
       </div>
-      <div class="col-12 col-md-6 col-lg-2">
-        <h4 class="h5">Community</h4>
-        <ul class="nav flex-column mb-3">
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/cfr-team">
-            CFR Team
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/cfr-homies">
-            CFR Homies
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/about-cfr">
-            About CFR
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/get-stoked">
-            Get stoked
-            </a>
-          </li>
-        </ul>
-      </div>
+      {% endfor %}
       <div class="col-12 col-md-6 col-lg-4">
         <h4 class="h5">Community Sign-up</h4>
         <div id="mc_embed_signup">

@@ -1,0 +1,54 @@
+primary_navigation:
+  navigation:
+    links:
+      - label: Snowmobile
+        link: /collections/snowmobile
+        alt:
+      - label: Moto
+        link: /collections/moto
+        alt:
+      - label: Apparel
+        link: /collections/apparel
+        alt:      
+footer_navigation:
+  navigation:
+    - label: Company
+      links:
+        - label: Bro-Sure
+          link: /pages/brochure
+          alt:
+        - label: Bar guide
+          link: /pages/handlebar-guide
+          alt:
+        - label: Dealers
+          link: /pages/dealers
+          alt:
+        - label: Legal
+          link: /pages/legal
+          alt:  
+        - label: Contact
+          link: /pages/contact
+          alt:
+        - label: FAQ
+          link: /pages/faq
+          alt:
+        - label: Warranty
+          link: /pages/warranty
+          alt:  
+        - label: Instructions
+          link: /pages/instructions
+          alt:
+    - label: Community
+      links:
+        - label: CFR Team
+          link: /pages/cfr-team
+          alt:
+        - label: CFR Homies
+          link: /pages/cfr-homies
+          alt:
+        - label: About CFR
+          link: /pages/about-cfr
+          alt:
+        - label: Get Stoked
+          link: /pages/get-stoked
+          alt:       

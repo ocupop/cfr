@@ -1,39 +1,22 @@
 <div class="collapse navbar-collapse justify-content-md-end" id="primaryNav">
+  
   <ul class="navbar-nav">
+    {% for link in site.data.navigation.primary_navigation.navigation.links %}
     <li class="nav-item">
-      <a class="nav-link" href="/collections/snowmobile">Snowmobile</a>
+      <a class="nav-link" href="{{link.link}}">{{ link.label }}</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/collections/moto">Moto</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/collections/apparel">Apparel</a>
-    </li>
-
-    <li class="nav-item dropdown d-block d-md-none">
-      <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false" href="#">Company</a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/pages/brochure">Bro-Sure</a>
-        <a class="dropdown-item" href="/pages/handlebar-guide">Bar guide</a>
-        <a class="dropdown-item" href="/pages/legal">Legal</a>
-      </div>
-    </li>
-    <li class="nav-item dropdown d-block d-md-none">
-      <a class="nav-link dropdown-toggle" href="#" id="community-dropdown" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">Community</a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/pages/cfr-team">
-          CFR Team
-        </a>
-        <a class="dropdown-item" href="/pages/cfr-homies">
-          CFR Homies
-        </a>
-        <a class="dropdown-item" href="/pages/about-cfr">
-          About CFR
-        </a>
-      </div>
-    </li>
+    {% endfor %}
+    {% for item in site.data.navigation.footer_navigation.navigation %}
+      <li class="nav-item dropdown d-block d-md-none">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" href="#">{{ item.label }}</a>
+        <div class="dropdown-menu">
+          {% for link in item.links %}
+            <a class="dropdown-item" href="{{ link.link }}">{{ link.label }}</a>
+          {% endfor %}
+        </div>
+      </li>
+    {% endfor %}
     <div class="nav-item">
       <search-feature></search-feature>
     </div>
