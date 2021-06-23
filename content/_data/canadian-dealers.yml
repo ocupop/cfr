@@ -1,19 +1,18 @@
 - name: British Columbia
   dealers:
-    - valley-chainsaw
-    - revolution-powersports
-    - no-limits-motorsports
-    - greater-vancouver-powersports
-    - international-motorsports
-    - mountain-motorsports
-    - courtenay-motorsports
     - banner-recreational-products
     - cr-racing
-    - main-jet-motorsports
-    - playmor-power-products
+    - courtenay-motorsports
     - free-spirit-sports
+    - greater-vancouver-powersports
+    - international-motorsports
+    - main-jet-motorsports
+    - mountain-motorsports
+    - no-limits-motorsports
+    - playmor-power-products
+    - revolution-powersports
+    - valley-chainsaw
     - vally-moto-sport
-    - billy-rednecks
 - name: Alberta
   dealers:
     - cycle-works-motorsports
