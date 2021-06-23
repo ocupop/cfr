@@ -23,7 +23,7 @@ footer_image: /img/cfr-footer-4.jpg
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-5 col-xl-4 order-1 order-lg-8 pt-lg-5 bg-dark bg-bleed text-white">
-        <div class="p-3 pt-5 pt-lg-3 position-sticky sticky-top">
+        <div class="p-3 pt-5 pt-lg-3">
           <a href="{{ collection_url }}?filter={{ product.categories.first | slugify }}" class="mb-0 text-uppercase text-white-50">
             {{ product.categories.first }}
           </a>
@@ -84,15 +84,11 @@ footer_image: /img/cfr-footer-4.jpg
             </div>
             {% if page.gallery %}
             <a class="carousel-control-prev" href="#carousel-product-images" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true">
-                Prev
-              </span>
+              <i class="ri-arrow-left-s-line"></i>
               <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#carousel-product-images" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true">
-                Next
-              </span>
+              <i class="ri-arrow-right-s-line"></i>
               <span class="sr-only">Next</span>
             </a>
             {% endif %}
