@@ -4,14 +4,14 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-sm-3">
         <div class="text-left">
-          <img src="/img/footer-logo.png" alt="Apparel">
+          <img src="{{ '/img/footer-logo.png' | prepend: site.url }}" alt="Apparel">
           <a href="/collections/apparel"  class="btn btn-outline-white my-5">Shop for CFR Apparel</a>
         </div>
       </div>
       <div class="col-12 col-sm-3">
         <div class="text-right">
           <collection-image-slider>
-            <img src="{{ apparel.featured_image }}" alt="Apparel" class="img-fluid">
+            <img src="{{ apparel.featured_image | prepend: site.url }}" alt="Apparel" class="img-fluid">
           </collection-image-slider>
         </div>
       </div>
