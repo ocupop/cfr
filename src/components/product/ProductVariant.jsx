@@ -77,7 +77,12 @@ const ProductVariant = ({ client, productName, shopifyProduct, field, form: { er
             className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
             style={{ backgroundImage: `url(${selectedVariant.image.src})` }}
             onClick={() => dispatch(openModal('ImageModal', { image: selectedVariant.image.src }))}>
-            {selectedVariant.available ? '' : <p className="badge badge-danger sold-out-badge">Sold Out</p>}  
+            {selectedVariant.available ? '' : <p className="badge badge-danger image-badge">Sold Out</p>}  
+
+            
+            
+              
+            
           </div>    
         </>
       ) : (
@@ -87,6 +92,11 @@ const ProductVariant = ({ client, productName, shopifyProduct, field, form: { er
             className='bg-image bg-white aspect-4x3 mb-3 bg-contain'
             style={{ backgroundImage: `url(${images[0].src})` }}
             onClick={() => dispatch(openModal('ImageModal', { image: images[0].src }))}>
+            {options.length > 1 && (
+              <p className="badge badge-white text-dark image-badge">select options</p>  
+            )}  
+            
+
           </div>    
         </>
       )}
